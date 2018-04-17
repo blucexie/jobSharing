@@ -1,0 +1,98 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+ul,ol,li{
+    list-style: none;
+}
+a{
+    text-decoration: none;
+}
+html{
+    font-size: 30px;
+}
+body{
+    background-color: #f8f8f8;
+}
+/* 媒体查询 */
+@media only screen and (min-width:320px){
+    html{
+        font-size:12.8688px;
+    }
+}
+@media only screen and (min-width:360px){
+    html{
+        font-size:14.4774px;
+    }
+}
+@media only screen and (min-width:375px){
+    html{
+        font-size:15.0804px;
+    }
+}
+@media only screen and (min-width:768px){
+    html{
+        font-size:30.8847px;
+    }
+}
+@media only screen and (min-width:1024px){
+    html{
+        font-size:41.1796px;
+    }
+}
+/* tab栏 */
+.jobshare_tab{
+    width: 100%;
+    height: 3.233rem;
+    text-align: center;
+}
+.jobshare_tab li{   
+   /*  float: left;
+    width: 25%; */
+    height: 3.233rem;
+    line-height: 3.233rem;
+    font-size:1rem;
+    text-align: center;
+}
+.jobshare_tab li>a{
+    display: block;
+    color: #999;
+    width: 100%;
+}
+.active{
+    color: #333 !important;
+}
+.active_line{
+    width: 36.46%;
+    height: 0.267rem;
+    border-radius: 0.1333rem;
+    background-color: #00adb4;
+    position: relative;
+    bottom: 0.267rem;
+    left: 31.7696%;
+}
+
+/* 邀请函列表 */
+.jobshare_list{
+    width: 100%;
+    overflow: hidden;
+    padding: 0% 4.02%;
+    padding-bottom: 0.73rem;
+}
+.jobshare_list li{
+    float: left;
+    width: 28.1%;
+    margin-left: 3.757%;
+    margin-top: 0.73rem;
+}
+.jobshare_list li a{
+    display: block;
+    width: 100%;
+}
+.jobshare_list li:nth-child(3n+1){
+    margin-left: 0;
+}
+.jobshare_list li img{
+    width: 100%;
+    height: 11.2rem;
+}
