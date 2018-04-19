@@ -103,6 +103,15 @@
   position: absolute;
   top: 5.2rem;
 }
+.contactUs {
+  min-width: 10rem;
+  text-align: center;
+}
+.contactUs > p {
+  color: #fff;
+  font-size: 0.72rem;
+  margin-top: 0.4rem;
+}
 .company h2,
 .company p {
   color: #fff;

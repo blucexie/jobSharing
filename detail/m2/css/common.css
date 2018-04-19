@@ -7,13 +7,14 @@ ul,ol,li{
 }
 .container{
     width: 100%;
-    height: 90%;
-    overflow: hidden;
+    height: 100%;
+    overflow: hidden;   
 }
 
 html{
     font-size: 16px;
 }
+
 /* 媒体查询部分 */
 @media only screen and (min-width:320px){
     html{
@@ -41,8 +42,7 @@ html{
     }
 }
 /* 音乐盒 */
-
-.music{
+/* .music{
     width: 10%;
     position:fixed;     
     top: 3%;
@@ -58,7 +58,7 @@ html{
     100% {
         transform: rotate(360deg);
     }
-}
+} */
 /* 底部背景 */
 .background_img{
     width: 100%;
@@ -79,10 +79,10 @@ html{
 }
 /* 边框盒子 */
 .element-box{
-    width:70%;
-    height: 84%;
+    width: 70%;
+    height: 80%;
     margin-left: 13%;
-    margin-top: 10%;
+    margin-top: 2rem;
     color: rgb(85, 85, 85);
     text-align: left;
     border-width: 7px;
@@ -115,6 +115,7 @@ html{
     left: 50%;
     transform: translateX(-15px);
     animation: up 1s 1s linear infinite;
+    z-index: 1;
 }
 @keyframes up {
     0% {
@@ -130,19 +131,20 @@ html{
 .bottom{
     width: 100%;
     text-align: center;
-    position: absolute;
+    position: fixed;
     bottom: 0;
-    height: 3.5rem;
-    line-height: 3.5rem;
+    height: 3rem;
+    line-height: 3rem;
     color: #00adb4;
     background-color: #f8f8f8 ;
+    z-index: 10;
 }
 .edit{
     width: 50%;
     text-align: center;
     float: left;
-    height: 3.5rem;
-    line-height: 3.5rem;
+    height: 3rem;
+    line-height: 3rem;
     color: #00adb4;
     background-color: #f8f8f8 ;
 }
@@ -150,9 +152,44 @@ html{
     width: 50%;
     text-align: center;
     float: left;
-    height: 3.5rem;
-    line-height: 3.5rem;
+    height: 3rem;
+    line-height: 3rem;
     color: #00adb4;
     background-color: #f8f8f8 ;
 }
+textarea{
+    resize: none;
+}
+input::-webkit-input-placeholder{
+    color:#ccc;
+    font-size: 1rem;
+}
+input::-moz-placeholder{   /* Mozilla Firefox 19+ */
+    color:#ccc;
+    font-size: 1rem;
+}
+input:-moz-placeholder{    /* Mozilla Firefox 4 to 18 */
+    color:#ccc;
+    font-size: 1rem;
+}
+input:-ms-input-placeholder{  /* Internet Explorer 10-11 */ 
+    color:#ccc;
+    font-size: 1rem;
+}
 
+textarea::-webkit-input-placeholder{
+    color:#ccc;
+    font-size: 1.4rem;
+}
+textarea::-moz-placeholder{   /* Mozilla Firefox 19+ */
+    color:#ccc;
+    font-size: 1.4rem;
+}
+textarea:-moz-placeholder{    /* Mozilla Firefox 4 to 18 */
+    color:#ccc;
+    font-size: 1.4rem;
+}
+textarea:-ms-input-placeholder{  /* Internet Explorer 10-11 */ 
+    color:#ccc;
+    font-size: 1.4rem;
+}

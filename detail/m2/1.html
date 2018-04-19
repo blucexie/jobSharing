@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="css/common.css">
     <link rel="stylesheet" href="css/index.css">
@@ -12,7 +12,8 @@
     <div class="container" page="1">
         <!-- <img class="music" src="img/music.png"> -->
         <img class="background_img" src="img/back.jpg">
-        <div class="logo">易职信</div>
+        <!-- <div class="logo">易职信</div> -->
+        <input class="logo" type="text" value="易职信" maxlength="10" placeholder="此处仅限10字">
         <img class="zph" src="img/zph.png" >
         <img class="huaban01" src="img/huaban01.gif">
         <img class="huaban02" src="img/huaban02.gif">
@@ -26,8 +27,18 @@
             </div>
         </div>
     </div>
-    <!-- <script src="libs/zepto.min.js"></script> -->
     <script src="../../js/jquery-1.11.3.min.js"></script>
     <script src="js/index.js"></script>
+    <script>
+        var company_name = sessionStorage.getItem('company_name');
+        if(!company_name){
+           var com_name = $('.logo').val();
+           sessionStorage.setItem('company_name',com_name);
+        }else{
+            var com_name = $('.logo').val();
+            $('.logo').val();
+            $('.logo').val(com_name);
+        }
+    </script>
 </body>
 </html>

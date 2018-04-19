@@ -1,13 +1,48 @@
 $(function () {
 
-    // 检测屏幕高度 让屏幕和盒子大小一致
-    var h = window.innerHeight;
-    $('body').height(h);
-    $('.scroll').height(h);
+     //发送数据
+     function GetQueryString(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) return unescape(r[2]); return null;
+    }
+    var userCode = GetQueryString("uc");
+        //页面请求判断
+        var codeF = GetQueryString("code");
+        if (codeF) {
+            $.ajax({
+                url: "http://192.168.1.87:8081/api/query/param",
+                type: "POST",
+                dataType: "json",
+                data: JSON.stringify({ code: codeF }),
+                success: function (data) {
+                    var jsonData = JSON.parse(data["plaintext"]);
+                    var requireData =JSON.parse(jsonData.item.params);
+                    console.log(requireData);
+                    sessionStorage.setItem('requireData',JSON.stringify(requireData));
 
+                    var sessionData =JSON.parse(sessionStorage.getItem('requireData'));
+                    console.log(sessionData);
+                    var result = jsonData.item.result;
+                    //返回状态信息
+                    var resultInfo = jsonData.item.resultInfo;
+                    if (result === 1001) {
+                       $('.logo').html(sessionData.company_name);
+                       $('.comp_intro').html(sessionData.company_intro);
+                       $('.job_title').html(sessionData.job_title);
+                       $('.comp_duty>p').html(sessionData.job_duty);
+                       $('.comp_request>p').html(sessionData.job_require);
+                       $('.compensation').html(sessionData.pay);
+                    }
+                }
+            });
+        }
+
+    // 检测屏幕高度 让屏幕和盒子大小一致
+    var h = $(window).height();
+    $('body').height(h);
 
     //滑动屏幕 上下页加载
-
     var page = $(".container").attr("page");
 
     function downLoad() {
@@ -82,11 +117,11 @@ $(function () {
                 break;
             case 3:
                 // alert("向左！");
-                downLoad();
+                // downLoad();
                 break;
             case 4:
                 // alert("向右！")
-                upLoad();
+                // upLoad();
                 break;
             default:
         }
@@ -95,37 +130,34 @@ $(function () {
     //封装加动画和边框
     function edit(a, b) {
         $('.up').css({ "animation-play-state": "paused" });
-        $(a).attr('contenteditable', true);
         $(a).css({ "border": "1px solid #ccc" });
     }
     function save(a, b) {
         $('.up').css({ "animation-play-state": "running" });
-        $(a).attr('contenteditable', false);
         $(a).css({ "border": 'none' });
-        var a = $(a).html();
-        sessionStorage.setItem(b, a);
+        var c = $(a).val();
+        sessionStorage.setItem(b,c);  
         window.location.reload();
-        // window.location.href = '1.html';
     }
 
-    //绑定事件
-    function unbindEvent() {
-        $('body').bind('touchstart', function (event) {
-            event.stopPropagation();
-        });
-        $('body').bind('touchmove', function (event) {
-            event.stopPropagation();
-        });
-        $('body').bind('touchend', function (event) {
-            event.stopPropagation();
-        });
-    }
-    //解除绑定
-    function bindEvent() {
-        $('body').unbind('touchstart');
-        $('body').unbind('touchmove');
-        $('body').unbind('touchend');
-    }
+    // //绑定事件
+    // function unbindEvent() {
+    //     $('body').bind('touchstart', function (event) {
+    //         event.stopPropagation();
+    //     });
+    //     $('body').bind('touchmove', function (event) {
+    //         event.stopPropagation();
+    //     });
+    //     $('body').bind('touchend', function (event) {
+    //         event.stopPropagation();
+    //     });
+    // }
+    // //解除绑定
+    // function bindEvent() {
+    //     $('body').unbind('touchstart');
+    //     $('body').unbind('touchmove');
+    //     $('body').unbind('touchend');
+    // }
 
     //编辑部分
     $('.edit').click(function () {
@@ -135,12 +167,12 @@ $(function () {
         edit('.comp_intro');
         // 第三页
         edit('.job_title');
-        edit('.comp_duty>p');
-        edit('.comp_request>p');
+        edit('.comp_duty_content');
+        edit('.comp_request_content');
         edit('.compensation');
         //第四页
-        edit('.element-content>ul>li');
-        unbindEvent();
+        edit('.element-content>ul>li>textarea');
+        // unbindEvent();
     })
 
 
@@ -148,29 +180,29 @@ $(function () {
     // 第一页
     $('.save1').click(function () {
         save('.logo', 'company_name');
-        bindEvent();
+        // bindEvent();
     })
     // 第二页
     $('.save2').click(function () {
         save('.comp_intro', 'company_intro');
-        bindEvent();
+        // bindEvent();
     })
     // 第三页
     $('.save3').click(function () {
         save('.job_title', 'job_title');
-        save('.comp_duty>p', 'job_duty');
-        save('.comp_request>p', 'job_require');
+        save('.comp_duty>textarea', 'job_duty');
+        save('.comp_request>textarea', 'job_require');
         save('.compensation', 'pay');
-        bindEvent();
+        // bindEvent();
     })
     //第四页
     $('.save4').click(function () {
         var element_content = [];
-        $('.element-content>ul>li').each(function () {
-            var a = $(this).html();
+        $('.element-content>ul>li>textarea').each(function () {
+            var a = $(this).val();
             element_content.push(a);
         })
-        bindEvent();
+        // bindEvent();
         var benefits =  element_content.join();      
         sessionStorage.setItem('benefits', benefits);  
         $('.up').css({ "animation-play-state": "running" });
@@ -182,37 +214,29 @@ $(function () {
     //页面渲染
     function isExist(a,b){
         if(sessionStorage.getItem(a)){
-            $(b).html();
-            $(b).html(sessionStorage.getItem(a));
-            console.log(sessionStorage.getItem(a));
+            $(b).val();
+            $(b).val(sessionStorage.getItem(a));
         }
     }
     isExist('company_name','.logo');
     isExist('company_intro','.comp_intro');
     isExist('job_title','.job_title');
-    isExist('job_duty','.comp_duty>p');
-    isExist('job_require','.comp_request>p');
+    isExist('job_duty','.comp_duty_content');
+    isExist('job_require','.comp_request_content');
     isExist('pay','.compensation');
 
     if(sessionStorage.getItem('benefits')){
     var element_content = sessionStorage.getItem('benefits').split(',');
-       $('.element-content>ul>li').each(function(i,v){
+       $('.element-content>ul>li>textarea').each(function(i,v){
             $(this).html(element_content[i]);
        })
     }
 
-    //发送数据
-    function GetQueryString(name) {
-        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
-        var r = window.location.search.substr(1).match(reg);
-        if (r != null) return unescape(r[2]); return null;
-    }
-    var userCode = GetQueryString("uc");
-
+   
     
     $('.sub').click(function(){
         var dataJson = {
-            userCode:userCode,
+            userCode:"5a3b1bb741eefc69813749f3",
             params:{
                 company_name:sessionStorage.getItem('company_name'),
                 company_intro:sessionStorage.getItem('company_intro'),
@@ -247,5 +271,7 @@ $(function () {
             }
         })
     })
+
+
   
 })

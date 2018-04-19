@@ -11,6 +11,9 @@
     font-size: 1.6rem;
     animation: qyx 1s 0.5s linear forwards;
     z-index: 100;
+    border: none;
+    outline-color: #ccc;
+    background-color: transparent;
 }   
 @keyframes qyx{
     0% {
@@ -71,7 +74,7 @@
 /* 第二页 */
 .element-box-contents{
     width: 2rem;
-    margin-top: 4rem;
+    margin-top: 20%;
     margin-left: 5%;
     font-size: 1.5rem;
     color: #333;
@@ -89,18 +92,32 @@
 }
 .comp_paragraph{
     float: right;
-    font-size: 1.1rem;
+    font-size: 1rem;
     width: 72%;
+    height: 19rem;
     line-height: 1.6rem;
     margin-right: 6%;
     margin-top: 1rem;
     padding-bottom: 4px;
     color: #000;
-    word-wrap:break-word;
+    word-wrap: break-word;
+    border: none;
+    outline-color: #ccc;
+    background-color: transparent;
+    resize: none;
+}
+.detail_title{
+    width: 100%;
+    height: 100%;
+    font-size: 1.5rem;
+    overflow-y:visible;
+    border: none;
+    outline-color: #ccc;
+    background-color: transparent;
 }
 .com_intro{
-    margin-top: 1rem;
-    margin-bottom: 1rem;
+    height: 98%;
+    margin-top: 0;
     transform: translateY(100%);
     animation: com_intro 1s 1.5s linear forwards;
     opacity: 0;
@@ -115,6 +132,7 @@
     }
 }
 .comp_intro{
+    height: 17rem;
     transform: translateY(-200%);
     animation: b_content 1s 1.5s linear forwards;
 }
@@ -129,7 +147,7 @@
 .com_img{
     width: 100%;
     position: absolute;
-    bottom: 0.8rem;
+    bottom: 2.5%;
     transform: translateY(200%);
     animation: com_img 1s 2s linear forwards;
     opacity: 0;
@@ -201,14 +219,30 @@
 /* 第四页 */
 .comp_duty{
     font-size: 1rem;
+    height: 45%;
+    margin-top: 5%;
 }
+.comp_duty_content{
+    width: 100%;
+    height: 90%;
+    font-size: 0.8rem;
+    color: #000;
+    word-wrap: break-word;
+    border: none;
+    outline-color: #ccc;
+    background-color: transparent;
+    resize: none;
+    padding: 0.2rem 0;
+}
+
 .element-box-title{
     width: 80%;
+    height: 10%;
+    line-height: 10%;
     margin-left: 10%;
     text-align: center;
     font-size: 1.5rem;
     color: #00adb4;
-    padding: 1.2rem 0;
     animation: box_title 1s 1s linear forwards;
     opacity: 0;
 }
@@ -219,6 +253,11 @@
     100% {
         opacity: 1;
     }
+}
+.element-box-title span{
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
 }
 .partingline{
     width: 80%;
@@ -238,15 +277,25 @@
     }
 }
 .comp_request{
-    margin-top: 0.8rem;
+    margin-top: 5%;
     font-size: 1rem;
+    height: 45%;
+}
+.comp_request_content{
+    width: 100%;
+    height: 8rem;
+    font-size: 0.8rem;
+    color: #000;
+    word-wrap: break-word;
+    border: none;
+    outline-color: #ccc;
+    background-color: transparent;
+    resize: none;
+    padding: 0.2rem 0;
 }
 .element-box-footer{
     width: 80%;
     margin-left: 10%;
-    text-align: center;
-    font-size: 1.2rem;
-    color: #00adb4;
     padding: 1.2rem 0;
     animation: pay 1s 2s linear forwards;
     opacity: 0;
@@ -259,7 +308,17 @@
         opacity: 1;
     }
 }
-.element-box-bottom{
+.compensation{
+    width: 80%;
+    margin-left: 10%;
+    margin-top: 1rem;
+    text-align: center;
+    font-size: 1.2rem;
+    color: #00adb4;
+    border: none;
+    outline-color: #ccc;
+}
+/* .element-box-bottom{
     text-align: center;
     color: #333;
     transform: translateY(100%);
@@ -274,7 +333,7 @@
         transform: translateY(0);
         opacity: 1;
     }
-}
+} */
 .element-box-bottom span{
     display: block;
     margin-top: 5%;
@@ -283,12 +342,13 @@
 /* 第五页 */
 .element-content{
     width: 100%;
+    height: 78%;
 }
 .element-content li{
     width: 80%;
+    margin-top: 1rem;
+    height: 15%;
     margin-left: 10%;
-    margin-top: 1.25rem;
-    margin-bottom: 1.25rem;
     padding: 0.2rem 0;
     text-align: center;
     font-size: 1.2rem;
@@ -296,6 +356,17 @@
     transform: translateX(30%);
     opacity: 0;
     word-wrap: break-word;
+}
+.element-content li>textarea{
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline-color: #ccc;
+    background-color: transparent;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #333;
+
 }
 .element-content li:nth-child(2n){
     color: #00adb4;
@@ -388,7 +459,7 @@
     text-align: center;
     width: 80%;
     margin-left: 10%;
-    font-size: 1rem;
+    font-size: 0.8rem;
     padding: 1.6rem 0;
     transform: translateY(100%);
     animation: element-tip 1s 1s linear forwards;

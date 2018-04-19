@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="css/common.css">
     <link rel="stylesheet" href="css/index.css">
@@ -15,36 +15,31 @@
         <!-- <img class="music" src="img/music.png"> -->
         <img class="background_img" src="img/back.jpg">
         <div class="element-box">
-            <div class="element-box-title">
-                -招聘岗位-
-            </div>
+            <div class="element-box-title"><span>-招聘岗位-</span></div>
 
-            <div style="overflow: hidden;">
-                <div class="element-box-contents" style="color: #333;margin-top: 8%">
-                    <div style="margin-left: 30%">-</div>
-                    <div class="detail_title job_title">设计总监</div>
-                    <div style="margin-left: 30%">-</div>
+            <div style="overflow: hidden;width: 100%;height: 80%;">
+                <div class="element-box-contents" style="color: #333;margin-top: 20%;height: 70%;">
+                    <textarea class="detail_title job_title" maxlength="8" placeholder="此处限8个字">设计总监</textarea>
                 </div>
                 <div class="partingline"></div>
                 <div class="comp_paragraph com_intro">
                     <div class="comp_duty">
                         <span>岗位职责</span>
-                        <p>1.负责公司web和移动web的UI设计，供用户界面合理化建议</p>
+                        <!-- <p>1.负责公司web和移动web的UI设计，供用户界面合理化建议</p> -->
+                        <textarea class="comp_duty_content" maxlength="110" placeholder="此处仅限100个字">负责公司web和移动web的UI设计，供用户界面合理化建议</textarea>
                     </div>
                     <div class="comp_request">
                         <span>岗位要求</span>
-                        <p>具有美术及艺术相关专业基础，3年以上美工或电商交互设计工作经验。</p>
+                        <!-- <p>具有美术及艺术相关专业基础，3年以上美工或电商交互设计工作经验。</p> -->
+                        <textarea class="comp_request_content" maxlength="110" placeholder="此处仅限100个字">具有美术及艺术相关专业基础，3年以上美工或电商交互设计工作经验。</textarea>
                     </div>
                 </div>
             </div>
             <div class="partingline"></div>
-            <div class="element-box-footer">
-                薪资待遇:<span class="compensation">年薪10万</span>
+            <div style="width: 100%;height: 10%;">
+                <input type="text" class="compensation" maxlength="10" value="薪资待遇:年薪10万" placeholder="此处仅限10个字">
             </div>
-            <div class="element-box-bottom">
-                <span>JOIN US</span>
-                <p>加入我们 成就梦想</p>
-            </div>
+           
         </div>
         <img class="up" src="img/up01.png" alt="">
         <div class="bottom">
@@ -59,6 +54,28 @@
     <!-- <script src="libs/zepto.min.js"></script> -->
     <script src="../../js/jquery-1.11.3.min.js"></script>
     <script src="js/index.js"></script>
+    <script>
+        var job_title = sessionStorage.getItem('job_title');
+        if (!job_title) {
+            var j_title = $('.job_title').val();
+            sessionStorage.setItem('job_title',j_title);
+        };
+        var job_duty = sessionStorage.getItem('job_duty');
+        if (!job_duty) {
+            var j_duty = $('.comp_duty_content').val();
+            sessionStorage.setItem('job_duty',j_duty);
+        };
+        var job_require = sessionStorage.getItem('job_require');
+        if (!job_require) {
+            var j_require = $('.comp_request_content').val();
+            sessionStorage.setItem('job_require',j_require);
+        };
+        var pay = sessionStorage.getItem('pay');
+        if (!pay) {
+            var pay_content = $('.compensation').val();
+            sessionStorage.setItem('pay',pay_content);
+        };
+    </script>
 </body>
 
 </html>

@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="css/common.css">
     <link rel="stylesheet" href="css/index.css">
@@ -15,18 +15,14 @@
         <!-- <img class="music" src="img/music.png"> -->
         <img class="background_img" src="img/back.jpg">
         <div class="element-box">
-            <div style="overflow: hidden;">
+            <div style="overflow: hidden; width: 100%; height: 60%;">
                 <div class="element-box-contents">
-                    <div style="margin-left: 30%">-</div>
                     <div class="detail_title">公司简介</div>
-                    <div style="margin-left: 30%">-</div>
                 </div>
-                <div class="comp_paragraph comp_intro">
-                    &nbsp&nbsp&nbsp&nbsp易企秀是一款针对移动互联网营销的手机幻灯片、H5场景应用制作工具，将只能在PC端制作和展示的各类复杂营销方案转移到更为便携和展示的手机上，用户随时根据自己的需要在PC端、手机端进行制作和展示，随时随地营销。
-                </div>
+                <textarea class="comp_paragraph comp_intro" maxlength="110" placeholder="此处仅限110字">北京风影职信科技有限公司主推产品【易职信】，是一款致力于“让监理更真实”的线上职业信息背调工具，是国内首款在线实时核验候选人职业背景信息的职业信用风控平台。</textarea>  
             </div>
             <div class="intro_img com_img">
-                <img style="width: 90%;position: relative; bottom:20%;left:5%;" src="img/com.gif" alt="">
+                <img style="width: 90%; height: 100%; position: relative; left:5%;" src="img/com.gif" alt="">
             </div>
         </div>
         <img class="up" src="img/up01.png" alt="">
@@ -40,7 +36,14 @@
         </div>
     </div>
     <!-- <script src="libs/zepto.min.js"></script> -->
-    < <script src="../../js/jquery-1.11.3.min.js"></script>
+    <script src="../../js/jquery-1.11.3.min.js"></script>
     <script src="js/index.js"></script>
+    <script>
+        var company_intro = sessionStorage.getItem('company_intro');
+        if (!company_intro) {
+            var com_intro = $('.comp_intro').html();
+            sessionStorage.setItem('company_intro', com_intro);
+        }
+    </script>
 </body>
 </html>

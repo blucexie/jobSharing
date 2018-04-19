@@ -7,7 +7,7 @@
  }
  var userCode = GetQueryString("uc");
 
- var h = window.innerHeight;
+ var h = $(window).height();
  $('body').height(h);
 
  var mySwiper = new Swiper('.swiper-container', {
@@ -141,7 +141,12 @@
      location.reload();
  })
 
-
+ var recruitConfig = JSON.stringify({
+    "inviteTitle": "加入易职信， 领取红包大礼！加入易职信， 共同让简历更真实！",
+    "inviteDescription": "您的好友【%USER_NAME%】用红包悄悄砸了你一下， 快去查看~~加入易职信， 轻松核验企业人才",
+    "inviteUrl": "http://192.168.1.87:8081/templates/position/t1.html?code="+code,
+    "inviteIcon": "icon_position_share"
+})
 
  $('.submit').click(function () {
      var company_name = sessionStorage.getItem("company_name"),
@@ -152,7 +157,7 @@
          pay = sessionStorage.getItem("pay"),
 
          dataJson = {
-             userCode:userCode,
+             userCode: "5a3b1bb741eefc69813749f3",
              params: {
                  company_name: company_name,
                  company_intro: company_intro,
@@ -167,19 +172,11 @@
          dataType: "json",
          data: JSON.stringify(dataJson),
          success: function (data) {
-           
              var jsonData = JSON.parse(data["plaintext"]);
              var result = jsonData.item.result;
-                var code = jsonData.item.code;
+             code = jsonData.item.code;
              //返回状态信息
              var resultInfo = jsonData.item.resultInfo;
-             //安卓ios发送数据
-             var recruitConfig = JSON.stringify({
-                "inviteTitle": "加入易职信， 领取红包大礼！加入易职信， 共同让简历更真实！",
-                "inviteDescription": "您的好友【%USER_NAME%】用红包悄悄砸了你一下， 快去查看~~加入易职信， 轻松核验企业人才",
-                "inviteUrl": "http://192.168.1.87:8081/templates/position/t1.html?code="+code,
-                "inviteIcon": "icon_position_share"
-            })
              if (result === 1001) {
                  sumToJava(recruitConfig);
              }
