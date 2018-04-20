@@ -6,7 +6,32 @@
      return null;
  }
  var userCode = GetQueryString("uc");
+ var codeF  = GetQueryString("code");
+ if(codeF){
+     $.ajax({
+         url: "https://apix.funinhr.com/api/query/param",
+         type: "POST",
+         dataType: "json",
+         data: JSON.stringify({code:codeF}),
+         success: function (data) {
 
+             var jsonData = JSON.parse(data["plaintext"]);
+             var result = jsonData.item.result;
+             var params = JSON.parse(jsonData.item.params);
+             //返回状态信息
+             var resultInfo = jsonData.item.resultInfo;
+             console.log(params)
+             if (result === 1001) {
+                 $('.page1-Text p:nth-of-type(1)').text(params.company_name);
+                 $('.company>p').text(params.company_intro);
+                 $('.jobIntroduction>h3').text(params.job_title);
+                 $('.jobDuty>p').text(params.job_duty);
+                 $('.jobRequire>p').text(params.job_require);
+                 $('.salary').text(params.pay);
+             }
+         }
+     });
+ }
  var h = $(window).height();
  $('body').height(h);
 
@@ -47,7 +72,7 @@
  var num = url.indexOf("uc=");
  var uc = url.substr(num + 3, url.length - 1);
  $('#code').qrcode({
-     text: "http://192.168.1.87:8081/hr/employee.html?uc=" + uc
+    text: "https://apix.funinhr.com/hr/employee.html?userCode=" + uc
  });
 
  //封装加动画和边框
@@ -141,13 +166,6 @@
      location.reload();
  })
 
- var recruitConfig = JSON.stringify({
-    "inviteTitle": "加入易职信， 领取红包大礼！加入易职信， 共同让简历更真实！",
-    "inviteDescription": "您的好友【%USER_NAME%】用红包悄悄砸了你一下， 快去查看~~加入易职信， 轻松核验企业人才",
-    "inviteUrl": "http://192.168.1.87:8081/templates/position/t1.html?code="+code,
-    "inviteIcon": "icon_position_share"
-})
-
  $('.submit').click(function () {
      var company_name = sessionStorage.getItem("company_name"),
          company_intro = sessionStorage.getItem("company_intro"),
@@ -157,7 +175,7 @@
          pay = sessionStorage.getItem("pay"),
 
          dataJson = {
-             userCode: "5a3b1bb741eefc69813749f3",
+             userCode:userCode,
              params: {
                  company_name: company_name,
                  company_intro: company_intro,
@@ -167,16 +185,24 @@
              }
          }
      $.ajax({
-         url: "http://192.168.1.6:8080/api/insert/params",
+        url: "https://apix.funinhr.com/api/insert/params",
          type: "POST",
          dataType: "json",
          data: JSON.stringify(dataJson),
          success: function (data) {
              var jsonData = JSON.parse(data["plaintext"]);
              var result = jsonData.item.result;
-             code = jsonData.item.code;
+             var code = jsonData.item.code;
+             var enterpriseName = jsonData.item.enterpriseName;
              //返回状态信息
              var resultInfo = jsonData.item.resultInfo;
+
+             var recruitConfig = JSON.stringify({
+                "inviteTitle": enterpriseName + "正在招聘",
+                "inviteDescription": "快到碗里来",
+                "inviteUrl": "https://apix.funinhr.com/templates/position/detail/m1/m1.html?code="+code,
+                "inviteIcon": "http://cdn.funinhr.com/online/image/job/1-120-120.png"
+            })
              if (result === 1001) {
                  sumToJava(recruitConfig);
              }
