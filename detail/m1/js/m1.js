@@ -28,6 +28,7 @@
                  $('.jobDuty>p').text(params.job_duty);
                  $('.jobRequire>p').text(params.job_require);
                  $('.salary').text(params.pay);
+                 $('.edit').hide();
              }
          }
      });
