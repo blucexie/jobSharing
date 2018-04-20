@@ -1,4 +1,4 @@
-$(function () {
+
 
      //发送数据
      function GetQueryString(name) {
@@ -255,23 +255,24 @@ $(function () {
             success:function(data){
                 var jsonData = JSON.parse(data["plaintext"]);
                 var result = jsonData.item.result;
-                code = jsonData.item.code;
-                //安卓IOS交互方法
+                var code = jsonData.item.code;
+                var enterpriseName = jsonData.item.enterpriseName;
+                //返回状态信息
+                var resultInfo = jsonData.item.resultInfo;
+   
                 var recruitConfig = JSON.stringify({
-                    "inviteTitle": "加入易职信， 领取红包大礼！加入易职信， 共同让简历更真实！",
-                    "inviteDescription": "您的好友【%USER_NAME%】用红包悄悄砸了你一下， 快去查看~~加入易职信， 轻松核验企业人才",
-                    "inviteUrl": "http://192.168.1.87:8081/templates/position/t1.html?code="+code,
-                    "inviteIcon": "icon_position_share"
-                    })
-                function sumToJava(recruitConfig) {
-                    alert(recruitConfig);
-                    window.control.onSumResult(recruitConfig);
+                   "inviteTitle": enterpriseName + "正在招聘",
+                   "inviteDescription": "快到碗里来",
+                   "inviteUrl": "https://apix.funinhr.com/templates/position/detail/m1/m1.html?code="+code,
+                   "inviteIcon": "http://cdn.funinhr.com/online/image/job/1-120-120.png"
+               })
+                if (result === 1001) {
+                    sumToJava(recruitConfig);
                 }
-                sumToJava(recruitConfig);
             }
         })
     })
-
-
-  
-})
+function sumToJava(recruitConfig) {
+    alert(recruitConfig);
+    window.control.onSumResult(recruitConfig);
+}
