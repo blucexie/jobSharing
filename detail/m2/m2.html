@@ -24,7 +24,7 @@
                     <img class="huaban02" src="img/huaban02.gif">
                     <img class="up" src="img/up01.png" >
                     <div class="bottom">
-                        <div class="edit">
+                        <div class="edit1">
                             编辑
                         </div>
                         <div class="save save1">
@@ -51,7 +51,7 @@
                     </div>
                     <img class="up" src="img/up01.png" alt="">
                     <div class="bottom">
-                        <div class="edit">
+                        <div class="edit2">
                             编辑
                         </div>
                         <div class="save save2">
@@ -94,7 +94,7 @@
                     </div>
                     <img class="up" src="img/up01.png" alt="">
                     <div class="bottom">
-                        <div class="edit">
+                        <div class="edit3">
                             编辑
                         </div>
                         <div class="save save3">
@@ -134,7 +134,7 @@
                     </div>
                     <img class="up" src="img/up01.png" alt="">
                     <div class="bottom">
-                        <div class="edit">
+                        <div class="edit4">
                             编辑
                         </div>
                         <div class="save save4">
@@ -180,55 +180,5 @@
     <script src="../../js/swiper.animate1.0.3.min.js"></script>
     <script src="js/index.js"></script>
     <script src="js/ewm.js"></script>
-    <script>
-        // 第一页存数据
-         var company_name = sessionStorage.getItem('company_name');
-        if(!company_name){
-           var com_name = $('.logo').val();
-           sessionStorage.setItem('company_name',com_name);
-        }else{
-            var com_name = $('.logo').val();
-            $('.logo').val();
-            $('.logo').val(com_name);
-        }
-        // 第二页存数据
-        var company_intro = sessionStorage.getItem('company_intro');
-        if (!company_intro) {
-            var com_intro = $('.comp_intro').html();
-            sessionStorage.setItem('company_intro', com_intro);
-        }
-        // 第三页存数据
-        var job_title = sessionStorage.getItem('job_title');
-        if (!job_title) {
-            var j_title = $('.job_title').val();
-            sessionStorage.setItem('job_title',j_title);
-        };
-        var job_duty = sessionStorage.getItem('job_duty');
-        if (!job_duty) {
-            var j_duty = $('.comp_duty_content').val();
-            sessionStorage.setItem('job_duty',j_duty);
-        };
-        var job_require = sessionStorage.getItem('job_require');
-        if (!job_require) {
-            var j_require = $('.comp_request_content').val();
-            sessionStorage.setItem('job_require',j_require);
-        };
-        var pay = sessionStorage.getItem('pay');
-        if (!pay) {
-            var pay_content = $('.compensation').val();
-            sessionStorage.setItem('pay',pay_content);
-        };
-        // 第四页存数据
-        var bene_fits = sessionStorage.getItem('benefits');
-            if (!bene_fits) {
-                var element_content = [];
-                $('.element-content>ul>li>textarea').each(function () {
-                    var a = $(this).val();
-                    element_content.push(a);
-                })
-                var benefits = element_content.join();
-                sessionStorage.setItem('benefits', benefits);
-            };
-    </script>
 </body>
 </html>
