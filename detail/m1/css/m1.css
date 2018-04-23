@@ -63,7 +63,22 @@
   left: 50%;
   transform: translateX(-50%);
 }
-.page1-Text p {
+.company_Profile {
+  height: 7rem;
+  min-width: 10rem;
+}
+input,
+textarea,
+.page1-Text > input,
+.company_Profile {
+  border: none;
+  background-color: transparent;
+  resize: none;
+  font-family: fangzheng_zht;
+}
+.page1-Text p,
+.page1-Text > input,
+.company_Profile {
   font-size: 0.72rem;
   color: #fff;
   text-align: center;
@@ -96,6 +111,10 @@
   }
 }
 /* page2 */
+.company {
+  left: 50%;
+  transform: translateX(-50%);
+}
 .company,
 .jobIntroduction,
 .contactUs {
@@ -113,20 +132,20 @@
   margin-top: 0.4rem;
 }
 .company h2,
-.company p {
+.company > .company_Profile {
   color: #fff;
   font-family: fangzheng_zht;
 }
 .company h2,
 .jobIntroduction h2,
-.jobIntroduction h3,
+.jobIntroduction .job_title,
 .contactUs h2 {
   font-size: 0.8rem;
   font-weight: 100;
   text-align: center;
   color: #fff;
 }
-.company p {
+.company .company_Profile {
   font-size: 0.56rem;
   line-height: 1.8;
   text-indent: 2em;
@@ -140,29 +159,37 @@
   transform: translateX(-50%);
 }
 /* page3 */
-.jobIntroduction h3 {
+.jobIntroduction {
+  min-width: 10rem;
+  text-align: center;
+  top: 3rem !important;
+}
+.jobIntroduction .job_title {
   margin-top: 1rem;
   margin-bottom: 0.4rem;
 }
 .jobIntroduction > div span,
-.jobIntroduction > div p {
+.jobIntroduction > div textarea {
   color: #fff;
   font-size: 0.56rem;
   line-height: 1.8;
 }
-.jobIntroduction > div span {
-  margin-bottom: 0.2rem;
+.jobIntroduction > div textarea {
+  display: block;
+  margin: 0 auto;
+  min-width: 11rem;
+  min-height: 6rem;
+}
+.jobIntroduction > div {
+  text-align: left!important;
 }
 .jobIntroduction > div:nth-of-type(2) {
   margin-top: 0.4rem;
 }
-.jobIntroduction > div:nth-of-type(3) {
+.jobIntroduction .salary {
   margin-top: 1rem;
-}
-.jobIntroduction > div:nth-of-type(3) p {
   font-size: 0.8rem;
   color: #59c7f9;
-  text-align: center;
 }
 /* page4 */
 .contactUs {

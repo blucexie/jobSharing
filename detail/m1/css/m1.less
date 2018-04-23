@@ -66,7 +66,18 @@
     left: 50%;
     transform:translateX(-50%)
 }
-.page1-Text p{
+.company_Profile{
+    height: 350/@r;
+    min-width: 500/@r;;
+}
+input,textarea,.page1-Text>input,.company_Profile{
+    border: none;
+    background-color: transparent;
+    resize: none;
+    font-family: fangzheng_zht;
+}
+
+.page1-Text p,.page1-Text>input,.company_Profile{
     font-size: 36/@r;
     color: #fff;
     text-align: center;
@@ -98,6 +109,10 @@
     }
 }
 /* page2 */
+.company{
+        left: 50%;
+        transform: translateX(-50%);
+}
 .company,.jobIntroduction,.contactUs{
     padding: 0 100/@r;
     position: absolute;
@@ -112,18 +127,18 @@
     font-size: 36/@r;
     margin-top: 20/@r;
 }
-.company h2,.company p{
+.company h2,.company>.company_Profile{
     color: #fff;
     font-family: fangzheng_zht;
 }
 .company h2,.jobIntroduction h2,
-.jobIntroduction h3,.contactUs h2{
+.jobIntroduction .job_title,.contactUs h2{
     font-size: 40/@r;
     font-weight:100;
     text-align: center;
     color: #fff;
 }
-.company p{
+.company .company_Profile{
     font-size: 28/@r;
     line-height: 1.8;
     text-indent: 2em;
@@ -137,28 +152,38 @@
     transform: translateX(-50%);
 }
 /* page3 */
-.jobIntroduction h3{
+.jobIntroduction{
+    min-width: 500/@r;
+    text-align: center;
+    top: 150/@r!important
+}
+.jobIntroduction .job_title{
     margin-top:50/@r;
     margin-bottom: 20/@r; 
 }
-.jobIntroduction>div span,.jobIntroduction>div p{
+.jobIntroduction>div span,.jobIntroduction>div textarea{
     color: #fff;
     font-size: 28/@r;
     line-height: 1.8;
 }
-.jobIntroduction>div span{
-    margin-bottom: 10/@r;
+.jobIntroduction>div textarea{
+    display: block;
+    margin: 0 auto;
+    min-width: 550/@r;;
+    min-height: 300/@r;
 }
+.jobIntroduction>div{
+    text-align:left!important;
+}
+
 .jobIntroduction>div:nth-of-type(2){
     margin-top: 20/@r;
 }
-.jobIntroduction>div:nth-of-type(3){
+
+.jobIntroduction .salary{
     margin-top: 50/@r;
-}
-.jobIntroduction>div:nth-of-type(3) p{
     font-size: 40/@r;
-   color:rgb(89, 199, 249);
-   text-align: center;
+    color:rgb(89, 199, 249);
 }
 /* page4 */
 .contactUs{

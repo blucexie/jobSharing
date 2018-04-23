@@ -1,3 +1,5 @@
+
+ 
  /*获取userCode*/
  function GetQueryString(name) {
      var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
@@ -35,6 +37,7 @@
  }
  var h = $(window).height();
  $('body').height(h);
+
 
  var mySwiper = new Swiper('.swiper-container', {
      direction: 'vertical',
@@ -87,7 +90,7 @@
      });
  }
 
- function save(el) {
+ function save(el,b) {
      $(el).css({
          "border": "none"
      });
@@ -95,6 +98,8 @@
      $('.arrow').css({
          "animation-play-state": "running"
      });
+      var c = $(el).val();
+     sessionStorage.setItem(b,c);  
  }
 
  //解除绑定
@@ -112,61 +117,75 @@
  //数据回填
  function isExist(a, b) {
      if (sessionStorage.getItem(a)) {
-         $(b).html();
-         $(b).html(sessionStorage.getItem(a));
+         $(b).val();
+         $(b).val(sessionStorage.getItem(a));
      }
  }
- isExist('company_name', '.page1-Text p:nth-of-type(1)');
- isExist('company_intro', '.company>p');
- isExist('job_title', '.jobIntroduction>h3');
- isExist('job_duty', '.jobDuty>p');
- isExist('job_require', '.jobRequire>p');
+ isExist('company_name', '.page1-Text>input');
+ isExist('company_intro', '.company_Profile');
+ isExist('job_title', '.jobIntroduction>.job_title');
+ isExist('job_duty', '.jobDuty>textarea');
+ isExist('job_require', '.jobRequire>textarea');
  isExist('pay', '.salary');
 
-
  $('.edit1').click(function () {
-     edit('.page1-Text p:nth-of-type(1)');
+     edit('.page1-Text>input');
      unbindEvent();
  })
- $('.save1').click(function () {
-     var company_name = $('.page1-Text p:nth-of-type(1)').text();
+ var company_name = $('.page1-Text>input').val();
      sessionStorage.company_name = company_name;
-     save('.page1-Text p:nth-of-type(1)');
+ $('.save1').click(function () {
+    /*  var company_name = $('.page1-Text>input').val();
+     sessionStorage.company_name = company_name; */
+     save('.page1-Text>input', 'company_name');
      location.reload();
  })
+ 
+
+ var company_intro = $('.company_Profile').val();
+ sessionStorage.company_intro = company_intro;
  $('.edit2').click(function () {
-     edit('.company>p');
+     edit('.company_Profile');
      unbindEvent();
  })
  $('.save2').click(function () {
-     var company_intro = $('.company>p').text();
-     sessionStorage.company_intro = company_intro;
-     save('.company>p');
+     /* var company_intro = $('.company_Profile').val();
+     sessionStorage.company_intro = company_intro; */
+     save('.company_Profile', 'company_intro');
      location.reload();
  })
+ var job_title = $('.jobIntroduction>.job_title').val();
+ var job_duty = $('.jobDuty>textarea').val();
+ var job_require = $('.jobRequire>textarea').val();
+ var pay = $('.salary').val();
+ sessionStorage.job_title = job_title;
+ sessionStorage.job_duty = job_duty;
+ sessionStorage.job_require = job_require;
+ sessionStorage.pay = pay;
  $('.edit3').click(function () {
-     edit('.jobIntroduction>h3');
-     edit('.jobDuty>p');
-     edit('.jobRequire>p');
+     edit('.jobIntroduction>.job_title');
+     edit('.jobDuty>textarea');
+     edit('.jobRequire>textarea');
      edit('.salary');
      unbindEvent();
  })
  $('.save3').click(function () {
-     var job_title = $('.jobIntroduction>h3').text();
-     var job_duty = $('.jobDuty>p').text();
-     var job_require = $('.jobRequire>p').text();
-     var pay = $('.salary').text();
+     /* var job_title = $('.jobIntroduction>.job_title').val();
+     var job_duty = $('.jobDuty>textarea').val();
+     var job_require = $('.jobRequire>textarea').val();
+     var pay = $('.salary').val();
      sessionStorage.job_title = job_title;
      sessionStorage.job_duty = job_duty;
      sessionStorage.job_require = job_require;
-     sessionStorage.pay = pay;
-     save('.jobIntroduction>h3');
-     save('.jobDuty>p');
-     save('.jobRequire>p');
-     save('.salary');
+     sessionStorage.pay = pay; */
+     save('.jobIntroduction>.job_title', 'job_title');
+     save('.jobDuty>textarea', 'job_duty');
+     save('.jobRequire>textarea', 'job_require');
+     save('.salary', 'pay');
      location.reload();
  })
 
+ 
  $('.submit').click(function () {
      var company_name = sessionStorage.getItem("company_name"),
          company_intro = sessionStorage.getItem("company_intro"),

@@ -29,7 +29,7 @@
         var codeF = GetQueryString("code");
         if (codeF) {
             $.ajax({
-                url: "http://192.168.1.87:8081/api/query/param",
+                url: "https://apix.funinhr.com/api/query/param",
                 type: "POST",
                 dataType: "json",
                 data: JSON.stringify({ code: codeF }),
@@ -256,7 +256,7 @@
     
     $('.sub').click(function(){
         var dataJson = {
-            userCode:"5a3b1bb741eefc69813749f3",
+            userCode:userCode,
             params:{
                 company_name:sessionStorage.getItem('company_name'),
                 company_intro:sessionStorage.getItem('company_intro'),
@@ -269,7 +269,7 @@
         }   
         $.ajax({
             type: 'post',
-            url: 'http://192.168.1.6:8080/api/insert/params',
+            url: 'https://apix.funinhr.com/api/insert/params',
             data:JSON.stringify(dataJson),
             dataType: 'json',
             success:function(data){
@@ -283,8 +283,8 @@
                 var recruitConfig = JSON.stringify({
                    "inviteTitle": enterpriseName + "正在招聘",
                    "inviteDescription": "快到碗里来",
-                   "inviteUrl": "https://apix.funinhr.com/templates/position/detail/m1/m1.html?code="+code,
-                   "inviteIcon": "http://cdn.funinhr.com/online/image/job/1-120-120.png"
+                   "inviteUrl": "https://apix.funinhr.com/templates/position/detail/m2/m2.html?code="+code,
+                   "inviteIcon": "http://cdn.funinhr.com/online/image/job/2-120-120.png"
                })
                 if (result === 1001) {
                     sumToJava(recruitConfig);
