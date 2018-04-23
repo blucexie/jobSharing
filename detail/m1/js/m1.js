@@ -35,9 +35,11 @@
          }
      });
  }
- var h = $(window).height();
- $('body').height(h);
-
+    
+     var h = window.innerHeight;
+    $('body').height(h);
+    $('.swiper-slide').height(h);
+    
 
  var mySwiper = new Swiper('.swiper-container', {
      direction: 'vertical',
@@ -111,47 +113,43 @@
          $(b).val(sessionStorage.getItem(a));
      }
  }
- isExist('company_name', '.page1-Text>input');
- isExist('company_intro', '.company_Profile');
- isExist('job_title', '.jobIntroduction>.job_title');
- isExist('job_duty', '.jobDuty>textarea');
- isExist('job_require', '.jobRequire>textarea');
- isExist('pay', '.salary');
+ isExist('company_name1', '.page1-Text>input');
+ isExist('company_intro1', '.company_Profile');
+ isExist('job_title1', '.jobIntroduction>.job_title');
+ isExist('job_duty1', '.jobDuty>textarea');
+ isExist('job_require1', '.jobRequire>textarea');
+ isExist('pay1', '.salary');
 
  $('.edit1').click(function () {
      edit('.page1-Text>input');
      unbindEvent();
  })
- var company_name = $('.page1-Text>input').val();
-     sessionStorage.company_name = company_name;
+ var company_name1 = $('.page1-Text>input').val();
+     sessionStorage.company_name1 = company_name1;
  $('.save1').click(function () {
-    /*  var company_name = $('.page1-Text>input').val();
-     sessionStorage.company_name = company_name; */
-     save('.page1-Text>input', 'company_name');
+     save('.page1-Text>input', 'company_name1');
      location.reload();
  })
  
-
- var company_intro = $('.company_Profile').val();
- sessionStorage.company_intro = company_intro;
+ var company_intro1 = $('.company_Profile').val();
+ sessionStorage.company_intro1 = company_intro1;
  $('.edit2').click(function () {
      edit('.company_Profile');
      unbindEvent();
  })
  $('.save2').click(function () {
-     /* var company_intro = $('.company_Profile').val();
-     sessionStorage.company_intro = company_intro; */
-     save('.company_Profile', 'company_intro');
-     location.reload();
+     save('.company_Profile', 'company_intro1');
+     //location.reload();
+     window.location.href ="m1.html"
  })
- var job_title = $('.jobIntroduction>.job_title').val();
- var job_duty = $('.jobDuty>textarea').val();
- var job_require = $('.jobRequire>textarea').val();
- var pay = $('.salary').val();
- sessionStorage.job_title = job_title;
- sessionStorage.job_duty = job_duty;
- sessionStorage.job_require = job_require;
- sessionStorage.pay = pay;
+ var job_title1 = $('.jobIntroduction>.job_title').val();
+ var job_duty1 = $('.jobDuty>textarea').val();
+ var job_require1 = $('.jobRequire>textarea').val();
+ var pay1 = $('.salary').val();
+ sessionStorage.job_title1 = job_title1;
+ sessionStorage.job_duty1 = job_duty1;
+ sessionStorage.job_require1 = job_require1;
+ sessionStorage.pay1 = pay1;
  $('.edit3').click(function () {
      edit('.jobIntroduction>.job_title');
      edit('.jobDuty>textarea');
@@ -160,23 +158,21 @@
      unbindEvent();
  })
  $('.save3').click(function () {
-     /* var job_title = $('.jobIntroduction>.job_title').val();
-     var job_duty = $('.jobDuty>textarea').val();
-     var job_require = $('.jobRequire>textarea').val();
-     var pay = $('.salary').val();
-     sessionStorage.job_title = job_title;
-     sessionStorage.job_duty = job_duty;
-     sessionStorage.job_require = job_require;
-     sessionStorage.pay = pay; */
-     save('.jobIntroduction>.job_title', 'job_title');
-     save('.jobDuty>textarea', 'job_duty');
-     save('.jobRequire>textarea', 'job_require');
-     save('.salary', 'pay');
+    save('.job_title', 'job_title1');
+     save('.jobDuty>textarea', 'job_duty1');
+     save('.jobRequire>textarea', 'job_require1');
+     save('.salary', 'pay1');
      location.reload();
  })
 
  
  $('.submit').click(function () {
+    save('.page1-Text>input', 'company_name1');
+    save('.company_Profile', 'company_intro1');
+    save('.job_title', 'job_title1');
+    save('.jobDuty>textarea', 'job_duty1');
+    save('.jobRequire>textarea', 'job_require1');
+    save('.salary', 'pay');   
      var company_name = sessionStorage.getItem("company_name"),
          company_intro = sessionStorage.getItem("company_intro"),
          job_title = sessionStorage.getItem("job_title"),
