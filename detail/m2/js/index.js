@@ -78,17 +78,15 @@
         if (codeF) {
             $('.bottom').hide();
             $.ajax({
-                url: "http://192.168.1.87:8081/api/query/param",
+                url: "https://apix.funinhr.com/api/query/param",
                 type: "POST",
                 dataType: "json",
                 data: JSON.stringify({ code: codeF }),
                 success: function (data) {
                     var jsonData = JSON.parse(data["plaintext"]);
                     var requireData =JSON.parse(jsonData.item.params);
-                    console.log(requireData);
                     sessionStorage.setItem('requireData',JSON.stringify(requireData));
                     var sessionData =JSON.parse(sessionStorage.getItem('requireData'));
-                    console.log(sessionData);
                     var result = jsonData.item.result;
                     //返回状态信息
                     var resultInfo = jsonData.item.resultInfo;
@@ -327,7 +325,7 @@
         }   
         $.ajax({
             type: 'post',
-            url: 'http://192.168.1.6:8080/api/insert/params',
+            url: 'https://apix.funinhr.com/api/insert/params',
             data:JSON.stringify(dataJson),
             dataType: 'json',
             success:function(data){
