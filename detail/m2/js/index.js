@@ -76,6 +76,7 @@
         //页面请求判断
         var codeF = GetQueryString("code");
         if (codeF) {
+            $('.bottom').hide();
             $.ajax({
                 url: "http://192.168.1.87:8081/api/query/param",
                 type: "POST",
@@ -86,7 +87,6 @@
                     var requireData =JSON.parse(jsonData.item.params);
                     console.log(requireData);
                     sessionStorage.setItem('requireData',JSON.stringify(requireData));
-
                     var sessionData =JSON.parse(sessionStorage.getItem('requireData'));
                     console.log(sessionData);
                     var result = jsonData.item.result;
@@ -107,7 +107,9 @@
     // 检测屏幕高度 让屏幕和盒子大小一致
     var h = $(window).height();
     $('body').height(h);
-    $('.swiper-container').height(h);
+    // $('.swiper-container').height(h);
+    // // $('.swiper-wrapper').height(h);
+    // // $('.swiper-slide').height(h);
 
     //滑动屏幕 上下页加载
     // var page = $(".container").attr("page");
