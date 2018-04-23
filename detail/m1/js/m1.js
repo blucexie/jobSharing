@@ -58,16 +58,6 @@
              swiperAnimate(this); //每个slide切换结束时也运行当前slide动画
          }
      }
-     // 如果需要前进后退按钮
-     /*  navigation: {
-          nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev',
-      }, */
-
-     // 如果需要滚动条
-     /* scrollbar: {
-         el: '.swiper-scrollbar',
-     }, */
  })
 
  //生成二维码

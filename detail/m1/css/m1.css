@@ -118,7 +118,6 @@ textarea,
 .company,
 .jobIntroduction,
 .contactUs {
-  padding: 0 2rem;
   position: absolute;
   top: 5.2rem;
 }
@@ -153,16 +152,22 @@ textarea,
   text-align: justify;
 }
 .page2-bm {
+  width: 10rem;
   position: absolute;
   top: 15.2rem;
   left: 50%;
   transform: translateX(-50%);
 }
+.page2-bm > img {
+  width: 10rem;
+}
 /* page3 */
 .jobIntroduction {
-  min-width: 10rem;
+  width: 11rem;
   text-align: center;
   top: 3rem !important;
+  left: 50%;
+  margin-left: -5.5rem;
 }
 .jobIntroduction .job_title {
   margin-top: 1rem;
