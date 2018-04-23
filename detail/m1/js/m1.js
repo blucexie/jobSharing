@@ -109,7 +109,7 @@
  //数据回填
  function isExist(a, b) {
      if (sessionStorage.getItem(a)) {
-         $(b).val();
+         $(b).val("");
          $(b).val(sessionStorage.getItem(a));
      }
  }
@@ -139,8 +139,8 @@
  })
  $('.save2').click(function () {
      save('.company_Profile', 'company_intro1');
-     //location.reload();
-     window.location.href ="m1.html"
+     location.reload();
+     //window.location.href ="m1.html"
  })
  var job_title1 = $('.jobIntroduction>.job_title').val();
  var job_duty1 = $('.jobDuty>textarea').val();

@@ -165,25 +165,24 @@ textarea,
 .jobIntroduction {
   width: 11rem;
   text-align: center;
-  top: 3rem !important;
+  top: 2rem !important;
   left: 50%;
   margin-left: -5.5rem;
 }
 .jobIntroduction .job_title {
-  margin-top: 1rem;
-  margin-bottom: 0.4rem;
+  margin-top: 0.6rem;
 }
 .jobIntroduction > div span,
 .jobIntroduction > div textarea {
   color: #fff;
-  font-size: 0.56rem;
+  font-size: 0.52rem;
   line-height: 1.8;
 }
 .jobIntroduction > div textarea {
   display: block;
   margin: 0 auto;
   min-width: 11rem;
-  min-height: 6rem;
+  min-height: 5.2rem;
 }
 .jobIntroduction > div {
   text-align: left!important;
@@ -192,7 +191,7 @@ textarea,
   margin-top: 0.4rem;
 }
 .jobIntroduction .salary {
-  margin-top: 1rem;
+  margin-top: 0.4rem;
   font-size: 0.8rem;
   color: #59c7f9;
   text-align: center;
