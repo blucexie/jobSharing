@@ -106,7 +106,6 @@
 
     // 检测屏幕高度 让屏幕和盒子大小一致
     var h = $(window).height();
-    console.log(h);
     $('body').height(h);
     $('.swiper-container').height(h);
 
@@ -340,8 +339,8 @@
                 var recruitConfig = JSON.stringify({
                    "inviteTitle": enterpriseName + "正在招聘",
                    "inviteDescription": "快到碗里来",
-                   "inviteUrl": "https://apix.funinhr.com/templates/position/detail/m1/m1.html?code="+code,
-                   "inviteIcon": "http://cdn.funinhr.com/online/image/job/1-120-120.png"
+                   "inviteUrl": "https://apix.funinhr.com/templates/position/detail/m2/m2.html?code="+code,
+                   "inviteIcon": "http://cdn.funinhr.com/online/image/job/2-120-120.png"
                })
                 if (result === 1001) {
                     sumToJava(recruitConfig);
