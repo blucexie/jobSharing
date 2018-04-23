@@ -17,8 +17,56 @@
     })
 
 
+     // 第一页存数据
+     var company_name = sessionStorage.getItem('company_name');
+     if(!company_name){
+        var com_name = $('.logo').val();
+        sessionStorage.setItem('company_name',com_name);
+     }else{
+         var com_name = $('.logo').val();
+         $('.logo').val();
+         $('.logo').val(com_name);
+     }
+     // 第二页存数据
+     var company_intro = sessionStorage.getItem('company_intro');
+     if (!company_intro) {
+         var com_intro = $('.comp_intro').html();
+         sessionStorage.setItem('company_intro', com_intro);
+     }
+     // 第三页存数据
+     var job_title = sessionStorage.getItem('job_title');
+     if (!job_title) {
+         var j_title = $('.job_title').val();
+         sessionStorage.setItem('job_title',j_title);
+     };
+     var job_duty = sessionStorage.getItem('job_duty');
+     if (!job_duty) {
+         var j_duty = $('.comp_duty_content').val();
+         sessionStorage.setItem('job_duty',j_duty);
+     };
+     var job_require = sessionStorage.getItem('job_require');
+     if (!job_require) {
+         var j_require = $('.comp_request_content').val();
+         sessionStorage.setItem('job_require',j_require);
+     };
+     var pay = sessionStorage.getItem('pay');
+     if (!pay) {
+         var pay_content = $('.compensation').val();
+         sessionStorage.setItem('pay',pay_content);
+     };
+     // 第四页存数据
+     var bene_fits = sessionStorage.getItem('benefits');
+         if (!bene_fits) {
+             var element_content = [];
+             $('.element-content>ul>li>textarea').each(function () {
+                 var a = $(this).val();
+                 element_content.push(a);
+             })
+             var benefits = element_content.join();
+             sessionStorage.setItem('benefits', benefits);
+         };
 
-     //发送数据
+    //发送数据
      function GetQueryString(name) {
         var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
         var r = window.location.search.substr(1).match(reg);
@@ -28,6 +76,7 @@
         //页面请求判断
         var codeF = GetQueryString("code");
         if (codeF) {
+            $('.bottom').hide();
             $.ajax({
                 url: "https://apix.funinhr.com/api/query/param",
                 type: "POST",
@@ -36,11 +85,8 @@
                 success: function (data) {
                     var jsonData = JSON.parse(data["plaintext"]);
                     var requireData =JSON.parse(jsonData.item.params);
-                    console.log(requireData);
                     sessionStorage.setItem('requireData',JSON.stringify(requireData));
-
                     var sessionData =JSON.parse(sessionStorage.getItem('requireData'));
-                    console.log(sessionData);
                     var result = jsonData.item.result;
                     //返回状态信息
                     var resultInfo = jsonData.item.resultInfo;
@@ -58,9 +104,10 @@
 
     // 检测屏幕高度 让屏幕和盒子大小一致
     var h = $(window).height();
-    console.log(h);
     $('body').height(h);
-    $('.swiper-container').height(h);
+    // $('.swiper-container').height(h);
+    // // $('.swiper-wrapper').height(h);
+    // // $('.swiper-slide').height(h);
 
     //滑动屏幕 上下页加载
     // var page = $(".container").attr("page");
@@ -180,20 +227,29 @@
     // }
 
     //编辑部分
-    $('.edit').click(function () {
-        // 第一页
+    // 第一页
+    $('.edit1').click(function () {
         edit('.logo');
-        // 第二页
+    })
+     // 第二页
+     $('.edit2').click(function () {
         edit('.comp_intro');
-        // 第三页
+    })
+     // 第三页
+     $('.edit3').click(function () {
         edit('.job_title');
         edit('.comp_duty_content');
         edit('.comp_request_content');
         edit('.compensation');
-        //第四页
-        edit('.element-content>ul>li>textarea');
-        // unbindEvent();
     })
+     // 第四页
+     $('.edit4').click(function () {
+        edit('.element-content>ul>li>textarea');
+    })
+
+
+
+
 
 
     // 保存部分

@@ -80,16 +80,16 @@
     color: #333;
     min-height: inherit;
     float: left;
-    animation: b_title 0.3s 1.5s linear forwards;
-    opacity: 0;
+    /* animation: b_title 0.3s 1.5s linear forwards;
+    opacity: 0; */
 }
-@keyframes b_title{
+/* @keyframes b_title{
     0% {
     }
     100% {
         opacity: 1;
     }
-}
+} */
 .comp_paragraph{
     float: right;
     font-size: 1rem;
@@ -161,12 +161,12 @@
     margin-bottom: 1.5rem;
     position: relative;
 }
-.comp_paragraph li:nth-child(2n+1){
+/* .comp_paragraph li:nth-child(2n+1){
     transform: translateX(30%);
     animation: li_old 1s 2s linear forwards;
     opacity: 0;
-}
-@keyframes li_old{
+} */
+/* @keyframes li_old{
     0% {
         opacity: 0;
     }
@@ -174,8 +174,8 @@
         opacity: 1;
         transform: translateX(0%);
     }
-}
-.comp_paragraph li:nth-child(2n){
+} */
+/* .comp_paragraph li:nth-child(2n){
     transform: translateX(-30%);
     animation: li_even 1s 2.5s linear forwards;
     opacity: 0;
@@ -188,23 +188,23 @@
         opacity: 1;
         transform: translateX(0%);
     }
-}
+} */
 .invite_img{
     width: 100%;
     position: absolute;
     bottom: 2rem;
-    transform: translateY(200%);
+    /* transform: translateY(200%);
     animation: com_img 1s 2s linear forwards;
-    opacity: 0;
+    opacity: 0; */
 }
-@keyframes invite_img{
+/* @keyframes invite_img{
     0% {
     }
     100% {
         opacity: 1;
         transform: translateY(1%);
     }
-}
+} */
 
 /* 第四页 */
 .comp_duty{
@@ -233,17 +233,17 @@
     text-align: center;
     font-size: 1.5rem;
     color: #00adb4;
-    animation: box_title 1s 1s linear forwards;
-    opacity: 0;
+    /* animation: box_title 1s 1s linear forwards;
+    opacity: 0; */
 }
-@keyframes box_title{
+/* @keyframes box_title{
     0% {
 
     }
     100% {
         opacity: 1;
     }
-}
+} */
 .element-box-title span{
     position: relative;
     top: 50%;
@@ -253,11 +253,11 @@
     width: 80%;
     margin-left: 10%;
     border-bottom: 2px solid #5ec2ce;
-    transform: rotateZ(360deg);
+    /* transform: rotateZ(360deg);
     opacity: 0;
-    animation: partingline 1s 1s linear forwards;
+    animation: partingline 1s 1s linear forwards; */
 }
-@keyframes partingline{
+/* @keyframes partingline{
     0% {
 
     }
@@ -265,7 +265,7 @@
         transform: rotateZ(0);
         opacity: 1;
     }
-}
+} */
 .comp_request{
     margin-top: 5%;
     font-size: 1rem;
@@ -273,7 +273,7 @@
 }
 .comp_request_content{
     width: 100%;
-    height: 8rem;
+    height: 90%;
     font-size: 0.8rem;
     color: #000;
     word-wrap: break-word;
