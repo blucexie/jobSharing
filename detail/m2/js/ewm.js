@@ -4,6 +4,6 @@ $(function(){
     var num = url.indexOf("uc=");
     var uc = url.substr(num+3,url.length-1);
     $('#code').qrcode({
-        text: "http://192.168.1.87:8081/hr/employee.html?uc="+ uc
+        text: "https://apix.funinhr.com/api/hr/employee.html?uc="+ uc
     });
 })

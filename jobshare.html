@@ -9,9 +9,25 @@
     <script src="js/jquery-1.11.3.min.js"></script>
     <title>职位分享器</title>
 </head>
+<script type="text/javascript">
+        ! function () {
+            var html = document.documentElement;
+            var hWidth = html.getBoundingClientRect().width;
+            html.style.fontSize = hWidth / 25 + 'px';
+        }();
+        window.addEventListener('resize', (e) => {
+            var html = document.documentElement;
+            var hWidth = html.getBoundingClientRect().width;
+            html.style.fontSize = hWidth / 25 + 'px';
+        })
+    </script>
 
 <body>
 
+    <div class="jobshare_title">
+
+        <img src="img/model-title.png" alt="">
+    </div>
     <div class="jobshare_list">
         <ul>
             <li>
@@ -23,7 +39,10 @@
         </ul>
     </div>
     <div class="more">
-        <p>更多模板即将上线</p>
+        <p>更多职位模板,敬请期待～</p>
+    </div>
+    <div class="jobshare_bottom">
+        <img src="img/model-back.png" alt="">
     </div>
     <script>
         /*获取userCode*/
@@ -39,7 +58,7 @@
             window.location.href ="detail/m1/m1.html?uc="+userCode;
         })
         $('.jobshare_list>ul>li:nth-of-type(2)').click(function(){
-            window.location.href ="detail/m2/1.html?uc="+userCode;
+            window.location.href ="detail/m2/m2.html?uc="+userCode;
         })
     </script>
 </body>

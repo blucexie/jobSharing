@@ -118,11 +118,8 @@
 .com_intro{
     height: 98%;
     margin-top: 0;
-    transform: translateY(100%);
-    animation: com_intro 1s 1.5s linear forwards;
-    opacity: 0;
 }
-@keyframes com_intro{
+/*@keyframes com_intro{
     0% {
 
     }
@@ -130,36 +127,29 @@
         transform: translateY(0);
         opacity: 1;
     }
-}
+}*/
 .comp_intro{
     height: 17rem;
-    transform: translateY(-200%);
-    animation: b_content 1s 1.5s linear forwards;
+ /*   transform: translateY(-200%);
+    animation: b_content 1s 1.5s linear forwards;*/
 }
-@keyframes b_content{
+/*@keyframes b_content{
     0% {
 
     }
     100% {
         transform: translateY(1%);
     }
-}
+}*/
 .com_img{
     width: 100%;
     position: absolute;
     bottom: 2.5%;
-    transform: translateY(200%);
-    animation: com_img 1s 2s linear forwards;
-    opacity: 0;
+    /*transform: translateY(200%);*/
+    /*animation: com_img 1s 2s linear forwards;*/
+    /*opacity: 0;*/
 }
-@keyframes com_img{
-    0% {
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(1%);
-    }
-}
+
 
 /* 第三页 */
 .comp_paragraph li{
