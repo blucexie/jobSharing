@@ -22,7 +22,6 @@
              var params = JSON.parse(jsonData.item.params);
              //返回状态信息
              var resultInfo = jsonData.item.resultInfo;
-             console.log(params)
              if (result === 1001) {
                  $('.page1-Text p:nth-of-type(1)').text(params.company_name);
                  $('.company>p').text(params.company_intro);
@@ -35,9 +34,11 @@
          }
      });
  }
- var h = $(window).height();
- $('body').height(h);
-
+    
+     var h = window.innerHeight;
+    $('body').height(h);
+    $('.swiper-slide').height(h);
+    
 
  var mySwiper = new Swiper('.swiper-container', {
      direction: 'vertical',
@@ -45,6 +46,10 @@
      loop: false,
      parallax: true,
      effect: 'fade',
+     autoHeight: true,
+     longSwipes: false,
+     longSwipesMs : 5000,
+     passiveListeners : false,
      // 如果需要分页器
      /*  pagination: {
           el: '.swiper-pagination',
@@ -58,16 +63,6 @@
              swiperAnimate(this); //每个slide切换结束时也运行当前slide动画
          }
      }
-     // 如果需要前进后退按钮
-     /*  navigation: {
-          nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev',
-      }, */
-
-     // 如果需要滚动条
-     /* scrollbar: {
-         el: '.swiper-scrollbar',
-     }, */
  })
 
  //生成二维码
@@ -117,51 +112,54 @@
  //数据回填
  function isExist(a, b) {
      if (sessionStorage.getItem(a)) {
-         $(b).val();
+         $(b).val("");
          $(b).val(sessionStorage.getItem(a));
      }
  }
- isExist('company_name', '.page1-Text>input');
- isExist('company_intro', '.company_Profile');
- isExist('job_title', '.jobIntroduction>.job_title');
- isExist('job_duty', '.jobDuty>textarea');
- isExist('job_require', '.jobRequire>textarea');
- isExist('pay', '.salary');
+ isExist('company_name1', '.page1-Text>input');
+ isExist('company_intro1', '.company_Profile');
+ isExist('job_title1', '.jobIntroduction>.job_title');
+ isExist('job_duty1', '.jobDuty>textarea');
+ isExist('job_require1', '.jobRequire>textarea');
+ isExist('pay1', '.salary');
 
  $('.edit1').click(function () {
      edit('.page1-Text>input');
      unbindEvent();
  })
- var company_name = $('.page1-Text>input').val();
-     sessionStorage.company_name = company_name;
+ var company_name1 = $('.page1-Text>input').val();
+     sessionStorage.company_name1 = company_name1;
  $('.save1').click(function () {
-    /*  var company_name = $('.page1-Text>input').val();
-     sessionStorage.company_name = company_name; */
-     save('.page1-Text>input', 'company_name');
-     location.reload();
+     save('.page1-Text>input', 'company_name1');
+     window.location.reload();
  })
  
-
- var company_intro = $('.company_Profile').val();
- sessionStorage.company_intro = company_intro;
+ var company_intro1 = $('.company_Profile').val();
+ sessionStorage.company_intro1 = company_intro1;
  $('.edit2').click(function () {
      edit('.company_Profile');
      unbindEvent();
  })
  $('.save2').click(function () {
+<<<<<<< HEAD
      /* var company_intro = $('.company_Profile').val();
      sessionStorage.company_intro = company_intro; */
      save('.company_Profile', 'company_intro');
     //  location.reload();
+=======
+     save('.company_Profile', 'company_intro1');
+     window.location.reload();
+     //window.location.href ="m1.html"
+>>>>>>> 7cb972660bb4e3f3a68bc5fb4739ed430c4d773e
  })
- var job_title = $('.jobIntroduction>.job_title').val();
- var job_duty = $('.jobDuty>textarea').val();
- var job_require = $('.jobRequire>textarea').val();
- var pay = $('.salary').val();
- sessionStorage.job_title = job_title;
- sessionStorage.job_duty = job_duty;
- sessionStorage.job_require = job_require;
- sessionStorage.pay = pay;
+ var job_title1 = $('.jobIntroduction>.job_title').val();
+ var job_duty1 = $('.jobDuty>textarea').val();
+ var job_require1 = $('.jobRequire>textarea').val();
+ var pay1 = $('.salary').val();
+ sessionStorage.job_title1 = job_title1;
+ sessionStorage.job_duty1 = job_duty1;
+ sessionStorage.job_require1 = job_require1;
+ sessionStorage.pay1 = pay1;
  $('.edit3').click(function () {
      edit('.jobIntroduction>.job_title');
      edit('.jobDuty>textarea');
@@ -170,6 +168,7 @@
      unbindEvent();
  })
  $('.save3').click(function () {
+<<<<<<< HEAD
      /* var job_title = $('.jobIntroduction>.job_title').val();
      var job_duty = $('.jobDuty>textarea').val();
      var job_require = $('.jobRequire>textarea').val();
@@ -183,16 +182,32 @@
      save('.jobRequire>textarea', 'job_require');
      save('.salary', 'pay');
     //  location.reload();
+=======
+    save('.job_title', 'job_title1');
+     save('.jobDuty>textarea', 'job_duty1');
+     save('.jobRequire>textarea', 'job_require1');
+     save('.salary', 'pay1');
+     window.location.reload();
+>>>>>>> 7cb972660bb4e3f3a68bc5fb4739ed430c4d773e
  })
 
  
  $('.submit').click(function () {
+<<<<<<< HEAD
     save('.page1-Text>input', 'company_name');
     save('.company_Profile', 'company_intro');
     save('.jobIntroduction>.job_title', 'job_title');
     save('.jobDuty>textarea', 'job_duty');
     save('.jobRequire>textarea', 'job_require');
     save('.salary', 'pay');
+=======
+    save('.page1-Text>input', 'company_name1');
+    save('.company_Profile', 'company_intro1');
+    save('.job_title', 'job_title1');
+    save('.jobDuty>textarea', 'job_duty1');
+    save('.jobRequire>textarea', 'job_require1');
+    save('.salary', 'pay');   
+>>>>>>> 7cb972660bb4e3f3a68bc5fb4739ed430c4d773e
      var company_name = sessionStorage.getItem("company_name"),
          company_intro = sessionStorage.getItem("company_intro"),
          job_title = sessionStorage.getItem("job_title"),

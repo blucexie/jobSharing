@@ -118,7 +118,6 @@ textarea,
 .company,
 .jobIntroduction,
 .contactUs {
-  padding: 0 2rem;
   position: absolute;
   top: 5.2rem;
 }
@@ -153,32 +152,37 @@ textarea,
   text-align: justify;
 }
 .page2-bm {
+  width: 10rem;
   position: absolute;
   top: 15.2rem;
   left: 50%;
   transform: translateX(-50%);
 }
+.page2-bm > img {
+  width: 10rem;
+}
 /* page3 */
 .jobIntroduction {
-  min-width: 10rem;
+  width: 11rem;
   text-align: center;
-  top: 3rem !important;
+  top: 2rem !important;
+  left: 50%;
+  margin-left: -5.5rem;
 }
 .jobIntroduction .job_title {
-  margin-top: 1rem;
-  margin-bottom: 0.4rem;
+  margin-top: 0.6rem;
 }
 .jobIntroduction > div span,
 .jobIntroduction > div textarea {
   color: #fff;
-  font-size: 0.56rem;
+  font-size: 0.52rem;
   line-height: 1.8;
 }
 .jobIntroduction > div textarea {
   display: block;
   margin: 0 auto;
   min-width: 11rem;
-  min-height: 6rem;
+  min-height: 5.2rem;
 }
 .jobIntroduction > div {
   text-align: left!important;
@@ -187,7 +191,7 @@ textarea,
   margin-top: 0.4rem;
 }
 .jobIntroduction .salary {
-  margin-top: 1rem;
+  margin-top: 0.4rem;
   font-size: 0.8rem;
   color: #59c7f9;
   text-align: center;
@@ -215,7 +219,7 @@ canvas {
 .edit {
   width: 100%;
   text-align: center;
-  position: absolute;
+  position: fixed;
   bottom: 0;
   background-color: #f8f8f8 ;
 }

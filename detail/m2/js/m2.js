@@ -230,11 +230,18 @@ $(function () {
         })
         var benefits2 = element_content.join();
         sessionStorage.setItem('benefits2', benefits2);
+<<<<<<< HEAD
     
         var dataJson = {
             userCode: userCode,
             params: {
                 company_name2: company_name2,
+=======
+        var dataJson = {
+            userCode: userCode,
+            params: {
+                company_name2: sessionStorage.getItem('company_name2'),
+>>>>>>> 7cb972660bb4e3f3a68bc5fb4739ed430c4d773e
                 company_intro2: sessionStorage.getItem('company_intro2'),
                 company_title2: sessionStorage.getItem('job_title2'),
                 company_duty2: sessionStorage.getItem('job_duty2'),
