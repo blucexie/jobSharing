@@ -22,7 +22,6 @@
              var params = JSON.parse(jsonData.item.params);
              //返回状态信息
              var resultInfo = jsonData.item.resultInfo;
-             console.log(params)
              if (result === 1001) {
                  $('.page1-Text p:nth-of-type(1)').text(params.company_name);
                  $('.company>p').text(params.company_intro);
@@ -47,6 +46,10 @@
      loop: false,
      parallax: true,
      effect: 'fade',
+     autoHeight: true,
+     longSwipes: false,
+     longSwipesMs : 5000,
+     passiveListeners : false,
      // 如果需要分页器
      /*  pagination: {
           el: '.swiper-pagination',
@@ -128,7 +131,7 @@
      sessionStorage.company_name1 = company_name1;
  $('.save1').click(function () {
      save('.page1-Text>input', 'company_name1');
-     location.reload();
+     window.location.reload();
  })
  
  var company_intro1 = $('.company_Profile').val();
@@ -139,7 +142,7 @@
  })
  $('.save2').click(function () {
      save('.company_Profile', 'company_intro1');
-     location.reload();
+     window.location.reload();
      //window.location.href ="m1.html"
  })
  var job_title1 = $('.jobIntroduction>.job_title').val();
@@ -162,7 +165,7 @@
      save('.jobDuty>textarea', 'job_duty1');
      save('.jobRequire>textarea', 'job_require1');
      save('.salary', 'pay1');
-     location.reload();
+     window.location.reload();
  })
 
  
