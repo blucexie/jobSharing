@@ -274,10 +274,17 @@
         })
     }
 
+    //键盘遮挡问题
+    $('textarea').focus(function(){
+       var _this = this;
+       setTimeout(function(){
+           _this.scrollIntoViewIfNeeded();
+       })
+    })
 
 
 
-    
+   //调用弹窗
     function sumToJava(recruitConfig) {
         alert(recruitConfig);
      window.control.onSumResult(recruitConfig);
