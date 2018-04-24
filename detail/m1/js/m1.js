@@ -152,7 +152,7 @@
      /* var company_intro = $('.company_Profile').val();
      sessionStorage.company_intro = company_intro; */
      save('.company_Profile', 'company_intro');
-     location.reload();
+    //  location.reload();
  })
  var job_title = $('.jobIntroduction>.job_title').val();
  var job_duty = $('.jobDuty>textarea').val();
@@ -182,11 +182,17 @@
      save('.jobDuty>textarea', 'job_duty');
      save('.jobRequire>textarea', 'job_require');
      save('.salary', 'pay');
-     location.reload();
+    //  location.reload();
  })
 
  
  $('.submit').click(function () {
+    save('.page1-Text>input', 'company_name');
+    save('.company_Profile', 'company_intro');
+    save('.jobIntroduction>.job_title', 'job_title');
+    save('.jobDuty>textarea', 'job_duty');
+    save('.jobRequire>textarea', 'job_require');
+    save('.salary', 'pay');
      var company_name = sessionStorage.getItem("company_name"),
          company_intro = sessionStorage.getItem("company_intro"),
          job_title = sessionStorage.getItem("job_title"),
