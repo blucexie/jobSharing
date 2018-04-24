@@ -16,7 +16,6 @@
          dataType: "json",
          data: JSON.stringify({code:codeF}),
          success: function (data) {
-
              var jsonData = JSON.parse(data["plaintext"]);
              var result = jsonData.item.result;
              var params = JSON.parse(jsonData.item.params);
@@ -141,16 +140,9 @@
      unbindEvent();
  })
  $('.save2').click(function () {
-<<<<<<< HEAD
-     /* var company_intro = $('.company_Profile').val();
-     sessionStorage.company_intro = company_intro; */
-     save('.company_Profile', 'company_intro');
-    //  location.reload();
-=======
      save('.company_Profile', 'company_intro1');
      window.location.reload();
      //window.location.href ="m1.html"
->>>>>>> 7cb972660bb4e3f3a68bc5fb4739ed430c4d773e
  })
  var job_title1 = $('.jobIntroduction>.job_title').val();
  var job_duty1 = $('.jobDuty>textarea').val();
@@ -168,46 +160,21 @@
      unbindEvent();
  })
  $('.save3').click(function () {
-<<<<<<< HEAD
-     /* var job_title = $('.jobIntroduction>.job_title').val();
-     var job_duty = $('.jobDuty>textarea').val();
-     var job_require = $('.jobRequire>textarea').val();
-     var pay = $('.salary').val();
-     sessionStorage.job_title = job_title;
-     sessionStorage.job_duty = job_duty;
-     sessionStorage.job_require = job_require;
-     sessionStorage.pay = pay; */
-     save('.jobIntroduction>.job_title', 'job_title');
-     save('.jobDuty>textarea', 'job_duty');
-     save('.jobRequire>textarea', 'job_require');
-     save('.salary', 'pay');
-    //  location.reload();
-=======
     save('.job_title', 'job_title1');
      save('.jobDuty>textarea', 'job_duty1');
      save('.jobRequire>textarea', 'job_require1');
      save('.salary', 'pay1');
      window.location.reload();
->>>>>>> 7cb972660bb4e3f3a68bc5fb4739ed430c4d773e
  })
 
  
  $('.submit').click(function () {
-<<<<<<< HEAD
-    save('.page1-Text>input', 'company_name');
-    save('.company_Profile', 'company_intro');
-    save('.jobIntroduction>.job_title', 'job_title');
-    save('.jobDuty>textarea', 'job_duty');
-    save('.jobRequire>textarea', 'job_require');
-    save('.salary', 'pay');
-=======
     save('.page1-Text>input', 'company_name1');
     save('.company_Profile', 'company_intro1');
     save('.job_title', 'job_title1');
     save('.jobDuty>textarea', 'job_duty1');
     save('.jobRequire>textarea', 'job_require1');
     save('.salary', 'pay');   
->>>>>>> 7cb972660bb4e3f3a68bc5fb4739ed430c4d773e
      var company_name = sessionStorage.getItem("company_name"),
          company_intro = sessionStorage.getItem("company_intro"),
          job_title = sessionStorage.getItem("job_title"),
@@ -237,7 +204,6 @@
              var enterpriseName = jsonData.item.enterpriseName;
              //返回状态信息
              var resultInfo = jsonData.item.resultInfo;
-
              var recruitConfig = JSON.stringify({
                 "inviteTitle": enterpriseName + "正在招聘",
                 "inviteDescription": "快到碗里来",

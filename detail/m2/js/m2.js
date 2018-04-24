@@ -163,23 +163,74 @@ $(function () {
     // 第一页
     $('.save1').click(function () {
         save('.logo', 'company_name2');
+        save('.comp_intro', 'company_intro2');
+        save('.job_title', 'job_title2');
+        save('.comp_duty>textarea', 'job_duty2');
+        save('.comp_request>textarea', 'job_require2');
+        save('.compensation', 'pay2');
+        var element_content = [];
+        $('.element-content>ul>li>textarea').each(function () {
+            var a = $(this).val();
+            element_content.push(a);
+        })
+        // bindEvent();
+        var benefits2 = element_content.join();
+        sessionStorage.setItem('benefits2', benefits2);
+        $('.up').css({ "animation-play-state": "running" });
+        $('.element-content>ul>li>textarea').css({ "border": "none" });
+        window.location.reload();
         // bindEvent();
     })
     // 第二页
     $('.save2').click(function () {
+        save('.logo', 'company_name2');
         save('.comp_intro', 'company_intro2');
-        // bindEvent();
-    })
-    // 第三页
-    $('.save3').click(function () {
         save('.job_title', 'job_title2');
         save('.comp_duty>textarea', 'job_duty2');
         save('.comp_request>textarea', 'job_require2');
         save('.compensation', 'pay2');
         // bindEvent();
+        var element_content = [];
+        $('.element-content>ul>li>textarea').each(function () {
+            var a = $(this).val();
+            element_content.push(a);
+        })
+        // bindEvent();
+        var benefits2 = element_content.join();
+        sessionStorage.setItem('benefits2', benefits2);
+        $('.up').css({ "animation-play-state": "running" });
+        $('.element-content>ul>li>textarea').css({ "border": "none" });
+        window.location.reload();
+    })
+    // 第三页
+    $('.save3').click(function () { 
+        save('.logo', 'company_name2');
+        save('.comp_intro', 'company_intro2');
+        save('.job_title', 'job_title2');
+        save('.comp_duty>textarea', 'job_duty2');
+        save('.comp_request>textarea', 'job_require2');
+        save('.compensation', 'pay2');
+        // bindEvent();
+        var element_content = [];
+        $('.element-content>ul>li>textarea').each(function () {
+            var a = $(this).val();
+            element_content.push(a);
+        })
+        // bindEvent();
+        var benefits2 = element_content.join();
+        sessionStorage.setItem('benefits2', benefits2);
+        $('.up').css({ "animation-play-state": "running" });
+        $('.element-content>ul>li>textarea').css({ "border": "none" });
+        window.location.reload();
     })
     //第四页
     $('.save4').click(function () {
+        save('.logo', 'company_name2');
+        save('.comp_intro', 'company_intro2');
+        save('.job_title', 'job_title2');
+        save('.comp_duty>textarea', 'job_duty2');
+        save('.comp_request>textarea', 'job_require2');
+        save('.compensation', 'pay2');
         var element_content = [];
         $('.element-content>ul>li>textarea').each(function () {
             var a = $(this).val();
@@ -230,28 +281,29 @@ $(function () {
         })
         var benefits2 = element_content.join();
         sessionStorage.setItem('benefits2', benefits2);
-<<<<<<< HEAD
-    
+
+        var company_name2 = sessionStorage.getItem('company_name2');
+        var company_intro2 = sessionStorage.getItem('company_intro2');
+        var company_title2 =  sessionStorage.getItem('job_title2');
+        var company_duty2 = sessionStorage.getItem('job_duty2');
+        var company_require2 = sessionStorage.getItem('job_require2');
+        var pay2 = sessionStorage.getItem('pay2');
+        var benefits2 = sessionStorage.getItem('benefits2');
+        
         var dataJson = {
             userCode: userCode,
             params: {
-                company_name2: company_name2,
-=======
-        var dataJson = {
-            userCode: userCode,
-            params: {
-                company_name2: sessionStorage.getItem('company_name2'),
->>>>>>> 7cb972660bb4e3f3a68bc5fb4739ed430c4d773e
-                company_intro2: sessionStorage.getItem('company_intro2'),
-                company_title2: sessionStorage.getItem('job_title2'),
-                company_duty2: sessionStorage.getItem('job_duty2'),
-                company_require2: sessionStorage.getItem('job_require2'),
-                pay2: sessionStorage.getItem('pay2'),
-                benefits2: sessionStorage.getItem('benefits2')
+                company_name2:company_name2,
+                company_intro2: company_intro2,
+                company_title2:  company_title2,
+                company_duty2: company_duty2,
+                company_require2: company_require2,
+                pay2: pay2,
+                benefits2: benefits2
             }
         }
         $.ajax({
-            type: 'post',
+            type: 'POST',
             url: 'https://apix.funinhr.com/api/insert/params',
             data: JSON.stringify(dataJson),
             dataType: 'json',
