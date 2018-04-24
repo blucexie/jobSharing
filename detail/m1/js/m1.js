@@ -16,7 +16,6 @@
          dataType: "json",
          data: JSON.stringify({code:codeF}),
          success: function (data) {
-
              var jsonData = JSON.parse(data["plaintext"]);
              var result = jsonData.item.result;
              var params = JSON.parse(jsonData.item.params);
@@ -217,7 +216,6 @@
              var enterpriseName = jsonData.item.enterpriseName;
              //返回状态信息
              var resultInfo = jsonData.item.resultInfo;
-
              var recruitConfig = JSON.stringify({
                 "inviteTitle": enterpriseName + "正在招聘",
                 "inviteDescription": "快到碗里来",
