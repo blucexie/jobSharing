@@ -79,13 +79,7 @@
         sessionStorage.setItem('benefits2', benefits2);
     };
 
-    //第五页生成二维码
-    var url =  window.location.href;
-    var num = url.indexOf("uc=");
-    var uc = url.substr(num+3,url.length-1);
-    $('#code').qrcode({
-        text: "https://apix.funinhr.com/hr/employee.html?userCode=" + uc
-    });
+ 
 
     //发送数据
     function GetQueryString(name) {
@@ -95,6 +89,14 @@
     }
     var userCode = GetQueryString("uc");
     var codeF = GetQueryString("code");
+
+   //第五页生成二维码
+       if (userCode) {
+           $('#code').qrcode({
+               text: "https://apix.funinhr.com/hr/employee.html?userCode=" + userCode
+           });
+       }
+
     if (codeF) {
         $('.bottom').hide();
         $('.sub').hide();
@@ -113,9 +115,13 @@
                 var jsonData = JSON.parse(data["plaintext"]);
                 var result = jsonData.item.result;
                 var params = JSON.parse(jsonData.item.params);
+                var codeW = jsonData.item.userCode;
                 var benefitArr = params.benefits2.split(',');
              //返回状态信息
              var resultInfo = jsonData.item.resultInfo;
+             $('#code').qrcode({
+                text: "https://apix.funinhr.com/hr/employee.html?userCode=" + codeW
+             });
                 //返回状态信息
                 var resultInfo = jsonData.item.resultInfo;
                 if (result === 1001) {
@@ -275,12 +281,14 @@
     }
 
     //键盘遮挡问题
-    $('textarea').focus(function(){
-       var _this = this;
-       setTimeout(function(){
-           _this.scrollIntoViewIfNeeded();
-       })
-    })
+    // $('textarea').focus(function(){
+    //    var _this = this;
+    //    setTimeout(function(){
+    //        _this.scrollIntoViewIfNeeded();
+    //    })
+    // })
+
+
 
 
 

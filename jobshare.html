@@ -45,6 +45,9 @@
         <img src="img/model-back.png" alt="">
     </div>
     <script>
+        var h = document.documentElement.clientHeight;
+        $('body').height(h);
+
         /*获取userCode*/
         function GetQueryString(name) {
             var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
