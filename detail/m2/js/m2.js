@@ -94,30 +94,40 @@
         if (r != null) return unescape(r[2]); return null;
     }
     var userCode = GetQueryString("uc");
-    //页面请求判断
     var codeF = GetQueryString("code");
     if (codeF) {
         $('.bottom').hide();
+        $('.sub').hide();
+        $('input').each(function(){
+            $(this).attr('disabled','disabled');
+        })
+        $('textarea').each(function(){
+            $(this).attr('disabled','disabled');
+        })
         $.ajax({
             url: "https://apix.funinhr.com/api/query/param",
             type: "POST",
             dataType: "json",
-            data: JSON.stringify({ code: codeF }),
+            data: JSON.stringify({ code: codeF}),
             success: function (data) {
                 var jsonData = JSON.parse(data["plaintext"]);
-                var requireData = JSON.parse(jsonData.item.params);
-                sessionStorage.setItem('requireData', JSON.stringify(requireData));
-                var sessionData = JSON.parse(sessionStorage.getItem('requireData'));
                 var result = jsonData.item.result;
+                var params = JSON.parse(jsonData.item.params);
+                var benefitArr = params.benefits2.split(',');
+             //返回状态信息
+             var resultInfo = jsonData.item.resultInfo;
                 //返回状态信息
                 var resultInfo = jsonData.item.resultInfo;
                 if (result === 1001) {
-                    $('.logo').html(sessionData.company_name2);
-                    $('.comp_intro').html(sessionData.company_intro2);
-                    $('.job_title').html(sessionData.job_title2);
-                    $('.comp_duty>p').html(sessionData.job_duty2);
-                    $('.comp_request>p').html(sessionData.job_require2);
-                    $('.compensation').html(sessionData.pay2);
+                    $('.logo').val(params.company_name2);
+                    $('.comp_intro').val(params.company_intro2);
+                    $('.job_title').val(params.company_title2);
+                    $('.comp_duty_content').val(params.company_duty2);
+                    $('.comp_request_content').val(params.company_require2);
+                    $('.compensation').val(params.pay2);
+                    $('.element-content>ul>li>textarea').each(function(i,v){
+                       $(this).val(benefitArr[i]);
+                    })
                 }
             }
         });
