@@ -281,18 +281,13 @@
     }
 
     //键盘遮挡问题
-    // $('textarea').focus(function(){
-    //    var _this = this;
-    //    setTimeout(function(){
-    //        _this.scrollIntoViewIfNeeded();
-    //    })
-    // })
-
-    // $('textarea').focus(function(){
-    //     console.log(document.documentElement.clientHeight);
-    // })
-
-
+    $('input[type="text"],textarea').on('click', function () {
+        var target = this;
+        setTimeout(function(){
+            target.scrollIntoViewIfNeeded();
+            console.log('scrollIntoViewIfNeeded');
+        },400);
+    });
 
 
 
