@@ -9,6 +9,14 @@
  }
  var userCode = GetQueryString("uc");
  var codeF  = GetQueryString("code");
+
+ //生成二维码
+ if(userCode){
+    $('#code').qrcode({
+        text: "https://apix.funinhr.com/hr/employee.html?userCode=" + userCode
+     });
+ }
+ 
  if(codeF){
      $.ajax({
          url: "https://apix.funinhr.com/api/query/param",
@@ -16,19 +24,30 @@
          dataType: "json",
          data: JSON.stringify({code:codeF}),
          success: function (data) {
+             
              var jsonData = JSON.parse(data["plaintext"]);
              var result = jsonData.item.result;
              var params = JSON.parse(jsonData.item.params);
+             var codeW = jsonData.item.userCode;
              //返回状态信息
              var resultInfo = jsonData.item.resultInfo;
+             $('#code').qrcode({
+                text: "https://apix.funinhr.com/hr/employee.html?userCode=" + codeW
+             });
              if (result === 1001) {
-                 $('.page1-Text p:nth-of-type(1)').text(params.company_name);
-                 $('.company>p').text(params.company_intro);
-                 $('.jobIntroduction>h3').text(params.job_title);
-                 $('.jobDuty>p').text(params.job_duty);
-                 $('.jobRequire>p').text(params.job_require);
-                 $('.salary').text(params.pay);
+                 $('.page1-Text>input').val(params.company_name);
+                 $('.company_Profile').val(params.company_intro);
+                 $('.jobIntroduction>.job_title').val(params.job_title);
+                 $('.jobDuty>textarea').val(params.job_duty);
+                 $('.jobRequire>textarea').val(params.job_require);
+                 $('.salary').val(params.pay);
                  $('.edit').hide();
+                 $('.page1-Text>input').attr("disabled","disabled");
+                 $('.company_Profile').attr("disabled","disabled");
+                 $('.jobIntroduction>.job_title').attr("disabled","disabled");
+                 $('.jobDuty>textarea').attr("disabled","disabled");
+                 $('.jobRequire>textarea').attr("disabled","disabled");
+                 $('.salary').attr("disabled","disabled");
              }
          }
      });
@@ -66,12 +85,12 @@
 
  //生成二维码
 
- var url = window.location.href;
+/*  var url = window.location.href;
  var num = url.indexOf("uc=");
- var uc = url.substr(num + 3, url.length - 1);
- $('#code').qrcode({
-    text: "https://apix.funinhr.com/hr/employee.html?userCode=" + uc
- });
+ var uc = url.substr(num + 3, url.length - 1); */
+ /* $('#code').qrcode({
+    text: "https://apix.funinhr.com/hr/employee.html?userCode=" + userCode
+ }); */
 
  //封装加动画和边框
  function edit(a) {
@@ -187,12 +206,12 @@
     save('.jobDuty>textarea', 'job_duty1');
     save('.jobRequire>textarea', 'job_require1');
     save('.salary', 'pay1');   
-     var company_name = sessionStorage.getItem("company_name"),
-         company_intro = sessionStorage.getItem("company_intro"),
-         job_title = sessionStorage.getItem("job_title"),
-         job_duty = sessionStorage.getItem("job_duty"),
-         job_require = sessionStorage.getItem("job_require"),
-         pay = sessionStorage.getItem("pay"),
+     var company_name = sessionStorage.getItem("company_name1"),
+         company_intro = sessionStorage.getItem("company_intro1"),
+         job_title = sessionStorage.getItem("job_title1"),
+         job_duty = sessionStorage.getItem("job_duty1"),
+         job_require = sessionStorage.getItem("job_require1"),
+         pay = sessionStorage.getItem("pay1"),
 
          dataJson = {
              userCode:userCode,
