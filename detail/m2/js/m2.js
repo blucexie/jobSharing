@@ -1,5 +1,6 @@
 
-    // 检测屏幕高度 让屏幕和盒子大小一致
+   $(function(){
+        // 检测屏幕高度 让屏幕和盒子大小一致
     // doucument.documentElement.style.height = window.innerHeight+'px';
     var h = document.documentElement.clientHeight;
     $('body').height(h);
@@ -134,7 +135,6 @@
         $(a).css({ "border": 'none' });
         var c = $(a).val();
         sessionStorage.setItem(b, c);
-        window.location.reload();
     }
 
 
@@ -173,13 +173,12 @@
             var a = $(this).val();
             element_content.push(a);
         })
-        // bindEvent();
         var benefits2 = element_content.join();
         sessionStorage.setItem('benefits2', benefits2);
         $('.up').css({ "animation-play-state": "running" });
         $('.element-content>ul>li>textarea').css({ "border": "none" });
         window.location.reload();
-        // bindEvent();
+       
     })
     // 第二页
     $('.save2').click(function () {
@@ -267,6 +266,13 @@
 
 
 
+
+    
+    function sumToJava(recruitConfig) {
+        alert(recruitConfig);
+     window.control.onSumResult(recruitConfig);
+    }
+
     $('.sub').click(function () {
         save('.logo', 'company_name2');
         save('.comp_intro', 'company_intro2');
@@ -307,10 +313,10 @@
             url: 'https://apix.funinhr.com/api/insert/params',
             data: JSON.stringify(dataJson),
             dataType: 'json',
-            async:false,
             success: function (data) {
                 var jsonData = JSON.parse(data["plaintext"]);
                 var result = jsonData.item.result;
+                console.log(result);
                 var code = jsonData.item.code;
                 var enterpriseName = jsonData.item.enterpriseName;
                 //返回状态信息
@@ -328,10 +334,6 @@
         })
     })
     
-
-
-
-function sumToJava(recruitConfig) {
-    alert(recruitConfig);
-    window.control.onSumResult(recruitConfig);
-}
+})
+   
+    

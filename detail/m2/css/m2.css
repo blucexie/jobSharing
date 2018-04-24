@@ -668,6 +668,8 @@ textarea:-ms-input-placeholder{  /* Internet Explorer 10-11 */
     line-height: 3.5rem;
     color: #00adb4;
     background-color: #f8f8f8 ;
+    position: absolute;
+    bottom: 0;
 }
 .share{
     width: 50%;
