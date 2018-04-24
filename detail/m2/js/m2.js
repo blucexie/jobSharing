@@ -1,5 +1,6 @@
 
-    // 检测屏幕高度 让屏幕和盒子大小一致
+   $(function(){
+        // 检测屏幕高度 让屏幕和盒子大小一致
     // doucument.documentElement.style.height = window.innerHeight+'px';
     var h = document.documentElement.clientHeight;
     $('body').height(h);
@@ -93,30 +94,40 @@
         if (r != null) return unescape(r[2]); return null;
     }
     var userCode = GetQueryString("uc");
-    //页面请求判断
     var codeF = GetQueryString("code");
     if (codeF) {
         $('.bottom').hide();
+        $('.sub').hide();
+        $('input').each(function(){
+            $(this).attr('disabled','disabled');
+        })
+        $('textarea').each(function(){
+            $(this).attr('disabled','disabled');
+        })
         $.ajax({
             url: "https://apix.funinhr.com/api/query/param",
             type: "POST",
             dataType: "json",
-            data: JSON.stringify({ code: codeF }),
+            data: JSON.stringify({ code: codeF}),
             success: function (data) {
                 var jsonData = JSON.parse(data["plaintext"]);
-                var requireData = JSON.parse(jsonData.item.params);
-                sessionStorage.setItem('requireData', JSON.stringify(requireData));
-                var sessionData = JSON.parse(sessionStorage.getItem('requireData'));
                 var result = jsonData.item.result;
+                var params = JSON.parse(jsonData.item.params);
+                var benefitArr = params.benefits2.split(',');
+             //返回状态信息
+             var resultInfo = jsonData.item.resultInfo;
                 //返回状态信息
                 var resultInfo = jsonData.item.resultInfo;
                 if (result === 1001) {
-                    $('.logo').html(sessionData.company_name2);
-                    $('.comp_intro').html(sessionData.company_intro2);
-                    $('.job_title').html(sessionData.job_title2);
-                    $('.comp_duty>p').html(sessionData.job_duty2);
-                    $('.comp_request>p').html(sessionData.job_require2);
-                    $('.compensation').html(sessionData.pay2);
+                    $('.logo').val(params.company_name2);
+                    $('.comp_intro').val(params.company_intro2);
+                    $('.job_title').val(params.company_title2);
+                    $('.comp_duty_content').val(params.company_duty2);
+                    $('.comp_request_content').val(params.company_require2);
+                    $('.compensation').val(params.pay2);
+                    $('.element-content>ul>li>textarea').each(function(i,v){
+                       $(this).val(benefitArr[i]);
+                    })
                 }
             }
         });
@@ -134,7 +145,6 @@
         $(a).css({ "border": 'none' });
         var c = $(a).val();
         sessionStorage.setItem(b, c);
-        window.location.reload();
     }
 
 
@@ -173,13 +183,12 @@
             var a = $(this).val();
             element_content.push(a);
         })
-        // bindEvent();
         var benefits2 = element_content.join();
         sessionStorage.setItem('benefits2', benefits2);
         $('.up').css({ "animation-play-state": "running" });
         $('.element-content>ul>li>textarea').css({ "border": "none" });
         window.location.reload();
-        // bindEvent();
+       
     })
     // 第二页
     $('.save2').click(function () {
@@ -258,14 +267,21 @@
     isExist('job_require2', '.comp_request_content');
     isExist('pay2', '.compensation');
 
-    if (sessionStorage.getItem('benefits')) {
-        var element_content = sessionStorage.getItem('benefits').split(',');
+    if (sessionStorage.getItem('benefits2')) {
+        var element_content = sessionStorage.getItem('benefits2').split(',');
         $('.element-content>ul>li>textarea').each(function (i, v) {
             $(this).html(element_content[i]);
         })
     }
 
 
+
+
+    
+    function sumToJava(recruitConfig) {
+        alert(recruitConfig);
+     window.control.onSumResult(recruitConfig);
+    }
 
     $('.sub').click(function () {
         save('.logo', 'company_name2');
@@ -307,10 +323,10 @@
             url: 'https://apix.funinhr.com/api/insert/params',
             data: JSON.stringify(dataJson),
             dataType: 'json',
-            async:false,
             success: function (data) {
                 var jsonData = JSON.parse(data["plaintext"]);
                 var result = jsonData.item.result;
+                console.log(result);
                 var code = jsonData.item.code;
                 var enterpriseName = jsonData.item.enterpriseName;
                 //返回状态信息
@@ -328,10 +344,6 @@
         })
     })
     
-
-
-
-function sumToJava(recruitConfig) {
-    alert(recruitConfig);
-    window.control.onSumResult(recruitConfig);
-}
+})
+   
+    
