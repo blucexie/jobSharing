@@ -258,8 +258,8 @@
     isExist('job_require2', '.comp_request_content');
     isExist('pay2', '.compensation');
 
-    if (sessionStorage.getItem('benefits')) {
-        var element_content = sessionStorage.getItem('benefits').split(',');
+    if (sessionStorage.getItem('benefits2')) {
+        var element_content = sessionStorage.getItem('benefits2').split(',');
         $('.element-content>ul>li>textarea').each(function (i, v) {
             $(this).html(element_content[i]);
         })
