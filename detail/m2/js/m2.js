@@ -288,6 +288,10 @@
     //    })
     // })
 
+    // $('textarea').focus(function(){
+    //     console.log(document.documentElement.clientHeight);
+    // })
+
 
 
 
