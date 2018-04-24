@@ -1,4 +1,4 @@
-$(function () {
+
     // 检测屏幕高度 让屏幕和盒子大小一致
     // doucument.documentElement.style.height = window.innerHeight+'px';
     var h = document.documentElement.clientHeight;
@@ -267,10 +267,11 @@ $(function () {
             }
         })
     })
-    function sumToJava(recruitConfig) {
-        alert(recruitConfig);
-        window.control.onSumResult(recruitConfig);
-    }
-})
+    
 
 
+
+function sumToJava(recruitConfig) {
+    alert(recruitConfig);
+    window.control.onSumResult(recruitConfig);
+}

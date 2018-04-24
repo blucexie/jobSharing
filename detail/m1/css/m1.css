@@ -150,6 +150,7 @@ textarea,
   text-indent: 2em;
   margin-top: 1rem;
   text-align: justify;
+  visibility: visible !important;
 }
 .page2-bm {
   width: 10rem;
@@ -160,6 +161,7 @@ textarea,
 }
 .page2-bm > img {
   width: 10rem;
+  visibility: visible !important;
 }
 /* page3 */
 .jobIntroduction {
@@ -168,6 +170,7 @@ textarea,
   top: 2rem !important;
   left: 50%;
   margin-left: -5.5rem;
+  visibility: visible !important;
 }
 .jobIntroduction .job_title {
   margin-top: 0.6rem;

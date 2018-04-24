@@ -131,6 +131,11 @@
      sessionStorage.company_name1 = company_name1;
  $('.save1').click(function () {
      save('.page1-Text>input', 'company_name1');
+     save('.company_Profile', 'company_intro1');
+     save('.job_title', 'job_title1');
+     save('.jobDuty>textarea', 'job_duty1');
+     save('.jobRequire>textarea', 'job_require1');
+     save('.salary', 'pay1');
      window.location.reload();
  })
  
@@ -141,7 +146,12 @@
      unbindEvent();
  })
  $('.save2').click(function () {
-     save('.company_Profile', 'company_intro1');
+    save('.page1-Text>input', 'company_name1');
+    save('.company_Profile', 'company_intro1');
+    save('.job_title', 'job_title1');
+    save('.jobDuty>textarea', 'job_duty1');
+    save('.jobRequire>textarea', 'job_require1');
+    save('.salary', 'pay1');
      window.location.reload();
      //window.location.href ="m1.html"
  })
@@ -161,10 +171,12 @@
      unbindEvent();
  })
  $('.save3').click(function () {
+    save('.page1-Text>input', 'company_name1');
+    save('.company_Profile', 'company_intro1');
     save('.job_title', 'job_title1');
-     save('.jobDuty>textarea', 'job_duty1');
-     save('.jobRequire>textarea', 'job_require1');
-     save('.salary', 'pay1');
+    save('.jobDuty>textarea', 'job_duty1');
+    save('.jobRequire>textarea', 'job_require1');
+    save('.salary', 'pay1');
      window.location.reload();
  })
 
@@ -175,7 +187,7 @@
     save('.job_title', 'job_title1');
     save('.jobDuty>textarea', 'job_duty1');
     save('.jobRequire>textarea', 'job_require1');
-    save('.salary', 'pay');   
+    save('.salary', 'pay1');   
      var company_name = sessionStorage.getItem("company_name"),
          company_intro = sessionStorage.getItem("company_intro"),
          job_title = sessionStorage.getItem("job_title"),
