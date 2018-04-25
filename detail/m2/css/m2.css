@@ -550,7 +550,7 @@ textarea:-ms-input-placeholder{  /* Internet Explorer 10-11 */
     background-color: transparent;
     text-align: center;
     font-size: 0.9rem;
-    color: #333;
+    color: #000;
     visibility: visible !important;
 }
 .element-content li:nth-child(2n){
