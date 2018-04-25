@@ -13,8 +13,6 @@
     var h = document.documentElement.clientHeight;
     $('body').height(h);
     $('.swiper-container').height(h);
-    // $('.swiper-slide').height(h);
-    // $('.container').height(h);
 
     function swiper(){
         var mySwiper = new Swiper('.swiper-container', {
@@ -97,7 +95,8 @@
     function GetQueryString(name) {
         var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
         var r = window.location.search.substr(1).match(reg);
-        if (r != null) return unescape(r[2]); return null;
+        if (r != null) return unescape(r[2]); 
+        return null;
     }
     var userCode = GetQueryString("uc");
     var codeF = GetQueryString("code");
@@ -134,8 +133,7 @@
              $('#code').qrcode({
                 text: "https://apix.funinhr.com/hr/employee.html?userCode=" + codeW
              });
-                //返回状态信息
-                var resultInfo = jsonData.item.resultInfo;
+
                 if (result === 1001) {
                     $('.logo').val(params.company_name2);
                     $('.comp_intro').val(params.company_intro2);
@@ -330,13 +328,13 @@
     // }
 
     //键盘遮挡问题
-    $('input[type="text"],textarea').on('click', function () {
-        var target = this;
-        setTimeout(function(){
-            target.scrollIntoViewIfNeeded();
-            console.log('scrollIntoViewIfNeeded');
-        },400);
-    });
+    // $('input[type="text"],textarea').on('click', function () {
+    //     var target = this;
+    //     setTimeout(function(){
+    //         target.scrollIntoViewIfNeeded();
+    //         console.log('scrollIntoViewIfNeeded');
+    //     },400);
+    // });
 
 
 
@@ -389,14 +387,13 @@
             success: function (data) {
                 var jsonData = JSON.parse(data["plaintext"]);
                 var result = jsonData.item.result;
-                console.log(result);
                 var code = jsonData.item.code;
                 var enterpriseName = jsonData.item.enterpriseName;
                 //返回状态信息
                 var resultInfo = jsonData.item.resultInfo;
                 var recruitConfig = JSON.stringify({
-                    "inviteTitle": enterpriseName + "正在招聘",
-                    "inviteDescription": "快到碗里来",
+                    "inviteTitle": enterpriseName + sessionStorage.getItem(company_name2),
+                    "inviteDescription": sessionStorage.getItem(company_intro2),
                     "inviteUrl": "https://apix.funinhr.com/templates/position/detail/m2/m2.html?code=" + code,
                     "inviteIcon": "http://cdn.funinhr.com/online/image/job/2-120-120.png"
                 })
