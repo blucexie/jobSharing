@@ -248,9 +248,6 @@
      });
  })
 
- 
-
-
  //安卓IOS交互方法
  function sumToJava(recruitConfig) {
      alert(recruitConfig);
