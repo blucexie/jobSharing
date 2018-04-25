@@ -24,7 +24,6 @@
          dataType: "json",
          data: JSON.stringify({code:codeF}),
          success: function (data) {
-             
              var jsonData = JSON.parse(data["plaintext"]);
              var result = jsonData.item.result;
              var params = JSON.parse(jsonData.item.params);
@@ -112,7 +111,8 @@
          "animation-play-state": "running"
      });
       var c = $(el).val();
-     sessionStorage.setItem(b,c);  
+      var d = $.trim(c);
+     sessionStorage.setItem(b,d);  
  }
 
  //解除绑定

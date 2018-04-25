@@ -120,6 +120,11 @@ html{
     }
 }
 
+input,textarea{
+    color: #000;
+    opacity: 1;
+}
+
 /* 编辑 */
 .bottom{
     width: 100%;
@@ -193,7 +198,7 @@ textarea:-ms-input-placeholder{  /* Internet Explorer 10-11 */
     height: 2.5rem;
     line-height: 2.5rem;
     margin-left: 5%;
-    color: #fafafa;
+    color: #ffffff;
     position: relative;
     transform: translateY(-100px);
     text-align: center;
@@ -203,6 +208,7 @@ textarea:-ms-input-placeholder{  /* Internet Explorer 10-11 */
     border: none;
     outline-color: #ccc;
     background-color: transparent;
+    opacity: 1;
 }   
 @keyframes qyx{
     0% {
@@ -310,7 +316,6 @@ textarea:-ms-input-placeholder{  /* Internet Explorer 10-11 */
 }
 /*@keyframes com_intro{
     0% {
-
     }
     100% {
         transform: translateY(0);
@@ -680,3 +685,56 @@ textarea:-ms-input-placeholder{  /* Internet Explorer 10-11 */
     color: #00adb4;
     background-color: #f8f8f8 ;
 }
+/* 分享盒子 */
+.share_box{
+    width: 100%;
+    height: 100%;
+    background-color: #666;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    display: none;
+}
+.share_tip{
+    width: 80%;
+    height: 40%;
+    background-color: #ffffff;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+.share_tip p{
+    width: 80%;
+    margin-left: 10%;
+    font-size: 1rem;
+}
+.share_tip input{
+    width: 80%;
+    margin-left: 10%;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid #ccc;
+}
+.share_tip textarea{
+    width: 80%;
+    margin-left: 10%;
+}
+.share_tip .share_button{
+    width: 80%;
+    text-align: center;
+    overflow: hidden;
+    margin-left: 10%;
+}
+.confirm{
+    width: 20%;
+    background-color: #ccc;
+    float: left;
+}
+.cancel{
+    width: 20%;
+    background-color: #ccc;
+    float: right;
+}
+
