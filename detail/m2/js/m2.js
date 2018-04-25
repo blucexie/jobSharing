@@ -1,6 +1,14 @@
 
    $(function(){
-        // 检测屏幕高度 让屏幕和盒子大小一致
+       
+       $('input[type="text"],textarea').on('click', function () {
+           var target = this;
+           setTimeout(function () {
+               target.scrollIntoViewIfNeeded();
+           }, 400);
+       });
+
+    // 检测屏幕高度 让屏幕和盒子大小一致
     // doucument.documentElement.style.height = window.innerHeight+'px';
     var h = document.documentElement.clientHeight;
     $('body').height(h);
@@ -8,26 +16,30 @@
     // $('.swiper-slide').height(h);
     // $('.container').height(h);
 
-    var mySwiper = new Swiper('.swiper-container', {
-        direction: 'vertical',
-        noSwiping: true,
-        // watchSlidesProgress : true,
-        // watchSlidesVisibility : true,
-        height:h,
-        // autoHeight:true,
-        loop: false,
-        parallax: true,
-        effect: 'fade',
-        on: {
-            init: function () {
-                // swiperAnimateCache(this); //隐藏动画元素 
-                swiperAnimate(this); //初始化完成开始动画
-            },
-            slideChangeTransitionEnd: function () {
-                swiperAnimate(this); //每个slide切换结束时也运行当前slide动画
+    function swiper(){
+        var mySwiper = new Swiper('.swiper-container', {
+            direction: 'vertical',
+            noSwiping: true,
+            loop: false,
+            parallax: true,
+            effect: 'fade',
+            autoHeight: true,
+            longSwipes: false,
+            longSwipesMs : 5000,
+            passiveListeners : false,
+            on: {
+                init: function () {
+                    swiperAnimateCache(this); //隐藏动画元素 
+                    swiperAnimate(this); //初始化完成开始动画
+                },
+                slideChangeTransitionEnd: function () {
+                    swiperAnimate(this); //每个slide切换结束时也运行当前slide动画
+                }
             }
-        }
-    })
+        })
+    }
+    swiper();
+    
 
 
     // 第一页存数据
@@ -91,11 +103,11 @@
     var codeF = GetQueryString("code");
 
    //第五页生成二维码
-       if (userCode) {
-           $('#code').qrcode({
-               text: "https://apix.funinhr.com/hr/employee.html?userCode=" + userCode
-           });
-       }
+    if (userCode) {
+        $('#code').qrcode({
+            text: "https://apix.funinhr.com/hr/employee.html?userCode=" + userCode
+        });
+    }
 
     if (codeF) {
         $('.bottom').hide();
@@ -134,6 +146,43 @@
                     $('.element-content>ul>li>textarea').each(function(i,v){
                        $(this).val(benefitArr[i]);
                     })
+                    // 判断第一个页面是否存在
+                    var c_name = $('.logo').val();
+                    if(!c_name){
+                        $('.one').remove();
+                        swiper();
+                    }
+                    //判断第二个页面是否存在
+                    var c_intro = $('.comp_intro').val();
+                    if(!c_intro){
+                        $('.two').remove();
+                        swiper();
+                    }
+                    //判断第三个页面是否存在
+                    var j_title = $('.job_title').val();
+                    var j_duty = $('.comp_duty_content').val();
+                    var j_request = $('.comp_request_content').val();
+                    var j_pay = $('.compensation').val();
+                    if(!j_title&&!j_duty&&!j_request&&!j_pay){
+                        $('.three').remove();
+                        swiper();
+                    }
+                    // 判断第四个页面是否存在
+                    function trimSpace(benefitArr) {
+                        for (var i = 0; i < benefitArr.length; i++) {
+                            if (benefitArr[i] == "" || typeof (benefitArr[i]) == "undefined") {
+                                benefitArr.splice(i, 1);
+                                i = i - 1;
+                            }
+                        }
+                        return benefitArr;
+                    }  
+                    trimSpace(benefitArr);
+                    if(benefitArr.length == 0){
+                        $('.four').remove();
+                        swiper();
+                    }
+
                 }
             }
         });
@@ -260,25 +309,25 @@
     })
 
     //页面渲染
-    function isExist(a, b) {
-        if (sessionStorage.getItem(a)) {
-            $(b).val();
-            $(b).val(sessionStorage.getItem(a));
-        }
-    }
-    isExist('company_name2', '.logo');
-    isExist('company_intro2', '.comp_intro');
-    isExist('job_title2', '.job_title');
-    isExist('job_duty2', '.comp_duty_content');
-    isExist('job_require2', '.comp_request_content');
-    isExist('pay2', '.compensation');
+    // function isExist(a, b) {
+    //     if (sessionStorage.getItem(a)) {
+    //         $(b).val();
+    //         $(b).val(sessionStorage.getItem(a));
+    //     }
+    // }
+    // isExist('company_name2', '.logo');
+    // isExist('company_intro2', '.comp_intro');
+    // isExist('job_title2', '.job_title');
+    // isExist('job_duty2', '.comp_duty_content');
+    // isExist('job_require2', '.comp_request_content');
+    // isExist('pay2', '.compensation');
 
-    if (sessionStorage.getItem('benefits2')) {
-        var element_content = sessionStorage.getItem('benefits2').split(',');
-        $('.element-content>ul>li>textarea').each(function (i, v) {
-            $(this).html(element_content[i]);
-        })
-    }
+    // if (sessionStorage.getItem('benefits2')) {
+    //     var element_content = sessionStorage.getItem('benefits2').split(',');
+    //     $('.element-content>ul>li>textarea').each(function (i, v) {
+    //         $(this).html(element_content[i]);
+    //     })
+    // }
 
     //键盘遮挡问题
     $('input[type="text"],textarea').on('click', function () {
