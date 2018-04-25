@@ -113,9 +113,11 @@
         $('.sub').hide();
         $('input').each(function(){
             $(this).attr('disabled','disabled');
+            $(this).css({'color':'#000','opacity':1});
         })
         $('textarea').each(function(){
             $(this).attr('disabled','disabled');
+            $(this).css({'color':'#000','opacity':1});
         })
         $.ajax({
             url: "https://apix.funinhr.com/api/query/param",
@@ -197,7 +199,8 @@
         $('.up').css({ "animation-play-state": "running" });
         $(a).css({ "border": 'none' });
         var c = $(a).val();
-        sessionStorage.setItem(b, c);
+        var d = $.trim(c);
+        sessionStorage.setItem(b, d);
     }
 
 
@@ -345,6 +348,16 @@
     }
 
     $('.sub').click(function () {
+        $('.share_box').show();
+       
+    })
+
+    //分享遮罩
+    $('.cancel').click(function(){
+        $('.share_box').hide();
+    })
+
+    $('.confirm').click(function(){
         save('.logo', 'company_name2');
         save('.comp_intro', 'company_intro2');
         save('.job_title', 'job_title2');
@@ -379,6 +392,8 @@
                 benefits2: benefits2
             }
         }
+        var share_title = $('.share_title').val();
+        var share_intro = $('.share_intro').val();
         $.ajax({
             type: 'POST',
             url: 'https://apix.funinhr.com/api/insert/params',
@@ -392,8 +407,8 @@
                 //返回状态信息
                 var resultInfo = jsonData.item.resultInfo;
                 var recruitConfig = JSON.stringify({
-                    "inviteTitle": enterpriseName + sessionStorage.getItem(company_name2),
-                    "inviteDescription": sessionStorage.getItem(company_intro2),
+                    "inviteTitle": share_title,
+                    "inviteDescription": share_intro,
                     "inviteUrl": "https://apix.funinhr.com/templates/position/detail/m2/m2.html?code=" + code,
                     "inviteIcon": "http://cdn.funinhr.com/online/image/job/2-120-120.png"
                 })
