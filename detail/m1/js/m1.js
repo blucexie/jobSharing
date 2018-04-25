@@ -47,6 +47,9 @@
                  $('.jobDuty>textarea').attr("disabled","disabled");
                  $('.jobRequire>textarea').attr("disabled","disabled");
                  $('.salary').attr("disabled","disabled");
+                 if(params.company_name==""){
+                    // $(".page1-Text").parent(".swiper-slide").hide()   
+                 }
              }
          }
      });

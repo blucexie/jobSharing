@@ -63,6 +63,9 @@
   left: 50%;
   transform: translateX(-50%);
 }
+.page1-Text > input {
+  min-width: 10rem;
+}
 .company_Profile {
   height: 7rem;
   min-width: 10rem;
