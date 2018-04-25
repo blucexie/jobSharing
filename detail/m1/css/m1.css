@@ -66,10 +66,6 @@
 .page1-Text > input {
   min-width: 10rem;
 }
-.company_Profile {
-  height: 7rem;
-  min-width: 10rem;
-}
 input,
 textarea,
 .page1-Text > input,
@@ -78,6 +74,8 @@ textarea,
   background-color: transparent;
   resize: none;
   font-family: fangzheng_zht;
+  color: #fff;
+  opacity: 1;
 }
 .page1-Text p,
 .page1-Text > input,
@@ -148,6 +146,8 @@ textarea,
   color: #fff;
 }
 .company .company_Profile {
+  height: 7rem;
+  min-width: 10rem;
   font-size: 0.56rem;
   line-height: 1.8;
   text-indent: 2em;

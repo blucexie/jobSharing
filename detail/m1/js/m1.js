@@ -35,12 +35,12 @@
                 text: "https://apix.funinhr.com/hr/employee.html?userCode=" + codeW
              });
              if (result === 1001) {
-                 $('.page1-Text>input').val(params.company_name);
-                 $('.company_Profile').val(params.company_intro);
-                 $('.jobIntroduction>.job_title').val(params.job_title);
-                 $('.jobDuty>textarea').val(params.job_duty);
-                 $('.jobRequire>textarea').val(params.job_require);
-                 $('.salary').val(params.pay);
+                 $('.page1-Text>input').val(params.company_name1);
+                 $('.company_Profile').val(params.company_intro1);
+                 $('.jobIntroduction>.job_title').val(params.job_title1);
+                 $('.jobDuty>textarea').val(params.job_duty1);
+                 $('.jobRequire>textarea').val(params.job_require1);
+                 $('.salary').val(params.pay1);
                  $('.edit').hide();
                  $('.page1-Text>input').attr("disabled","disabled");
                  $('.company_Profile').attr("disabled","disabled");
@@ -48,9 +48,33 @@
                  $('.jobDuty>textarea').attr("disabled","disabled");
                  $('.jobRequire>textarea').attr("disabled","disabled");
                  $('.salary').attr("disabled","disabled");
-                 if(params.company_name==""){
-                    // $(".page1-Text").parent(".swiper-slide").hide()   
-                 }
+                  $('input').each(function(){
+                      $(this).css({"color":"#fff","opacity":1})
+                  })  
+                  $('textarea').each(function(){
+                    $(this).css({"color":"#fff","opacity":1})
+                 })  
+                  // 判断第一个页面是否存在
+                  var c_name = $('.page1-Text>input').val();
+                  if(!c_name){
+                    $('.one').remove();
+                      swiper();
+                  }
+                  //判断第二个页面是否存在
+                  var c_intro = $('.company_Profile').val();
+                  if(!c_intro){
+                      $('.two').remove();
+                      swiper();
+                  }
+                  //判断第三个页面是否存在
+                  var j_title = $('.job_title').val();
+                  var j_duty = $('.jobDuty>textarea').val();
+                  var j_request = $('.jobRequire>textarea').val();
+                  var j_pay = $('.salary').val();
+                  if(!j_title&&!j_duty&&!j_request&&!j_pay){
+                      $('.three').remove();
+                     swiper();
+                  }
              }
          }
      });
@@ -60,31 +84,28 @@
     $('body').height(h);
     $('.swiper-slide').height(h);
     
-
- var mySwiper = new Swiper('.swiper-container', {
-     direction: 'vertical',
-     noSwiping: true,
-     loop: false,
-     parallax: true,
-     effect: 'fade',
-     autoHeight: true,
-     longSwipes: false,
-     longSwipesMs : 5000,
-     passiveListeners : false,
-     // 如果需要分页器
-     /*  pagination: {
-          el: '.swiper-pagination',
-      }, */
-     on: {
-         init: function () {
-             swiperAnimateCache(this); //隐藏动画元素 
-             swiperAnimate(this); //初始化完成开始动画
-         },
-         slideChangeTransitionEnd: function () {
-             swiperAnimate(this); //每个slide切换结束时也运行当前slide动画
-         }
-     }
- })
+    function swiper(){
+        var mySwiper = new Swiper('.swiper-container', {
+            direction: 'vertical',
+            noSwiping: true,
+            loop: false,
+            parallax: true,
+            effect: 'fade',
+            autoHeight: true,
+            longSwipes: false,
+            longSwipesMs : 5000,
+            on: {
+                init: function () {
+                    swiperAnimateCache(this); //隐藏动画元素 
+                    swiperAnimate(this); //初始化完成开始动画
+                },
+                slideChangeTransitionEnd: function () {
+                    swiperAnimate(this); //每个slide切换结束时也运行当前slide动画
+                }
+            }
+        })
+    }
+    swiper()
 
  //生成二维码
 
