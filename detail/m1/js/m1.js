@@ -16,12 +16,41 @@
         text: "https://apix.funinhr.com/hr/employee.html?userCode=" + userCode
      });
  }
+
+ var h = window.innerHeight;
+ $('body').height(h);
+ $('.swiper-slide').height(h);
+ 
+ function swiper(){
+     var mySwiper = new Swiper('.swiper-container', {
+         direction: 'vertical',
+         noSwiping: true,
+         loop: false,
+         parallax: true,
+         effect: 'fade',
+         autoHeight: true,
+         longSwipes: false,
+         longSwipesMs : 5000,
+         on: {
+             init: function () {
+                 swiperAnimateCache(this); //隐藏动画元素 
+                 swiperAnimate(this); //初始化完成开始动画
+             },
+             slideChangeTransitionEnd: function () {
+                 swiperAnimate(this); //每个slide切换结束时也运行当前slide动画
+             }
+         }
+     })
+ }
+ swiper()
+
  
  if(codeF){
      $.ajax({
          url: "https://apix.funinhr.com/api/query/param",
          type: "POST",
          dataType: "json",
+         async:false,
          data: JSON.stringify({code:codeF}),
          success: function (data) {
              var jsonData = JSON.parse(data["plaintext"]);
@@ -60,7 +89,8 @@
                       swiper();
                   }
                   //判断第二个页面是否存在
-                  var c_intro = params.company_intro;
+                  var c_intro = $('.company_Profile').val();
+                  console.log(c_intro)
                   if(!c_intro){
                       $('.two').remove();
                       swiper();
@@ -79,32 +109,15 @@
      });
  }
     
-     var h = window.innerHeight;
-    $('body').height(h);
-    $('.swiper-slide').height(h);
     
-    function swiper(){
-        var mySwiper = new Swiper('.swiper-container', {
-            direction: 'vertical',
-            noSwiping: true,
-            loop: false,
-            parallax: true,
-            effect: 'fade',
-            autoHeight: true,
-            longSwipes: false,
-            longSwipesMs : 5000,
-            on: {
-                init: function () {
-                    swiperAnimateCache(this); //隐藏动画元素 
-                    swiperAnimate(this); //初始化完成开始动画
-                },
-                slideChangeTransitionEnd: function () {
-                    swiperAnimate(this); //每个slide切换结束时也运行当前slide动画
-                }
-            }
-        })
-    }
-    swiper()
+ //生成二维码
+
+/*  var url = window.location.href;
+ var num = url.indexOf("uc=");
+ var uc = url.substr(num + 3, url.length - 1); */
+ /* $('#code').qrcode({
+    text: "https://apix.funinhr.com/hr/employee.html?userCode=" + userCode
+ }); */
 
  //封装加动画和边框
  function edit(a) {
@@ -143,18 +156,18 @@
      });
  }
  //数据回填
- function isExist(a, b) {
-     if (sessionStorage.getItem(a)) {
-         $(b).val("");
-         $(b).val(sessionStorage.getItem(a));
-     }
- }
- isExist('company_name1', '.page1-Text>input');
- isExist('company_intro1', '.company_Profile');
- isExist('job_title1', '.jobIntroduction>.job_title');
- isExist('job_duty1', '.jobDuty>textarea');
- isExist('job_require1', '.jobRequire>textarea');
- isExist('pay1', '.salary');
+//  function isExist(a, b) {
+//      if (sessionStorage.getItem(a)) {
+//          $(b).val("");
+//          $(b).val(sessionStorage.getItem(a));
+//      }
+//  }
+//  isExist('company_name1', '.page1-Text>input');
+//  isExist('company_intro1', '.company_Profile');
+//  isExist('job_title1', '.jobIntroduction>.job_title');
+//  isExist('job_duty1', '.jobDuty>textarea');
+//  isExist('job_require1', '.jobRequire>textarea');
+//  isExist('pay1', '.salary');
 
  $('.edit1').click(function () {
      edit('.page1-Text>input');
@@ -235,6 +248,7 @@
                  company_intro: company_intro,
                  job_title:job_title,
                  job_duty: job_duty,
+                 job_title:job_title,
                  job_require: job_require,
                  pay: pay
              }
