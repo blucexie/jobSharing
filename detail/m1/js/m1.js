@@ -34,12 +34,12 @@
                 text: "https://apix.funinhr.com/hr/employee.html?userCode=" + codeW
              });
              if (result === 1001) {
-                 $('.page1-Text>input').val(params.company_name1);
-                 $('.company_Profile').val(params.company_intro1);
-                 $('.jobIntroduction>.job_title').val(params.job_title1);
-                 $('.jobDuty>textarea').val(params.job_duty1);
-                 $('.jobRequire>textarea').val(params.job_require1);
-                 $('.salary').val(params.pay1);
+                 $('.page1-Text>input').val(params.company_name);
+                 $('.company_Profile').val(params.company_intro);
+                 $('.jobIntroduction>.job_title').val(params.job_title);
+                 $('.jobDuty>textarea').val(params.job_duty);
+                 $('.jobRequire>textarea').val(params.job_require);
+                 $('.salary').val(params.pay);
                  $('.edit').hide();
                  $('.page1-Text>input').attr("disabled","disabled");
                  $('.company_Profile').attr("disabled","disabled");
@@ -54,22 +54,22 @@
                     $(this).css({"color":"#fff","opacity":1})
                  })  
                   // 判断第一个页面是否存在
-                  var c_name = $('.page1-Text>input').val();
+                  var c_name = params.company_name;
                   if(!c_name){
                     $('.one').remove();
                       swiper();
                   }
                   //判断第二个页面是否存在
-                  var c_intro = $('.company_Profile').val();
+                  var c_intro = params.company_intro;
                   if(!c_intro){
                       $('.two').remove();
                       swiper();
                   }
                   //判断第三个页面是否存在
-                  var j_title = $('.job_title').val();
-                  var j_duty = $('.jobDuty>textarea').val();
-                  var j_request = $('.jobRequire>textarea').val();
-                  var j_pay = $('.salary').val();
+                  var j_title = params.job_title;
+                  var j_duty = params.job_duty;
+                  var j_request = params.job_require;
+                  var j_pay =params.pay;
                   if(!j_title&&!j_duty&&!j_request&&!j_pay){
                       $('.three').remove();
                      swiper();
@@ -105,15 +105,6 @@
         })
     }
     swiper()
-
- //生成二维码
-
-/*  var url = window.location.href;
- var num = url.indexOf("uc=");
- var uc = url.substr(num + 3, url.length - 1); */
- /* $('#code').qrcode({
-    text: "https://apix.funinhr.com/hr/employee.html?userCode=" + userCode
- }); */
 
  //封装加动画和边框
  function edit(a) {
@@ -242,6 +233,7 @@
              params: {
                  company_name: company_name,
                  company_intro: company_intro,
+                 job_title:job_title,
                  job_duty: job_duty,
                  job_require: job_require,
                  pay: pay
