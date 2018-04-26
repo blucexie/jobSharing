@@ -333,6 +333,7 @@ textarea:-ms-input-placeholder{  /* Internet Explorer 10-11 */
 .comp_intro{
     height: 17rem;
     visibility: visible !important;
+    padding-top: 0.5rem;
     /* opacity: 0;
    transform: translateY(-200%);
     animation: b_content 1s 1.5s linear forwards; */
@@ -739,6 +740,7 @@ textarea:-ms-input-placeholder{  /* Internet Explorer 10-11 */
     height: 45%;
     margin-top: 0.5rem;
     color: #ccc;
+    height: 7rem;
 }
 .share_tip .share_button{
     width:100;
