@@ -698,7 +698,7 @@ textarea:-ms-input-placeholder{  /* Internet Explorer 10-11 */
 }
 .share_tip{
     width: 80%;
-    height: 40%;
+    height: 16rem;
     background-color: #ffffff;
     position: absolute;
     top: 30%;

@@ -272,11 +272,23 @@
              var result = jsonData.item.result;
              var code = jsonData.item.code;
              var enterpriseName = jsonData.item.enterpriseName;
+             var shareTitle;
+             var shareIntro;
+             if( share_title){
+                 shareTitle = share_title;
+             }else{
+                 shareTitle = enterpriseName;
+             }
+             if(share_intro){
+                 shareIntro = share_intro;
+             }else{
+                 shareIntro = '快到碗里来';
+             }
              //返回状态信息
              var resultInfo = jsonData.item.resultInfo;
              var recruitConfig = JSON.stringify({
-                "inviteTitle":  share_title,
-                "inviteDescription":share_intro,
+                "inviteTitle":  shareTitle,
+                "inviteDescription":shareIntro,
                 "inviteUrl": "https://apix.funinhr.com/templates/position/detail/m1/m1.html?code="+code,
                 "inviteIcon": "http://cdn.funinhr.com/online/image/job/1-120-120.png"
             })

@@ -290,7 +290,7 @@ canvas {
 }
 .share_tip{
   width: 80%;
-  height: 40%;
+  height: 11rem;
   background-color: #ffffff;
   position: absolute;
   top: 30%;
@@ -303,6 +303,9 @@ canvas {
   margin-left: 10%;
   font-size: 0.65rem;
   margin-top:0.65rem;
+}
+.share_tip p:nth-child(2){
+  margin-top: 0.3rem;
 }
 .share_tip input{
   width: 80%;
