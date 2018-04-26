@@ -229,79 +229,74 @@
     // 第一页
     $('.save1').click(function () {
         save('.logo', 'company_name2');
-        // save('.comp_intro', 'company_intro2');
-        // save('.job_title', 'job_title2');
-        // save('.comp_duty>textarea', 'job_duty2');
-        // save('.comp_request>textarea', 'job_require2');
-        // save('.compensation', 'pay2');
-        // var element_content = [];
-        // $('.element-content>ul>li>textarea').each(function () {
-        //     var a = $(this).val();
-        //     element_content.push(a);
-        // })
-        // var benefits2 = element_content.join();
-        // sessionStorage.setItem('benefits2', benefits2);
-        // $('.up').css({ "animation-play-state": "running" });
-        // $('.element-content>ul>li>textarea').css({ "border": "none" });
-        window.location.reload();
-       
-    })
-    // 第二页
-    $('.save2').click(function () {
-        // save('.logo', 'company_name2');
         save('.comp_intro', 'company_intro2');
-        // save('.job_title', 'job_title2');
-        // save('.comp_duty>textarea', 'job_duty2');
-        // save('.comp_request>textarea', 'job_require2');
-        // save('.compensation', 'pay2');
-        // // bindEvent();
-        // var element_content = [];
-        // $('.element-content>ul>li>textarea').each(function () {
-        //     var a = $(this).val();
-        //     element_content.push(a);
-        // })
-        // // bindEvent();
-        // var benefits2 = element_content.join();
-        // sessionStorage.setItem('benefits2', benefits2);
-        // $('.up').css({ "animation-play-state": "running" });
-        // $('.element-content>ul>li>textarea').css({ "border": "none" });
-        window.location.reload();
-    })
-    // 第三页
-    $('.save3').click(function () { 
-        // save('.logo', 'company_name2');
-        // save('.comp_intro', 'company_intro2');
         save('.job_title', 'job_title2');
         save('.comp_duty>textarea', 'job_duty2');
         save('.comp_request>textarea', 'job_require2');
         save('.compensation', 'pay2');
-        // bindEvent();
-        // var element_content = [];
-        // $('.element-content>ul>li>textarea').each(function () {
-        //     var a = $(this).val();
-        //     element_content.push(a);
-        // })
-        // // bindEvent();
-        // var benefits2 = element_content.join();
-        // sessionStorage.setItem('benefits2', benefits2);
-        // $('.up').css({ "animation-play-state": "running" });
-        // $('.element-content>ul>li>textarea').css({ "border": "none" });
-        window.location.reload();
-    })
-    //第四页
-    $('.save4').click(function () {
-        // save('.logo', 'company_name2');
-        // save('.comp_intro', 'company_intro2');
-        // save('.job_title', 'job_title2');
-        // save('.comp_duty>textarea', 'job_duty2');
-        // save('.comp_request>textarea', 'job_require2');
-        // save('.compensation', 'pay2');
         var element_content = [];
         $('.element-content>ul>li>textarea').each(function () {
             var a = $(this).val();
             element_content.push(a);
         })
-        // bindEvent();
+        var benefits2 = element_content.join();
+        sessionStorage.setItem('benefits2', benefits2);
+        $('.up').css({ "animation-play-state": "running" });
+        $('.element-content>ul>li>textarea').css({ "border": "none" });
+        window.location.reload();
+       
+    })
+    // 第二页
+    $('.save2').click(function () {
+        save('.logo', 'company_name2');
+        save('.comp_intro', 'company_intro2');
+        save('.job_title', 'job_title2');
+        save('.comp_duty>textarea', 'job_duty2');
+        save('.comp_request>textarea', 'job_require2');
+        save('.compensation', 'pay2');
+        var element_content = [];
+        $('.element-content>ul>li>textarea').each(function () {
+            var a = $(this).val();
+            element_content.push(a);
+        })
+        var benefits2 = element_content.join();
+        sessionStorage.setItem('benefits2', benefits2);
+        $('.up').css({ "animation-play-state": "running" });
+        $('.element-content>ul>li>textarea').css({ "border": "none" });
+        window.location.reload();
+    })
+    // 第三页
+    $('.save3').click(function () { 
+        save('.logo', 'company_name2');
+        save('.comp_intro', 'company_intro2');
+        save('.job_title', 'job_title2');
+        save('.comp_duty>textarea', 'job_duty2');
+        save('.comp_request>textarea', 'job_require2');
+        save('.compensation', 'pay2');
+        var element_content = [];
+        $('.element-content>ul>li>textarea').each(function () {
+            var a = $(this).val();
+            element_content.push(a);
+        })
+        var benefits2 = element_content.join();
+        sessionStorage.setItem('benefits2', benefits2);
+        $('.up').css({ "animation-play-state": "running" });
+        $('.element-content>ul>li>textarea').css({ "border": "none" });
+        window.location.reload();
+    })
+    //第四页
+    $('.save4').click(function () {
+        save('.logo', 'company_name2');
+        save('.comp_intro', 'company_intro2');
+        save('.job_title', 'job_title2');
+        save('.comp_duty>textarea', 'job_duty2');
+        save('.comp_request>textarea', 'job_require2');
+        save('.compensation', 'pay2');
+        var element_content = [];
+        $('.element-content>ul>li>textarea').each(function () {
+            var a = $(this).val();
+            element_content.push(a);
+        })
         var benefits2 = element_content.join();
         sessionStorage.setItem('benefits2', benefits2);
         $('.up').css({ "animation-play-state": "running" });

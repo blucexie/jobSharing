@@ -125,6 +125,14 @@ input,textarea{
     opacity: 1;
 }
 
+input[disabled]{
+    color: #ffffff !important;
+    opacity: 1 !important;
+}
+textarea[disabled]{
+    background-color: #ffffff !important;
+    opacity: 1 !important;
+}
 /* 编辑 */
 .bottom{
     width: 100%;
@@ -198,7 +206,7 @@ textarea:-ms-input-placeholder{  /* Internet Explorer 10-11 */
     height: 2.5rem;
     line-height: 2.5rem;
     margin-left: 5%;
-    color: #ffffff;
+    color: #ffffff !important;
     position: relative;
     transform: translateY(-100px);
     text-align: center;
@@ -208,7 +216,7 @@ textarea:-ms-input-placeholder{  /* Internet Explorer 10-11 */
     border: none;
     outline-color: #ccc;
     background-color: transparent;
-    opacity: 1;
+    opacity: 1 !important;
 }   
 @keyframes qyx{
     0% {
@@ -499,6 +507,7 @@ textarea:-ms-input-placeholder{  /* Internet Explorer 10-11 */
 }
 .compensation{
     width: 80%;
+    height: 60%;
     margin-left: 10%;
     margin-top: 1rem;
     text-align: center;
