@@ -156,59 +156,59 @@
      });
  }
  //数据回填
-//  function isExist(a, b) {
-//      if (sessionStorage.getItem(a)) {
-//          $(b).val("");
-//          $(b).val(sessionStorage.getItem(a));
-//      }
-//  }
-//  isExist('company_name1', '.page1-Text>input');
-//  isExist('company_intro1', '.company_Profile');
-//  isExist('job_title1', '.jobIntroduction>.job_title');
-//  isExist('job_duty1', '.jobDuty>textarea');
-//  isExist('job_require1', '.jobRequire>textarea');
-//  isExist('pay1', '.salary');
+ function isExist(a, b) {
+     if (sessionStorage.getItem(a)) {
+         $(b).val("");
+         $(b).val(sessionStorage.getItem(a));
+     }
+ }
+ isExist('company_name1', '.page1-Text>input');
+ isExist('company_intro1', '.company_Profile');
+ isExist('job_title1', '.jobIntroduction>.job_title');
+ isExist('job_duty1', '.jobDuty>textarea');
+ isExist('job_require1', '.jobRequire>textarea');
+ isExist('pay1', '.salary');
 
  $('.edit1').click(function () {
      edit('.page1-Text>input');
      unbindEvent();
  })
- var company_name1 = $('.page1-Text>input').val();
-     sessionStorage.company_name1 = company_name1;
+//  var company_name1 = $('.page1-Text>input').val();
+//      sessionStorage.company_name1 = company_name1;
  $('.save1').click(function () {
      save('.page1-Text>input', 'company_name1');
-     save('.company_Profile', 'company_intro1');
-     save('.job_title', 'job_title1');
-     save('.jobDuty>textarea', 'job_duty1');
-     save('.jobRequire>textarea', 'job_require1');
-     save('.salary', 'pay1');
+    //  save('.company_Profile', 'company_intro1');
+    //  save('.job_title', 'job_title1');
+    //  save('.jobDuty>textarea', 'job_duty1');
+    //  save('.jobRequire>textarea', 'job_require1');
+    //  save('.salary', 'pay1');
      window.location.reload();
  })
  
- var company_intro1 = $('.company_Profile').val();
- sessionStorage.company_intro1 = company_intro1;
+//  var company_intro1 = $('.company_Profile').val();
+//  sessionStorage.company_intro1 = company_intro1;
  $('.edit2').click(function () {
      edit('.company_Profile');
      unbindEvent();
  })
  $('.save2').click(function () {
-    save('.page1-Text>input', 'company_name1');
+    // save('.page1-Text>input', 'company_name1');
     save('.company_Profile', 'company_intro1');
-    save('.job_title', 'job_title1');
-    save('.jobDuty>textarea', 'job_duty1');
-    save('.jobRequire>textarea', 'job_require1');
-    save('.salary', 'pay1');
+    // save('.job_title', 'job_title1');
+    // save('.jobDuty>textarea', 'job_duty1');
+    // save('.jobRequire>textarea', 'job_require1');
+    // save('.salary', 'pay1');
      window.location.reload();
      //window.location.href ="m1.html"
  })
- var job_title1 = $('.jobIntroduction>.job_title').val();
- var job_duty1 = $('.jobDuty>textarea').val();
- var job_require1 = $('.jobRequire>textarea').val();
- var pay1 = $('.salary').val();
- sessionStorage.job_title1 = job_title1;
- sessionStorage.job_duty1 = job_duty1;
- sessionStorage.job_require1 = job_require1;
- sessionStorage.pay1 = pay1;
+//  var job_title1 = $('.jobIntroduction>.job_title').val();
+//  var job_duty1 = $('.jobDuty>textarea').val();
+//  var job_require1 = $('.jobRequire>textarea').val();
+//  var pay1 = $('.salary').val();
+//  sessionStorage.job_title1 = job_title1;
+//  sessionStorage.job_duty1 = job_duty1;
+//  sessionStorage.job_require1 = job_require1;
+//  sessionStorage.pay1 = pay1;
  $('.edit3').click(function () {
      edit('.jobIntroduction>.job_title');
      edit('.jobDuty>textarea');
@@ -217,8 +217,8 @@
      unbindEvent();
  })
  $('.save3').click(function () {
-    save('.page1-Text>input', 'company_name1');
-    save('.company_Profile', 'company_intro1');
+    // save('.page1-Text>input', 'company_name1');
+    // save('.company_Profile', 'company_intro1');
     save('.job_title', 'job_title1');
     save('.jobDuty>textarea', 'job_duty1');
     save('.jobRequire>textarea', 'job_require1');
@@ -227,13 +227,20 @@
  })
 
  
+
  $('.submit').click(function () {
+    $('.share_box').show();
+ })
+ $('.cancel').click(function(){
+    $('.share_box').hide();
+})
+ $('.confirm').click(function(){
     save('.page1-Text>input', 'company_name1');
-    save('.company_Profile', 'company_intro1');
-    save('.job_title', 'job_title1');
-    save('.jobDuty>textarea', 'job_duty1');
-    save('.jobRequire>textarea', 'job_require1');
-    save('.salary', 'pay1');   
+    // save('.company_Profile', 'company_intro1');
+    // save('.job_title', 'job_title1');
+    // save('.jobDuty>textarea', 'job_duty1');
+    // save('.jobRequire>textarea', 'job_require1');
+    // save('.salary', 'pay1');   
      var company_name = sessionStorage.getItem("company_name1"),
          company_intro = sessionStorage.getItem("company_intro1"),
          job_title = sessionStorage.getItem("job_title1"),
@@ -252,6 +259,8 @@
                  pay: pay
              }
          }
+         var share_title = $('.share_title').val();
+         var share_intro = $('.share_intro').val();
      $.ajax({
         url: "https://apix.funinhr.com/api/insert/params",
          type: "POST",
@@ -265,8 +274,8 @@
              //返回状态信息
              var resultInfo = jsonData.item.resultInfo;
              var recruitConfig = JSON.stringify({
-                "inviteTitle": enterpriseName + "正在招聘",
-                "inviteDescription": "快到碗里来",
+                "inviteTitle":  share_title,
+                "inviteDescription":share_intro,
                 "inviteUrl": "https://apix.funinhr.com/templates/position/detail/m1/m1.html?code="+code,
                 "inviteIcon": "http://cdn.funinhr.com/online/image/job/1-120-120.png"
             })

@@ -2,6 +2,39 @@
   margin: 0;
   padding: 0;
 }
+input::-webkit-input-placeholder{
+  color:#ccc;
+  font-size: 0.65rem;
+}
+input::-moz-placeholder{   /* Mozilla Firefox 19+ */
+  color:#ccc;
+  font-size: 0.65rem;
+}
+input:-moz-placeholder{    /* Mozilla Firefox 4 to 18 */
+  color:#ccc;
+  font-size: 0.65rem;
+}
+input:-ms-input-placeholder{  /* Internet Explorer 10-11 */ 
+  color:#ccc;
+  font-size: 0.65rem;
+}
+
+textarea::-webkit-input-placeholder{
+  color:#ccc;
+  font-size: 0.65rem;
+}
+textarea::-moz-placeholder{   /* Mozilla Firefox 19+ */
+  color:#ccc;
+  font-size: 0.65rem;
+}
+textarea:-moz-placeholder{    /* Mozilla Firefox 4 to 18 */
+  color:#ccc;
+  font-size: 0.65rem;
+}
+textarea:-ms-input-placeholder{  /* Internet Explorer 10-11 */ 
+  color:#ccc;
+  font-size: 0.65rem;
+}
 .swiper-container {
   position: relative;
   width: 100%;
@@ -242,4 +275,73 @@ canvas {
 }
 .edit .submit {
   width: 100%;
+}
+
+/* 分享盒子 */
+.share_box{
+  width: 100%;
+  height: 100%;
+  background-color: #666;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  display: none;
+}
+.share_tip{
+  width: 80%;
+  height: 40%;
+  background-color: #ffffff;
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  border-radius: 0.5rem;
+}
+.share_tip p{
+  width: 80%;
+  margin-left: 10%;
+  font-size: 0.65rem;
+  margin-top:0.65rem;
+}
+.share_tip input{
+  width: 80%;
+  margin-left: 10%;
+  border: none;
+  outline: none;
+  font-size: 0.65rem;
+  color: #ccc;
+}
+.share_tip textarea{
+  width: 80%;
+  margin-left: 10%;
+  border: none;
+  outline: none;
+  font-size: 0.65rem;
+  height: 45%;
+  margin-top: 0.15rem;
+  color: #ccc;
+}
+.share_tip .share_button{
+  width:100;
+  text-align: center;
+  overflow: hidden;
+}
+.cancel{
+  line-height: 100%;
+  text-align: center;
+  float: left;
+  height: 100%;
+  width: 50%;
+  color: #ccc;
+  font-size: 0.65rem;
+}
+.confirm{
+  line-height: 100%;
+  text-align: center;
+  float: left;
+  height: 100%;
+  width: 50%;
+  color: #00adb4;
+  font-size: 0.65rem;
 }
