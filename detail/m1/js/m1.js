@@ -83,7 +83,7 @@
                     $(this).css({"color":"#fff","opacity":1})
                  })  
                   // 判断第一个页面是否存在
-                  var c_name = $('.page1-Text>input').val();
+                  var c_name = params.company_name;
                   if(!c_name){
                     $('.one').remove();
                       swiper();
@@ -96,10 +96,10 @@
                       swiper();
                   }
                   //判断第三个页面是否存在
-                  var j_title = $('.job_title').val();
-                  var j_duty = $('.jobDuty>textarea').val();
-                  var j_request = $('.jobRequire>textarea').val();
-                  var j_pay = $('.salary').val();
+                  var j_title = params.job_title;
+                  var j_duty = params.job_duty;
+                  var j_request = params.job_require;
+                  var j_pay =params.pay;
                   if(!j_title&&!j_duty&&!j_request&&!j_pay){
                       $('.three').remove();
                      swiper();
@@ -253,6 +253,7 @@
              params: {
                  company_name: company_name,
                  company_intro: company_intro,
+                 job_title:job_title,
                  job_duty: job_duty,
                  job_title:job_title,
                  job_require: job_require,
