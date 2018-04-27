@@ -275,7 +275,7 @@
              var shareTitle;
              var shareIntro;
              if( share_title){
-                 shareTitle = share_title;
+                 shareTitle = share_title + "—正在招聘";
              }else{
                  shareTitle = enterpriseName;
              }
