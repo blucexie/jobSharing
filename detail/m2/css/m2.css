@@ -510,7 +510,7 @@ textarea:-ms-input-placeholder{  /* Internet Explorer 10-11 */
     width: 80%;
     height: 60%;
     margin-left: 10%;
-    margin-top: 1rem;
+    margin-top: 0.5rem;
     text-align: center;
     font-size: 1.2rem;
     color: #00adb4;

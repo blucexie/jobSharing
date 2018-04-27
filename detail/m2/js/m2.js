@@ -1,18 +1,39 @@
 
    $(function(){
        
-       $('input[type="text"],textarea').on('click', function () {
-           var target = this;
-           setTimeout(function () {
-               target.scrollIntoViewIfNeeded();
-           }, 400);
-       });
+    //    $('input[type="text"],textarea').on('click', function () {
+    //        var target = this;
+    //        setTimeout(function () {
+    //            target.scrollIntoViewIfNeeded();
+    //        }, 400);
+    //    });
 
     // 检测屏幕高度 让屏幕和盒子大小一致
     // doucument.documentElement.style.height = window.innerHeight+'px';
-    var h = document.documentElement.clientHeight;
+    // var h = document.documentElement.clientHeight;
+    // $('body').height(h);
+    // $('.swiper-container').height(h);
+
+    //获取userCode
+    function GetQueryString(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) return unescape(r[2]); 
+        return null;
+    }
+    var userCode = GetQueryString("uc");
+    var codeF = GetQueryString("code");
+
+   //第五页生成二维码
+    if (userCode) {
+        $('#code').qrcode({
+            text: "https://apix.funinhr.com/hr/employee.html?userCode=" + userCode
+        });
+    }
+
+    var h = window.innerHeight;
     $('body').height(h);
-    $('.swiper-container').height(h);
+    $('.swiper-slide').height(h);
 
     function swiper(){
         var mySwiper = new Swiper('.swiper-container', {
@@ -38,7 +59,31 @@
     }
     swiper();
     
-
+    //键盘弹出
+    // function isIos(){
+    //     var a = navigator.userAgent;
+    //     if(a.indexOf("iPhone")){
+    //         return true;
+    //     }
+    // }
+    // // isIos();
+    // function iosInput() {
+    //     if (isIos()) {
+    //         $('textarea').css('position', 'absolute');
+    //         //解决第三方软键盘唤起时底部input输入框被遮挡问题
+    //         var bfscrolltop = document.body.scrollTop;//获取软键盘唤起前浏览器滚动部分的高度
+    //         $("textarea").focus(function () {//在这里‘input.inputframe’是我的底部输入栏的输入框，当它获取焦点时触发事件
+    //             interval = setInterval(function () {//设置一个计时器，时间设置与软键盘弹出所需时间相近
+    //                 document.body.scrollTop = document.body.scrollHeight;//获取焦点后将浏览器内所有内容高度赋给浏览器滚动部分高度
+    //             }, 100)
+    //         }).blur(function () {//设定输入框失去焦点时的事件
+    //             clearInterval(interval);//清除计时器
+    //             document.body.scrollTop = bfscrolltop;
+    //             //将软键盘唤起前的浏览器滚动部分高度重新赋给改变后的高度
+    //         });
+    //     }
+    // }
+    // iosInput();
 
     // 第一页存数据
     // var company_name2 = sessionStorage.getItem('company_name2');
@@ -91,22 +136,7 @@
 
  
 
-    //发送数据
-    function GetQueryString(name) {
-        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
-        var r = window.location.search.substr(1).match(reg);
-        if (r != null) return unescape(r[2]); 
-        return null;
-    }
-    var userCode = GetQueryString("uc");
-    var codeF = GetQueryString("code");
-
-   //第五页生成二维码
-    if (userCode) {
-        $('#code').qrcode({
-            text: "https://apix.funinhr.com/hr/employee.html?userCode=" + userCode
-        });
-    }
+    
 
     if (codeF) {
         $('.bottom').hide();
@@ -203,15 +233,50 @@
         sessionStorage.setItem(b, d);
     }
 
+    //解除绑定
+    function unbindEvent() {
+        $('body').bind('touchstart', function (event) {
+            event.stopPropagation();
+        });
+        $('body').bind('touchmove', function (event) {
+            event.stopPropagation();
+        });
+        $('body').bind('touchend', function (event) {
+            event.stopPropagation();
+        });
+    }
+
+    //页面渲染
+    function isExist(a, b) {
+        if (sessionStorage.getItem(a)) {
+            $(b).val();
+            $(b).val(sessionStorage.getItem(a));
+        }
+    }
+    isExist('company_name2', '.logo');
+    isExist('company_intro2', '.comp_intro');
+    isExist('job_title2', '.job_title');
+    isExist('job_duty2', '.comp_duty_content');
+    isExist('job_require2', '.comp_request_content');
+    isExist('pay2', '.compensation');
+
+    if (sessionStorage.getItem('benefits2')) {
+        var element_content = sessionStorage.getItem('benefits2').split(',');
+        $('.element-content>ul>li>textarea').each(function (i, v) {
+            $(this).html(element_content[i]);
+        })
+     }
 
     //编辑部分
     // 第一页
     $('.edit1').click(function () {
         edit('.logo');
+        unbindEvent();
     })
     // 第二页
     $('.edit2').click(function () {
         edit('.comp_intro');
+        unbindEvent();
     })
     // 第三页
     $('.edit3').click(function () {
@@ -219,10 +284,12 @@
         edit('.comp_duty_content');
         edit('.comp_request_content');
         edit('.compensation');
+        unbindEvent();
     })
     // 第四页
     $('.edit4').click(function () {
         edit('.element-content>ul>li>textarea');
+        unbindEvent();
     })
 
     // 保存部分
@@ -304,27 +371,6 @@
         window.location.reload();
     })
 
-    //页面渲染
-    function isExist(a, b) {
-        if (sessionStorage.getItem(a)) {
-            $(b).val();
-            $(b).val(sessionStorage.getItem(a));
-        }
-    }
-    isExist('company_name2', '.logo');
-    isExist('company_intro2', '.comp_intro');
-    isExist('job_title2', '.job_title');
-    isExist('job_duty2', '.comp_duty_content');
-    isExist('job_require2', '.comp_request_content');
-    isExist('pay2', '.compensation');
-
-    if (sessionStorage.getItem('benefits2')) {
-        var element_content = sessionStorage.getItem('benefits2').split(',');
-        $('.element-content>ul>li>textarea').each(function (i, v) {
-            $(this).html(element_content[i]);
-        })
-    }
-
     //键盘遮挡问题
     // $('input[type="text"],textarea').on('click', function () {
     //     var target = this;
@@ -333,14 +379,6 @@
     //         console.log('scrollIntoViewIfNeeded');
     //     },400);
     // });
-
-
-
-   //调用弹窗
-    function sumToJava(recruitConfig) {
-        alert(recruitConfig);
-     window.control.onSumResult(recruitConfig);
-    }
 
     $('.sub').click(function () {
         $('.share_box').show();
@@ -425,6 +463,12 @@
             }
         })
     })
+
+       //调用弹窗
+    function sumToJava(recruitConfig) {
+        alert(recruitConfig);
+        window.control.onSumResult(recruitConfig);
+    }
     
 })
    
