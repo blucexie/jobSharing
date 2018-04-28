@@ -381,6 +381,8 @@
     // });
 
     $('.sub').click(function () {
+        var shareTitle = $('.logo').val()+'-正在招聘';
+        $('.share_title').attr('placeholder',shareTitle);   
         $('.share_box').show();
        
     })

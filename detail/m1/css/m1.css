@@ -313,7 +313,7 @@ canvas {
   border: none;
   outline: none;
   font-size: 0.65rem;
-  color: #ccc;
+  color: #000;
 }
 .share_tip textarea{
   width: 80%;
@@ -323,7 +323,7 @@ canvas {
   font-size: 0.65rem;
   height: 45%;
   margin-top: 0.15rem;
-  color: #ccc;
+  color: #000;
   height: 4.8rem;
 }
 .share_tip .share_button{
