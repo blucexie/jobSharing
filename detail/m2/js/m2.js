@@ -444,10 +444,11 @@
                 var shareTitle;
                 var shareIntro;
                 if( share_title){
-                    shareTitle = share_title + "—正在招聘";
+                    shareTitle = share_title;
                 }else{
-                    shareTitle = enterpriseName;
+                    shareTitle = enterpriseName + "—正在招聘";
                 }
+                
                 if(share_intro){
                     shareIntro = share_intro;
                 }else{
