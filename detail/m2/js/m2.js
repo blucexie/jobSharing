@@ -1,18 +1,6 @@
 
    $(function(){
        
-    //    $('input[type="text"],textarea').on('click', function () {
-    //        var target = this;
-    //        setTimeout(function () {
-    //            target.scrollIntoViewIfNeeded();
-    //        }, 400);
-    //    });
-
-    // 检测屏幕高度 让屏幕和盒子大小一致
-    // doucument.documentElement.style.height = window.innerHeight+'px';
-    // var h = document.documentElement.clientHeight;
-    // $('body').height(h);
-    // $('.swiper-container').height(h);
 
     //获取userCode
     function GetQueryString(name) {
@@ -23,6 +11,9 @@
     }
     var userCode = GetQueryString("uc");
     var codeF = GetQueryString("code");
+
+
+
 
    //第五页生成二维码
     if (userCode) {
@@ -58,32 +49,6 @@
         })
     }
     swiper();
-    
-    //键盘弹出
-    // function isIos(){
-    //     var a = navigator.userAgent;
-    //     if(a.indexOf("iPhone")){
-    //         return true;
-    //     }
-    // }
-    // // isIos();
-    // function iosInput() {
-    //     if (isIos()) {
-    //         $('textarea').css('position', 'absolute');
-    //         //解决第三方软键盘唤起时底部input输入框被遮挡问题
-    //         var bfscrolltop = document.body.scrollTop;//获取软键盘唤起前浏览器滚动部分的高度
-    //         $("textarea").focus(function () {//在这里‘input.inputframe’是我的底部输入栏的输入框，当它获取焦点时触发事件
-    //             interval = setInterval(function () {//设置一个计时器，时间设置与软键盘弹出所需时间相近
-    //                 document.body.scrollTop = document.body.scrollHeight;//获取焦点后将浏览器内所有内容高度赋给浏览器滚动部分高度
-    //             }, 100)
-    //         }).blur(function () {//设定输入框失去焦点时的事件
-    //             clearInterval(interval);//清除计时器
-    //             document.body.scrollTop = bfscrolltop;
-    //             //将软键盘唤起前的浏览器滚动部分高度重新赋给改变后的高度
-    //         });
-    //     }
-    // }
-    // iosInput();
 
     // 第一页存数据
     // var company_name2 = sessionStorage.getItem('company_name2');
@@ -133,11 +98,7 @@
     //     var benefits2 = element_content.join();
     //     sessionStorage.setItem('benefits2', benefits2);
     // };
-
- 
-
-    
-
+   
     if (codeF) {
         $('.bottom').hide();
         $('.sub').hide();
@@ -153,6 +114,7 @@
             url: "https://apix.funinhr.com/api/query/param",
             type: "POST",
             dataType: "json",
+            async:false,
             data: JSON.stringify({ code: codeF}),
             success: function (data) {
                 var jsonData = JSON.parse(data["plaintext"]);
@@ -216,6 +178,22 @@
                 }
             }
         });
+    }else{
+        var dataJson = {
+            userCode:userCode
+        }
+        $.ajax({
+            type:'post',
+            url:'https://apix.funinhr.com/api/get/common/enterprise',
+            async:false,
+            dataType:'json',
+            data:JSON.stringify(dataJson),
+            success:function(data){
+               console.log(data);
+               var enterpriseName =JSON.parse(data.plaintext).enterpriseName ;
+               $('.share_title').attr('placeholder',enterpriseName)
+            }
+        })
     }
 
 
@@ -381,8 +359,9 @@
     // });
 
     $('.sub').click(function () {
-        var shareTitle = $('.logo').val()+'-正在招聘';
-        $('.share_title').attr('placeholder',shareTitle);   
+        var shareTitle = $('.logo').val();
+        var enterpriseName = $('.share_title').attr('placeholder')+'-正在招聘';
+        $('.share_title').attr('placeholder',enterpriseName);   
         $('.share_box').show();
        
     })
@@ -429,6 +408,7 @@
         }
         var share_title = $('.share_title').val();
         var share_intro = $('.share_intro').val();
+        var share_placeholder = $('.share_title').attr('placeholder');
         $.ajax({
             type: 'POST',
             url: 'https://apix.funinhr.com/api/insert/params',
@@ -437,7 +417,7 @@
             success: function (data) {
                 var jsonData = JSON.parse(data["plaintext"]);
                 var result = jsonData.item.result;
-                var code = jsonData.item.code;
+                var code = jsonData.item.code; 
                 var enterpriseName = jsonData.item.enterpriseName;
                 //返回状态信息
                 var resultInfo = jsonData.item.resultInfo;
@@ -446,9 +426,9 @@
                 if( share_title){
                     shareTitle = share_title;
                 }else{
-                    shareTitle = enterpriseName + "—正在招聘";
+                    var enterpriseName = $('.share_title').attr('placeholder');
+                    shareTitle = enterpriseName;
                 }
-                
                 if(share_intro){
                     shareIntro = share_intro;
                 }else{

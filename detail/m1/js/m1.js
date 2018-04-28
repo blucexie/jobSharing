@@ -44,7 +44,8 @@
  }
  swiper()
 
- 
+
+
  if(codeF){
      $.ajax({
          url: "https://apix.funinhr.com/api/query/param",
@@ -107,8 +108,26 @@
              }
          }
      });
+ }else{
+    var dataJson={
+        userCode:userCode
+    }
+    $.ajax({
+        type:'post',
+        url:'https://apix.funinhr.com/api/get/common/enterprise',
+        async:false,
+        dataType:'json',
+        data:JSON.stringify(dataJson),
+        success:function(data){
+           var enterprise =JSON.parse(data.plaintext);
+            var enterpriseName = enterprise.enterpriseName;
+           $('.share_title').attr('placeholder',enterpriseName)
+        }
+    })
  }
-    
+   
+
+
     
  //生成二维码
 
@@ -229,8 +248,9 @@
  
 
  $('.submit').click(function () { 
-    var shareTitle = $('.page1-Text>input').val()+'-正在招聘';
-    $('.share_title').attr('placeholder',shareTitle);   
+    var shareTitle = $('.page1-Text>input').val();
+    var enterpriseName = $('.share_title').attr('placeholder')+'-正在招聘'
+    $('.share_title').attr('placeholder',enterpriseName);   
     $('.share_box').show();
  })
  $('.cancel').click(function(){
@@ -264,6 +284,8 @@
          }
          var share_title = $('.share_title').val();
          var share_intro = $('.share_intro').val();
+         var share_placeholder = $('.share_title').attr('placeholder');
+        
      $.ajax({
         url: "https://apix.funinhr.com/api/insert/params",
          type: "POST",
@@ -277,8 +299,9 @@
              var shareTitle;
              var shareIntro;
              if( share_title){
-                 shareTitle = share_title + "—正在招聘";
+                 shareTitle = share_title;
              }else{
+                 var enterpriseName = $('.share_title').attr('placeholder')
                  shareTitle = enterpriseName;
              }
              if(share_intro){
