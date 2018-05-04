@@ -1,6 +1,4 @@
 
- 
- /*获取userCode*/
  function GetQueryString(name) {
      var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
      var r = window.location.search.substr(1).match(reg);
@@ -10,7 +8,6 @@
  var userCode = GetQueryString("uc");
  var codeF  = GetQueryString("code");
 
- //生成二维码
  if(userCode){
     $('#code').qrcode({
         text: "https://apix.funinhr.com/hr/employee.html?userCode=" + userCode
@@ -33,112 +30,208 @@
          longSwipesMs : 5000,
          on: {
              init: function () {
-                 swiperAnimateCache(this); //隐藏动画元素 
-                 swiperAnimate(this); //初始化完成开始动画
+                 swiperAnimateCache(this);
+                 swiperAnimate(this); 
              },
              slideChangeTransitionEnd: function () {
-                 swiperAnimate(this); //每个slide切换结束时也运行当前slide动画
+                 swiperAnimate(this); 
              }
          }
      })
  }
- swiper()
-
-
-
- if(codeF){
-     $.ajax({
-         url: "https://apix.funinhr.com/api/query/param",
-         type: "POST",
-         dataType: "json",
-         async:false,
-         data: JSON.stringify({code:codeF}),
-         success: function (data) {
-             var jsonData = JSON.parse(data["plaintext"]);
-             var result = jsonData.item.result;
-             var params = JSON.parse(jsonData.item.params);
-             var codeW = jsonData.item.userCode;
-             //返回状态信息
-             var resultInfo = jsonData.item.resultInfo;
-             $('#code').qrcode({
-                text: "https://apix.funinhr.com/hr/employee.html?userCode=" + codeW
-             });
-             if (result === 1001) {
-                 $('.page1-Text>input').val(params.company_name);
-                 $('.company_Profile').val(params.company_intro);
-                 $('.jobIntroduction>.job_title').val(params.job_title);
-                 $('.jobDuty>textarea').val(params.job_duty);
-                 $('.jobRequire>textarea').val(params.job_require);
-                 $('.salary').val(params.pay);
-                 $('.edit').hide();
-                 $('.page1-Text>input').attr("disabled","disabled");
-                 $('.company_Profile').attr("disabled","disabled");
-                 $('.jobIntroduction>.job_title').attr("disabled","disabled");
-                 $('.jobDuty>textarea').attr("disabled","disabled");
-                 $('.jobRequire>textarea').attr("disabled","disabled");
-                 $('.salary').attr("disabled","disabled");
-                  $('input').each(function(){
-                      $(this).css({"color":"#fff","opacity":1})
-                  })  
-                  $('textarea').each(function(){
-                    $(this).css({"color":"#fff","opacity":1})
-                 })  
-                  // 判断第一个页面是否存在
-                  var c_name = params.company_name;
-                  if(!c_name){
-                    $('.one').remove();
-                      swiper();
-                  }
-                  //判断第二个页面是否存在
-                  var c_intro = $('.company_Profile').val();
-                  console.log(c_intro)
-                  if(!c_intro){
-                      $('.two').remove();
-                      swiper();
-                  }
-                  //判断第三个页面是否存在
-                  var j_title = params.job_title;
-                  var j_duty = params.job_duty;
-                  var j_request = params.job_require;
-                  var j_pay =params.pay;
-                  if(!j_title&&!j_duty&&!j_request&&!j_pay){
-                      $('.three').remove();
-                     swiper();
-                  }
-             }
-         }
-     });
- }else{
-    var dataJson={
-        userCode:userCode
-    }
+ swiper();
+if (codeF) {
     $.ajax({
-        type:'post',
-        url:'https://apix.funinhr.com/api/get/common/enterprise',
-        async:false,
-        dataType:'json',
-        data:JSON.stringify(dataJson),
-        success:function(data){
-           var enterprise =JSON.parse(data.plaintext);
-            var enterpriseName = enterprise.enterpriseName;
-           $('.share_title').attr('placeholder',enterpriseName)
+        url: "https://apix.funinhr.com/api/query/param",
+        type: "POST",
+        dataType: "json",
+        async: false,
+        data: JSON.stringify({ code: codeF }),
+        success: function (data) {
+            var jsonData = JSON.parse(data["plaintext"]);
+            var result = jsonData.item.result;
+            var params = JSON.parse(jsonData.item.params);
+            var codeW = jsonData.item.userCode;
+
+            var resultInfo = jsonData.item.resultInfo;
+            $('#code').qrcode({
+                text: "https://apix.funinhr.com/hr/employee.html?userCode=" + codeW
+            });
+            if (result === 1001) {
+                $('.page1-Text>input').val(params.company_name);
+                $('.company_Profile').val(params.company_intro);
+                $('.jobIntroduction>.job_title').val(params.job_title);
+                $('.jobDuty>textarea').val(params.job_duty);
+                $('.jobRequire>textarea').val(params.job_require);
+                $('.salary').val(params.pay);
+                $('.edit').hide();
+                $('.page1-Text>input').attr("disabled", "disabled");
+                $('.company_Profile').attr("disabled", "disabled");
+                $('.jobIntroduction>.job_title').attr("disabled", "disabled");
+                $('.jobDuty>textarea').attr("disabled", "disabled");
+                $('.jobRequire>textarea').attr("disabled", "disabled");
+                $('.salary').attr("disabled", "disabled");
+                $('input').each(function () {
+                    $(this).css({ "color": "#fff", "opacity": 1 })
+                })
+                $('textarea').each(function () {
+                    $(this).css({ "color": "#fff", "opacity": 1 })
+                })
+
+                var c_name = params.company_name;
+                if (!c_name) {
+                    $('.one').remove();
+                    swiper();
+                }
+
+                var c_intro = $('.company_Profile').val();
+                if (!c_intro) {
+                    $('.two').remove();
+                    swiper();
+                }
+
+                var j_title = params.job_title;
+                var j_duty = params.job_duty;
+                var j_request = params.job_require;
+                var j_pay = params.pay;
+                if (!j_title && !j_duty && !j_request && !j_pay) {
+                    $('.three').remove();
+                    swiper();
+                }
+            }
+        }
+    });
+
+    var url = window.location.href;
+    var dataUrl = {
+        url: url,
+        code: codeF
+    }
+   
+     var nativeShare = new NativeShare({
+         syncDescToTag: false,
+         syncIconToTag: false,
+         syncTitleToTag: false,
+     });
+
+    $.ajax({
+        type: "post",
+        url: "https://apix.funinhr.com/api/get/wxconfig",
+        dataType: "json",
+        async: false,
+        data: JSON.stringify(dataUrl),
+        success: function (data) {
+            var data = JSON.parse(data.plaintext);
+            var dataItem = JSON.parse(data.item.params);
+            sessionStorage.setItem('secondShareTitle', dataItem.shareTitle);
+            sessionStorage.setItem('secondShareIntro', dataItem.shareIntro);
+			
+	        var link = window.location.href;
+	        var shareData = {
+	            title: dataItem.shareTitle,
+	            desc: dataItem.shareIntro,
+	            link: link,
+	            icon: "http://cdn.funinhr.com/online/image/job/1-120-120.png"
+	   	   };
+		   nativeShare.setShareData(shareData);
+			
+            wx.config({
+                debug: true,
+                appId: data.appid,
+                timestamp: data.timestamp,
+                nonceStr: data.nonceStr,
+                signature: data.signature,
+                jsApiList: [
+                    'checkJsApi',
+                    'onMenuShareTimeline',
+                    'onMenuShareAppMessage',
+                    'onMenuShareQQ',
+                    'onMenuShareWeibo',
+                    'onMenuShareQZone'
+                ]
+            });
+        },
+        error: function (xhr, status, error) {
+          return false;
         }
     })
- }
+    wx.ready(function () {
+        var link = window.location.href;
+        var protocol = window.location.protocol;
+        var host = window.location.host;
+        var secondShareTitle = sessionStorage.getItem('secondShareTitle');
+        var secondShareIntro = sessionStorage.getItem('secondShareIntro');
+        wx.onMenuShareTimeline({
+            title: secondShareTitle,
+            link: link,
+            imgUrl:"http://cdn.funinhr.com/online/image/job/1-120-120.png",
+            success:function(){
+                return false;
+            }
+        });
+        wx.onMenuShareAppMessage({
+            title: secondShareTitle, 
+            desc: secondShareIntro, 
+            link: link, 
+            imgUrl:"http://cdn.funinhr.com/online/image/job/1-120-120.png", 
+            type: 'link', 
+            dataUrl: '', 
+            success:function(){
+                return false;
+            }
+        });
+         wx.onMenuShareQQ({
+            title: secondShareTitle, 
+            desc: secondShareIntro, 
+            link: link, 
+            imgUrl: "http://cdn.funinhr.com/online/image/job/1-120-120.png",
+            success:function(){
+                return false;
+            }
+        });
+
+        wx.onMenuShareWeibo({
+            title: secondShareTitle, 
+            desc: secondShareIntro, 
+            link: link, 
+            imgUrl: "http://cdn.funinhr.com/online/image/job/1-120-120.png", 
+            success:function(){
+                return false;
+            }
+        });
+
+        //分享到QQ空间
+        wx.onMenuShareQZone({
+            title: secondShareTitle,
+            desc: secondShareIntro, 
+            link: link,
+            imgUrl: "http://cdn.funinhr.com/online/image/job/1-120-120.png", 
+            success:function(){
+                return false;
+            }
+        });
+        
+    });
+
+} else {
+    var dataJson = {
+        userCode: userCode
+    }
+    $.ajax({
+        type: 'post',
+        url: 'https://apix.funinhr.com/api/get/common/enterprise',
+        async: false,
+        dataType: 'json',
+        data: JSON.stringify(dataJson),
+        success: function (data) {
+            var enterprise = JSON.parse(data.plaintext);
+            var enterpriseName = enterprise.enterpriseName;
+            $('.share_title').attr('placeholder', enterpriseName)
+        }
+    })
+
+}
    
-
-
-    
- //生成二维码
-
-/*  var url = window.location.href;
- var num = url.indexOf("uc=");
- var uc = url.substr(num + 3, url.length - 1); */
- /* $('#code').qrcode({
-    text: "https://apix.funinhr.com/hr/employee.html?userCode=" + userCode
- }); */
-
- //封装加动画和边框
  function edit(a) {
      $('.arrow').css({
          "animation-play-state": "paused"
@@ -162,7 +255,7 @@
      sessionStorage.setItem(b,d);  
  }
 
- //解除绑定
+
  function unbindEvent() {
      $('body').bind('touchstart', function (event) {
          event.stopPropagation();
@@ -174,7 +267,7 @@
          event.stopPropagation();
      });
  }
- //数据回填
+
  function isExist(a, b) {
      if (sessionStorage.getItem(a)) {
          $(b).val("");
@@ -192,8 +285,7 @@
      edit('.page1-Text>input');
      unbindEvent();
  })
-//  var company_name1 = $('.page1-Text>input').val();
-//      sessionStorage.company_name1 = company_name1;
+
  $('.save1').click(function () {
      save('.page1-Text>input', 'company_name1');
      save('.company_Profile', 'company_intro1');
@@ -204,8 +296,6 @@
      window.location.reload();
  })
  
-//  var company_intro1 = $('.company_Profile').val();
-//  sessionStorage.company_intro1 = company_intro1;
  $('.edit2').click(function () {
      edit('.company_Profile');
      unbindEvent();
@@ -220,14 +310,7 @@
      window.location.reload();
      //window.location.href ="m1.html"
  })
-//  var job_title1 = $('.jobIntroduction>.job_title').val();
-//  var job_duty1 = $('.jobDuty>textarea').val();
-//  var job_require1 = $('.jobRequire>textarea').val();
-//  var pay1 = $('.salary').val();
-//  sessionStorage.job_title1 = job_title1;
-//  sessionStorage.job_duty1 = job_duty1;
-//  sessionStorage.job_require1 = job_require1;
-//  sessionStorage.pay1 = pay1;
+
  $('.edit3').click(function () {
      edit('.jobIntroduction>.job_title');
      edit('.jobDuty>textarea');
@@ -250,81 +333,83 @@
  $('.submit').click(function () { 
     var shareTitle = $('.page1-Text>input').val();
     var enterpriseName = $('.share_title').attr('placeholder')+'-正在招聘'
+    var one = enterpriseName.indexOf('-正在招聘');
+    enterpriseName = enterpriseName.substr(0,one)+'-正在招聘';
     $('.share_title').attr('placeholder',enterpriseName);   
     $('.share_box').show();
  })
  $('.cancel').click(function(){
     $('.share_box').hide();
 })
- $('.confirm').click(function(){
+$('.confirm').click(function () {
     save('.page1-Text>input', 'company_name1');
     save('.company_Profile', 'company_intro1');
     save('.job_title', 'job_title1');
     save('.jobDuty>textarea', 'job_duty1');
     save('.jobRequire>textarea', 'job_require1');
-    save('.salary', 'pay1');   
-     var company_name = sessionStorage.getItem("company_name1"),
-         company_intro = sessionStorage.getItem("company_intro1"),
-         job_title = sessionStorage.getItem("job_title1"),
-         job_duty = sessionStorage.getItem("job_duty1"),
-         job_require = sessionStorage.getItem("job_require1"),
-         pay = sessionStorage.getItem("pay1"),
+    save('.salary', 'pay1');
+    var company_name = sessionStorage.getItem("company_name1"),
+        company_intro = sessionStorage.getItem("company_intro1"),
+        job_title = sessionStorage.getItem("job_title1"),
+        job_duty = sessionStorage.getItem("job_duty1"),
+        job_require = sessionStorage.getItem("job_require1"),
+        pay = sessionStorage.getItem("pay1");
+    var share_title = $('.share_title').val();
+    var share_intro = $('.share_intro').val();
+    var share_placeholder = $('.share_title').attr('placeholder');
+    var shareTitle;
+    var shareIntro;
+    if (share_title) {
+        shareTitle = share_title;
+    } else {
+        var enterpriseName = $('.share_title').attr('placeholder')
+        shareTitle = enterpriseName;
+    }
+    if (share_intro) {
+        shareIntro = share_intro;
+    } else {
+        shareIntro = '快到碗里来';
+    }
 
-         dataJson = {
-             userCode:userCode,
-             params: {
-                 company_name: company_name,
-                 company_intro: company_intro,
-                 job_title:job_title,
-                 job_duty: job_duty,
-                 job_title:job_title,
-                 job_require: job_require,
-                 pay: pay
-             }
-         }
-         var share_title = $('.share_title').val();
-         var share_intro = $('.share_intro').val();
-         var share_placeholder = $('.share_title').attr('placeholder');
-        
-     $.ajax({
+    dataJson = {
+        userCode: userCode,
+        params: {
+            company_name: company_name,
+            company_intro: company_intro,
+            job_title: job_title,
+            job_duty: job_duty,
+            job_title: job_title,
+            job_require: job_require,
+            pay: pay,
+            shareTitle: shareTitle,
+            shareIntro: shareIntro
+        }
+    }
+
+    $.ajax({
         url: "https://apix.funinhr.com/api/insert/params",
-         type: "POST",
-         dataType: "json",
-         data: JSON.stringify(dataJson),
-         success: function (data) {
-             var jsonData = JSON.parse(data["plaintext"]);
-             var result = jsonData.item.result;
-             var code = jsonData.item.code;
-             var enterpriseName = jsonData.item.enterpriseName;
-             var shareTitle;
-             var shareIntro;
-             if( share_title){
-                 shareTitle = share_title;
-             }else{
-                 var enterpriseName = $('.share_title').attr('placeholder')
-                 shareTitle = enterpriseName;
-             }
-             if(share_intro){
-                 shareIntro = share_intro;
-             }else{
-                 shareIntro = '快到碗里来';
-             }
-             //返回状态信息
-             var resultInfo = jsonData.item.resultInfo;
-             var recruitConfig = JSON.stringify({
-                "inviteTitle":  shareTitle,
-                "inviteDescription":shareIntro,
-                "inviteUrl": "https://apix.funinhr.com/templates/position/detail/m1/m1.html?code="+code,
+        type: "POST",
+        dataType: "json",
+        data: JSON.stringify(dataJson),
+        success: function (data) {
+            var jsonData = JSON.parse(data["plaintext"]);
+            var result = jsonData.item.result;
+            var code = jsonData.item.code;
+            var enterpriseName = jsonData.item.enterpriseName;
+            //返回状态信息
+            var resultInfo = jsonData.item.resultInfo;
+            var recruitConfig = JSON.stringify({
+                "inviteTitle": shareTitle,
+                "inviteDescription": shareIntro,
+                "inviteUrl": "https://apix.funinhr.com/templates/position/detail/m1/m1.html?code=" + code,
                 "inviteIcon": "http://cdn.funinhr.com/online/image/job/1-120-120.png"
             })
-             if (result === 1001) {
-                 sumToJava(recruitConfig);
-             }
-         }
-     });
- })
-
- //安卓IOS交互方法
+            if (result === 1001) {
+                sumToJava(recruitConfig);
+            }
+        }
+    });
+})
  function sumToJava(recruitConfig) {
      alert(recruitConfig);
      window.control.onSumResult(recruitConfig);

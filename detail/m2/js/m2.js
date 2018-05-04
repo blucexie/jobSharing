@@ -1,7 +1,5 @@
 
    $(function(){
-       
-
     //获取userCode
     function GetQueryString(name) {
         var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
@@ -11,11 +9,6 @@
     }
     var userCode = GetQueryString("uc");
     var codeF = GetQueryString("code");
-
-
-
-
-   //第五页生成二维码
     if (userCode) {
         $('#code').qrcode({
             text: "https://apix.funinhr.com/hr/employee.html?userCode=" + userCode
@@ -25,7 +18,6 @@
     var h = window.innerHeight;
     $('body').height(h);
     $('.swiper-slide').height(h);
-
     function swiper(){
         var mySwiper = new Swiper('.swiper-container', {
             direction: 'vertical',
@@ -39,66 +31,16 @@
             passiveListeners : false,
             on: {
                 init: function () {
-                    swiperAnimateCache(this); //隐藏动画元素 
-                    swiperAnimate(this); //初始化完成开始动画
+                    swiperAnimateCache(this); 
+                    swiperAnimate(this); 
                 },
                 slideChangeTransitionEnd: function () {
-                    swiperAnimate(this); //每个slide切换结束时也运行当前slide动画
+                    swiperAnimate(this);
                 }
             }
         })
     }
     swiper();
-
-    // 第一页存数据
-    // var company_name2 = sessionStorage.getItem('company_name2');
-    // if (!company_name2) {
-    //     var com_name2 = $('.logo').val();
-    //     sessionStorage.setItem('company_name2', com_name2);
-    // } else {
-    //     var com_name = $('.logo').val();
-    //     $('.logo').val();
-    //     $('.logo').val(com_name);
-    // }
-    // 第二页存数据
-    // var company_intro2 = sessionStorage.getItem('company_intro2');
-    // if (!company_intro2) {
-    //     var com_intro2 = $('.comp_intro').html();
-    //     sessionStorage.setItem('company_intro2', com_intro2);
-    // }
-    // 第三页存数据
-    // var job_title2 = sessionStorage.getItem('job_title2');
-    // if (!job_title2) {
-    //     var j_title2 = $('.job_title').val();
-    //     sessionStorage.setItem('job_title2', j_title2);
-    // };
-    // var job_duty2 = sessionStorage.getItem('job_duty2');
-    // if (!job_duty2) {
-    //     var j_duty2 = $('.comp_duty_content').val();
-    //     sessionStorage.setItem('job_duty2', j_duty2);
-    // };
-    // var job_require2 = sessionStorage.getItem('job_require2');
-    // if (!job_require2) {
-    //     var j_require2 = $('.comp_request_content').val();
-    //     sessionStorage.setItem('job_require2', j_require2);
-    // };
-    // var pay2 = sessionStorage.getItem('pay');
-    // if (!pay2) {
-    //     var pay_content2 = $('.compensation').val();
-    //     sessionStorage.setItem('pay2', pay_content2);
-    // };
-    // 第四页存数据
-    // var bene_fits2 = sessionStorage.getItem('benefits2');
-    // if (!bene_fits2) {
-    //     var element_content = [];
-    //     $('.element-content>ul>li>textarea').each(function () {
-    //         var a = $(this).val();
-    //         element_content.push(a);
-    //     })
-    //     var benefits2 = element_content.join();
-    //     sessionStorage.setItem('benefits2', benefits2);
-    // };
-   
     if (codeF) {
         $('.bottom').hide();
         $('.sub').hide();
@@ -138,19 +80,19 @@
                     $('.element-content>ul>li>textarea').each(function(i,v){
                        $(this).val(benefitArr[i]);
                     })
-                    // 判断第一个页面是否存在
+  
                     var c_name = $('.logo').val();
                     if(!c_name){
                         $('.one').remove();
                         swiper();
                     }
-                    //判断第二个页面是否存在
+     
                     var c_intro = $('.comp_intro').val();
                     if(!c_intro){
                         $('.two').remove();
                         swiper();
                     }
-                    //判断第三个页面是否存在
+      
                     var j_title = $('.job_title').val();
                     var j_duty = $('.comp_duty_content').val();
                     var j_request = $('.comp_request_content').val();
@@ -159,7 +101,7 @@
                         $('.three').remove();
                         swiper();
                     }
-                    // 判断第四个页面是否存在
+
                     function trimSpace(benefitArr) {
                         for (var i = 0; i < benefitArr.length; i++) {
                             if (benefitArr[i] == "" || typeof (benefitArr[i]) == "undefined") {
@@ -174,10 +116,122 @@
                         $('.four').remove();
                         swiper();
                     }
-
                 }
             }
         });
+
+     var url = window.location.href;
+     var dataUrl = {
+         url: url,
+         code: codeF
+     }
+     var nativeShare = new NativeShare({
+        syncDescToTag: false,
+        syncIconToTag: false,
+        syncTitleToTag: false,
+    });
+     $.ajax({
+         type: "post",
+         url: "https://apix.funinhr.com/api/get/wxconfig",
+         dataType: "json",
+         async: false,
+         data: JSON.stringify(dataUrl),
+         success: function (data) {
+             var data = JSON.parse(data.plaintext);
+             var dataItem = JSON.parse(data.item.params);
+             sessionStorage.setItem('secondShareTitle', dataItem.shareTitle);
+             sessionStorage.setItem('secondShareIntro', dataItem.shareIntro);
+
+             var link = window.location.href;
+             var shareData = {
+                 title: dataItem.shareTitle,
+                 desc: dataItem.shareIntro,
+                 link: link,
+                 icon: "http://cdn.funinhr.com/online/image/job/2-120-120.png"
+               };
+            nativeShare.setShareData(shareData);
+
+             wx.config({
+                 debug: true,
+                 appId: data.appid,
+                 timestamp: data.timestamp,
+                 nonceStr: data.nonceStr,
+                 signature: data.signature,
+                 jsApiList: [
+                     'checkJsApi',
+                     'onMenuShareTimeline',
+                     'onMenuShareAppMessage',
+                     'onMenuShareQQ',
+                     'onMenuShareWeibo',
+                     'onMenuShareQZone'
+                 ]
+             });
+         },
+         error: function (xhr, status, error) {
+            return false;
+         }
+     })
+ 
+     wx.ready(function () {
+         var link = window.location.href;
+         var protocol = window.location.protocol;
+         var host = window.location.host;
+         var secondShareTitle = sessionStorage.getItem('secondShareTitle');
+         var secondShareIntro = sessionStorage.getItem('secondShareIntro');
+         //分享朋友圈
+         wx.onMenuShareTimeline({
+             title: secondShareTitle,
+             link: link,
+             imgUrl: "http://cdn.funinhr.com/online/image/job/2-120-120.png",
+             success:function(){
+                return false;
+            }
+         });
+         //分享给好友
+         wx.onMenuShareAppMessage({
+             title: secondShareTitle, 
+             desc: secondShareIntro, 
+             link: link, 
+             imgUrl: "http://cdn.funinhr.com/online/image/job/2-120-120.png",
+             type: 'link', 
+             dataUrl: '', 
+             success:function(){
+                return false;
+            }
+         });
+         //分享给QQ
+         wx.onMenuShareQQ({
+            title: secondShareTitle,
+            desc: secondShareIntro,
+            link: link,
+            imgUrl: "http://cdn.funinhr.com/online/image/job/2-120-120.png", 
+            success:function(){
+                return false;
+            }
+        });
+
+        //分享到腾讯微博
+        wx.onMenuShareWeibo({
+            title: secondShareTitle, 
+            desc: secondShareIntro, 
+            link: link, 
+            imgUrl: "http://cdn.funinhr.com/online/image/job/2-120-120.png",
+            success:function(){
+                return false;
+            }
+        });
+
+        //分享到QQ空间
+        wx.onMenuShareQZone({
+            title: secondShareTitle,
+            desc: secondShareIntro, 
+            link: link, 
+            imgUrl: "http://cdn.funinhr.com/online/image/job/2-120-120.png", 
+            success:function(){
+                return false;
+            }
+        });
+     });
     }else{
         var dataJson = {
             userCode:userCode
@@ -189,7 +243,6 @@
             dataType:'json',
             data:JSON.stringify(dataJson),
             success:function(data){
-               console.log(data);
                var enterpriseName =JSON.parse(data.plaintext).enterpriseName ;
                $('.share_title').attr('placeholder',enterpriseName)
             }
@@ -349,18 +402,12 @@
         window.location.reload();
     })
 
-    //键盘遮挡问题
-    // $('input[type="text"],textarea').on('click', function () {
-    //     var target = this;
-    //     setTimeout(function(){
-    //         target.scrollIntoViewIfNeeded();
-    //         console.log('scrollIntoViewIfNeeded');
-    //     },400);
-    // });
-
     $('.sub').click(function () {
         var shareTitle = $('.logo').val();
         var enterpriseName = $('.share_title').attr('placeholder')+'-正在招聘';
+        var one = enterpriseName.indexOf('-正在招聘');
+        enterpriseName = enterpriseName.substr(0,one)+'-正在招聘';
+        console.log(enterpriseName);
         $('.share_title').attr('placeholder',enterpriseName);   
         $('.share_box').show();
        
@@ -385,7 +432,6 @@
         })
         var benefits2 = element_content.join();
         sessionStorage.setItem('benefits2', benefits2);
-
         var company_name2 = sessionStorage.getItem('company_name2');
         var company_intro2 = sessionStorage.getItem('company_intro2');
         var company_title2 =  sessionStorage.getItem('job_title2');
@@ -393,7 +439,22 @@
         var company_require2 = sessionStorage.getItem('job_require2');
         var pay2 = sessionStorage.getItem('pay2');
         var benefits2 = sessionStorage.getItem('benefits2');
-        
+        var share_title = $('.share_title').val();
+        var share_intro = $('.share_intro').val();
+        var share_placeholder = $('.share_title').attr('placeholder');
+        var shareTitle;
+        var shareIntro;
+        if (share_title) {
+            shareTitle = share_title;
+        } else {
+            var enterpriseName = $('.share_title').attr('placeholder');
+            shareTitle = enterpriseName;
+        }
+        if (share_intro) {
+            shareIntro = share_intro;
+        } else {
+            shareIntro = '快到碗里来';
+        }
         var dataJson = {
             userCode: userCode,
             params: {
@@ -403,12 +464,12 @@
                 company_duty2: company_duty2,
                 company_require2: company_require2,
                 pay2: pay2,
-                benefits2: benefits2
+                benefits2: benefits2,
+                shareTitle: shareTitle,
+                shareIntro: shareIntro
             }
         }
-        var share_title = $('.share_title').val();
-        var share_intro = $('.share_intro').val();
-        var share_placeholder = $('.share_title').attr('placeholder');
+        
         $.ajax({
             type: 'POST',
             url: 'https://apix.funinhr.com/api/insert/params',
@@ -420,20 +481,7 @@
                 var code = jsonData.item.code; 
                 var enterpriseName = jsonData.item.enterpriseName;
                 //返回状态信息
-                var resultInfo = jsonData.item.resultInfo;
-                var shareTitle;
-                var shareIntro;
-                if( share_title){
-                    shareTitle = share_title;
-                }else{
-                    var enterpriseName = $('.share_title').attr('placeholder');
-                    shareTitle = enterpriseName;
-                }
-                if(share_intro){
-                    shareIntro = share_intro;
-                }else{
-                    shareIntro = '快到碗里来';
-                }
+                var resultInfo = jsonData.item.resultInfo;          
                 var recruitConfig = JSON.stringify({
                     "inviteTitle": shareTitle,
                     "inviteDescription": shareIntro,

@@ -6,15 +6,15 @@ input::-webkit-input-placeholder{
   color:#ccc;
   font-size: 0.65rem;
 }
-input::-moz-placeholder{   /* Mozilla Firefox 19+ */
+input::-moz-placeholder{   
   color:#ccc;
   font-size: 0.65rem;
 }
-input:-moz-placeholder{    /* Mozilla Firefox 4 to 18 */
+input:-moz-placeholder{  
   color:#ccc;
   font-size: 0.65rem;
 }
-input:-ms-input-placeholder{  /* Internet Explorer 10-11 */ 
+input:-ms-input-placeholder{ 
   color:#ccc;
   font-size: 0.65rem;
 }
@@ -23,15 +23,15 @@ textarea::-webkit-input-placeholder{
   color:#ccc;
   font-size: 0.65rem;
 }
-textarea::-moz-placeholder{   /* Mozilla Firefox 19+ */
+textarea::-moz-placeholder{ 
   color:#ccc;
   font-size: 0.65rem;
 }
-textarea:-moz-placeholder{    /* Mozilla Firefox 4 to 18 */
+textarea:-moz-placeholder{
   color:#ccc;
   font-size: 0.65rem;
 }
-textarea:-ms-input-placeholder{  /* Internet Explorer 10-11 */ 
+textarea:-ms-input-placeholder{  
   color:#ccc;
   font-size: 0.65rem;
 }
