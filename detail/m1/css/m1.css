@@ -248,11 +248,24 @@ canvas {
   width: 5rem;
   height: 5rem;
   vertical-align: middle;
+  padding:200px 0 0 200px !important;
+  margin:-200px 0 0 -200px !important;
+  position: relative;
+  z-index: 100; 
 }
 .ewm_tip span,
 .ewm_tip p {
   font-size: 0.6rem;
   color: #59c7f9;
+}
+#image{
+  width: 5rem;
+  height: 5rem;
+  vertical-align: middle;
+  padding: 200px 0 0 200px !important;
+  margin: -200px 0 0 -200px !important;
+  position: relative;
+  z-index: 100;
 }
 /* 编辑 */
 .edit {

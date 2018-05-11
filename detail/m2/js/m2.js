@@ -11,10 +11,17 @@
     var codeF = GetQueryString("code");
     if (userCode) {
         $('#code').qrcode({
+            rander:"table",
             text: "https://apix.funinhr.com/hr/employee.html?userCode=" + userCode
         });
+        $('#code').hide();
+        var canvas = document.getElementsByTagName('canvas')[0];
+        var image = new Image();
+        image.src = canvas.toDataURL("image/jpeg");
+        document.getElementById('image').src=image.src;
     }
-
+   
+    
     var h = window.innerHeight;
     $('body').height(h);
     $('.swiper-slide').height(h);
@@ -64,11 +71,18 @@
                 var params = JSON.parse(jsonData.item.params);
                 var codeW = jsonData.item.userCode;
                 var benefitArr = params.benefits2.split(',');
-             //返回状态信息
-             var resultInfo = jsonData.item.resultInfo;
-             $('#code').qrcode({
-                text: "https://apix.funinhr.com/hr/employee.html?userCode=" + codeW
-             });
+                //返回状态信息
+                var resultInfo = jsonData.item.resultInfo;
+               
+                $('#code').qrcode({
+                    rander:"table",
+                    text: "https://apix.funinhr.com/hr/employee.html?userCode=" + codeW
+                });
+                $('#code').hide();
+                var canvas = document.getElementsByTagName('canvas')[0];
+                var image = new Image();
+                image.src = canvas.toDataURL("image/jpeg");
+                document.getElementById('image').src=image.src;
 
                 if (result === 1001) {
                     $('.logo').val(params.company_name2);
@@ -149,10 +163,13 @@
                  link: link,
                  icon: "http://cdn.funinhr.com/online/image/job/2-120-120.png"
                };
+
+            $('meta[itemprop="description"]').attr('content',dataItem.shareIntro);
+      
             nativeShare.setShareData(shareData);
 
              wx.config({
-                 debug: true,
+                 debug: false,
                  appId: data.appid,
                  timestamp: data.timestamp,
                  nonceStr: data.nonceStr,
@@ -239,7 +256,6 @@
         $.ajax({
             type:'post',
             url:'https://apix.funinhr.com/api/get/common/enterprise',
-            async:false,
             dataType:'json',
             data:JSON.stringify(dataJson),
             success:function(data){

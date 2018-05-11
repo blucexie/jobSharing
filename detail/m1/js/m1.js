@@ -1,4 +1,5 @@
 
+ 
  function GetQueryString(name) {
      var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
      var r = window.location.search.substr(1).match(reg);
@@ -10,9 +11,17 @@
 
  if(userCode){
     $('#code').qrcode({
+        rander:"table",
         text: "https://apix.funinhr.com/hr/employee.html?userCode=" + userCode
      });
+     $('#code').hide();
+     var canvas = document.getElementsByTagName('canvas')[0];
+    var image = new Image();
+    image.src = canvas.toDataURL("image/jpeg");
+    document.getElementById('image').src=image.src;
  }
+
+
 
  var h = window.innerHeight;
  $('body').height(h);
@@ -40,7 +49,9 @@
      })
  }
  swiper();
-if (codeF) {
+
+ 
+ if (codeF) {
     $.ajax({
         url: "https://apix.funinhr.com/api/query/param",
         type: "POST",
@@ -52,11 +63,16 @@ if (codeF) {
             var result = jsonData.item.result;
             var params = JSON.parse(jsonData.item.params);
             var codeW = jsonData.item.userCode;
-
             var resultInfo = jsonData.item.resultInfo;
             $('#code').qrcode({
+                rander:"table",
                 text: "https://apix.funinhr.com/hr/employee.html?userCode=" + codeW
             });
+            $('#code').hide();
+            var canvas = document.getElementsByTagName('canvas')[0];
+            var image = new Image();
+            image.src = canvas.toDataURL("image/jpeg");
+            document.getElementById('image').src=image.src;
             if (result === 1001) {
                 $('.page1-Text>input').val(params.company_name);
                 $('.company_Profile').val(params.company_intro);
@@ -108,7 +124,7 @@ if (codeF) {
         code: codeF
     }
    
-     var nativeShare = new NativeShare({
+    var nativeShare = new NativeShare({
          syncDescToTag: false,
          syncIconToTag: false,
          syncTitleToTag: false,
@@ -132,11 +148,14 @@ if (codeF) {
 	            desc: dataItem.shareIntro,
 	            link: link,
 	            icon: "http://cdn.funinhr.com/online/image/job/1-120-120.png"
-	   	   };
+              };
+        
+              $('meta[itemprop="description"]').attr('content',dataItem.shareIntro);
+         
 		   nativeShare.setShareData(shareData);
 			
             wx.config({
-                debug: true,
+                debug: false,
                 appId: data.appid,
                 timestamp: data.timestamp,
                 nonceStr: data.nonceStr,
@@ -220,7 +239,6 @@ if (codeF) {
     $.ajax({
         type: 'post',
         url: 'https://apix.funinhr.com/api/get/common/enterprise',
-        async: false,
         dataType: 'json',
         data: JSON.stringify(dataJson),
         success: function (data) {
@@ -341,7 +359,7 @@ if (codeF) {
  $('.cancel').click(function(){
     $('.share_box').hide();
 })
-$('.confirm').click(function () {
+ $('.confirm').click(function () {
     save('.page1-Text>input', 'company_name1');
     save('.company_Profile', 'company_intro1');
     save('.job_title', 'job_title1');
@@ -410,7 +428,9 @@ $('.confirm').click(function () {
         }
     });
 })
+
  function sumToJava(recruitConfig) {
      alert(recruitConfig);
      window.control.onSumResult(recruitConfig);
  }
+

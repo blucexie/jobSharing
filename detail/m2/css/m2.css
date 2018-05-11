@@ -598,7 +598,7 @@ textarea:-ms-input-placeholder{
         transform: translateY(0);
         opacity: 1;
     }
-} */
+} 
 .element-box-bottom span{
     display: block;
     margin-top: 5%;
@@ -643,6 +643,18 @@ textarea:-ms-input-placeholder{
 }
 .element-ewm canvas{
     width: 80%;
+    padding:200px 0 0 200px !important;
+    margin:-200px 0 0 -200px !important;
+    position: relative;
+    z-index: 100; 
+}
+#image{
+    width: 60%;
+    visibility: visible !important;
+    padding:200% 0 0 200% !important;
+    margin:-190% 10% 10% -180% !important;
+    position: relative;
+    z-index: 100; 
 }
 
 .element-tip{
